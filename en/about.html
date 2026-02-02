@@ -1,25 +1,27 @@
 <!DOCTYPE html>
-<html lang="ja" prefix="og: http://ogp.me/ns#">
+<html lang="en" prefix="og: http://ogp.me/ns#">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>会社概要 | RISEby inc. - 実行特化型コンサルティングファーム</title>
-  <meta name="description" content="RISEby（ライズバイ）は、Accenture、Deloitte、EY、KPMG、PwC等の大手コンサルティングファーム出身者による実行特化型コンサルティング会社です。東京・渋谷を拠点に、AI・DX・経営戦略の領域で企業変革を支援します。">
-  <meta name="keywords" content="RISEby, ライズバイ, コンサルティング, 経営コンサルタント, AI, DX, 戦略, 東京, 渋谷">
+  <title>About Us | RISEby inc. — Implementation-Focused Consulting</title>
+  <meta name="description" content="RISEby is a Tokyo-based consulting firm founded by alumni of Accenture, Deloitte, EY, KPMG, and PwC. We drive enterprise transformation through end-to-end execution across AI, digital, and strategy.">
+  <meta name="keywords" content="RISEby, consulting firm, management consulting, AI, DX, strategy, Tokyo, Japan">
   
   <!-- OGP -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="RISEby inc.">
-  <meta property="og:locale" content="ja_JP">
-  <meta property="og:url" content="https://riseby.net/about.html">
-  <meta property="og:title" content="会社概要 | RISEby inc. - 実行特化型コンサルティング">
-  <meta property="og:description" content="Accenture、Deloitte、EY、KPMG、PwC等の大手ファーム出身者による実行特化型コンサルティング。東京・渋谷を拠点に企業変革を支援。">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://riseby.net/en/about.html">
+  <meta property="og:title" content="About Us | RISEby inc. — Implementation-Focused Consulting">
+  <meta property="og:description" content="Founded by alumni of leading global firms, we drive transformation from strategy through execution across AI, digital, and corporate strategy.">
   <meta property="og:image" content="https://riseby.net/assets/images/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
   
-  <!-- Canonical -->
-  <link rel="canonical" href="https://riseby.net/about.html">
+  <!-- Canonical & Alternate -->
+  <link rel="canonical" href="https://riseby.net/en/about.html">
+  <link rel="alternate" hreflang="ja" href="https://riseby.net/about.html">
+  <link rel="alternate" hreflang="en" href="https://riseby.net/en/about.html">
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -27,16 +29,16 @@
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "RISEby inc.",
-    "alternateName": "ライズバイ株式会社",
-    "url": "https://riseby.net",
+    "alternateName": "RISEby Inc.",
+    "url": "https://riseby.net/en/",
     "logo": "https://riseby.net/assets/images/logo.png",
-    "description": "Accenture、Deloitte、EY、KPMG、PwC等大手ファーム出身者による実行特化型コンサルティング。",
+    "description": "RISEby is an implementation-focused consulting firm founded by alumni of leading global firms.",
     "foundingDate": "2024",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "渋谷2-24-12 渋谷スクランブルスクエア 15階",
-      "addressLocality": "渋谷区",
-      "addressRegion": "東京都",
+      "streetAddress": "Shibuya Scramble Square 15F, 2-24-12 Shibuya",
+      "addressLocality": "Shibuya-ku",
+      "addressRegion": "Tokyo",
       "postalCode": "150-6115",
       "addressCountry": "JP"
     },
@@ -44,42 +46,19 @@
       "@type": "ContactPoint",
       "email": "contact@riseby.net",
       "contactType": "customer service",
-      "availableLanguage": "Japanese"
-    },
-    "sameAs": []
-  }
-  </script>
-
-  <!-- BreadcrumbList -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "ホーム",
-        "item": "https://riseby.net/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "会社概要",
-        "item": "https://riseby.net/about.html"
-      }
-    ]
+      "availableLanguage": ["English", "Japanese"]
+    }
   }
   </script>
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg">
-  <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Libraries -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -93,7 +72,7 @@
             brand: { blue: '#003E68', red: '#ED1C24', dark: '#0B0F19' }
           },
           fontFamily: {
-            sans: ['"Noto Sans JP"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+            sans: ['"Inter"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
             display: ['"Montserrat"', 'sans-serif']
           }
         }
@@ -102,7 +81,7 @@
   </script>
 
   <style>
-    body { font-family: "Noto Sans JP", sans-serif; -webkit-font-smoothing: antialiased; }
+    body { font-family: "Inter", sans-serif; -webkit-font-smoothing: antialiased; }
     .font-display { font-family: "Montserrat", sans-serif; }
     html { scroll-behavior: smooth; }
   </style>
@@ -113,17 +92,16 @@
   <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm py-3">
     <div class="container mx-auto px-4 flex items-center justify-between max-w-7xl">
       <a href="./index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
-        <img src="./assets/images/logo.svg" alt="RISEby" class="h-8 md:h-9" />
+        <img src="../assets/images/logo.svg" alt="RISEby" class="h-8 md:h-9" />
       </a>
       <nav class="hidden md:flex items-center gap-8">
-        <a href="./index.html#services" class="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">サービス</a>
-        <a href="./blog/" class="font-bold tracking-wide transition-colors hover:text-brand-blue text-slate-800">ブログ</a>
-        <a href="./about.html" class="font-bold tracking-wide transition-colors text-brand-blue">会社概要</a>
-        <a href="./en/about.html" class="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800 flex items-center gap-1.5">
-          <span class="text-lg">🇺🇸</span> EN
+        <a href="./index.html#services" class="font-semibold tracking-wide transition-colors hover:opacity-70 text-slate-800">Services</a>
+        <a href="./about.html" class="font-semibold tracking-wide transition-colors text-brand-blue">About</a>
+        <a href="../about.html" class="font-semibold tracking-wide transition-colors hover:opacity-70 text-slate-800 flex items-center gap-1.5">
+          <span class="text-lg">🇯🇵</span> JP
         </a>
         <a href="mailto:contact@riseby.net" class="bg-brand-blue text-white px-6 py-2.5 rounded-full font-bold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:bg-slate-800">
-          お問い合わせ
+          Contact Us
         </a>
       </nav>
     </div>
@@ -133,10 +111,10 @@
     <!-- Hero Section -->
     <section class="py-20 bg-gradient-to-br from-slate-900 via-brand-blue to-slate-900 text-white">
       <div class="container mx-auto px-4 max-w-5xl text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6">会社概要</h1>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">About Us</h1>
         <p class="text-xl text-blue-100 max-w-3xl mx-auto">
-          戦略を描き、現場で動く。<br>
-          実行特化型コンサルティングファーム。
+          Strategy Into Action.<br>
+          Implementation-focused consulting for enterprise transformation.
         </p>
       </div>
     </section>
@@ -145,36 +123,36 @@
     <section class="py-20 relative overflow-hidden">
       <!-- Background Image with Overlay -->
       <div class="absolute inset-0">
-        <img src="./assets/images/office.jpg" alt="" class="w-full h-full object-cover" />
+        <img src="../assets/images/office.jpg" alt="" class="w-full h-full object-cover" />
         <div class="absolute inset-0 bg-white/90"></div>
       </div>
       <div class="container mx-auto px-4 max-w-4xl relative z-10">
-        <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">基本情報</h2>
+        <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Company Information</h2>
         <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-lg border border-slate-200">
           <table class="w-full">
             <tbody class="divide-y divide-slate-200">
               <tr>
-                <th class="py-4 pr-4 text-left font-bold text-slate-600 w-1/3">会社名</th>
-                <td class="py-4 text-slate-900">ライズバイ株式会社（RISEby inc.）</td>
+                <th class="py-4 pr-4 text-left font-bold text-slate-600 w-1/3">Company Name</th>
+                <td class="py-4 text-slate-900">RISEby inc.</td>
               </tr>
               <tr>
-                <th class="py-4 pr-4 text-left font-bold text-slate-600">所在地</th>
+                <th class="py-4 pr-4 text-left font-bold text-slate-600">Headquarters</th>
                 <td class="py-4 text-slate-900">
-                  〒150-6115<br>
-                  東京都渋谷区渋谷2-24-12<br>
-                  渋谷スクランブルスクエア 15階
+                  Shibuya Scramble Square 15F<br>
+                  2-24-12 Shibuya, Shibuya-ku<br>
+                  Tokyo 150-6115, Japan
                 </td>
               </tr>
               <tr>
-                <th class="py-4 pr-4 text-left font-bold text-slate-600">事業内容</th>
+                <th class="py-4 pr-4 text-left font-bold text-slate-600">Services</th>
                 <td class="py-4 text-slate-900">
-                  経営コンサルティング<br>
-                  AI・DX戦略策定支援<br>
-                  業務変革・組織変革支援
+                  Management Consulting<br>
+                  AI & Digital Strategy<br>
+                  Business & Organizational Transformation
                 </td>
               </tr>
               <tr>
-                <th class="py-4 pr-4 text-left font-bold text-slate-600">お問い合わせ</th>
+                <th class="py-4 pr-4 text-left font-bold text-slate-600">Contact</th>
                 <td class="py-4 text-slate-900">
                   <a href="mailto:contact@riseby.net" class="text-brand-blue hover:underline">contact@riseby.net</a>
                 </td>
@@ -188,33 +166,33 @@
     <!-- Philosophy -->
     <section class="py-20 bg-slate-50 border-y border-slate-200">
       <div class="container mx-auto px-4 max-w-4xl">
-        <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">私たちの信条</h2>
+        <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Our Principles</h2>
         <div class="grid md:grid-cols-3 gap-8">
           <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center">
             <div class="w-16 h-16 bg-brand-blue/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#003E68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
             </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-3">戦略と実行の一体化</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Strategy Through Execution</h3>
             <p class="text-slate-600 text-sm leading-relaxed">
-              絵に描いた餅は作りません。戦略立案から現場での定着まで、一気通貫で伴走します。
+              We don't deliver shelf-ware. From strategic vision to frontline adoption, we partner end-to-end.
             </p>
           </div>
           <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center">
             <div class="w-16 h-16 bg-brand-blue/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#003E68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-3">プロフェッショナリズム</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Elite Expertise, Startup Agility</h3>
             <p class="text-slate-600 text-sm leading-relaxed">
-              大手ファームで培った専門性と、スタートアップの機動力を兼ね備えたチームです。
+              Deep functional expertise from global firms, combined with the speed and flexibility of a focused team.
             </p>
           </div>
           <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center">
             <div class="w-16 h-16 bg-brand-blue/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#003E68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-3">成果へのコミット</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Outcome Accountability</h3>
             <p class="text-slate-600 text-sm leading-relaxed">
-              報告書を納品して終わりではなく、お客様のビジネス成果が出るまで責任を持ちます。
+              We don't stop at deliverables. We stay until your business achieves measurable results.
             </p>
           </div>
         </div>
@@ -224,23 +202,23 @@
     <!-- Access -->
     <section class="py-20 bg-white">
       <div class="container mx-auto px-4 max-w-4xl">
-        <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">アクセス</h2>
+        <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Location</h2>
         <div class="bg-slate-100 rounded-2xl overflow-hidden">
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.747993475636!2d139.70164831525913!3d35.65899868019918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b5630f8a02f%3A0xb4a79685b1b69c57!2z5riL6LC35riL6LC344K544Kv44Op44Oz44OW44Or44K544Kv44Ko44Ki!5e0!3m2!1sja!2sjp!4v1706770000000!5m2!1sja!2sjp" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.747993475636!2d139.70164831525913!3d35.65899868019918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b5630f8a02f%3A0xb4a79685b1b69c57!2z5riL6LC35riL6LC344K544Kv44Op44Oz44OW44Or44K544Kv44Ko44Ki!5e0!3m2!1sen!2sjp!4v1706770000000!5m2!1sen!2sjp" 
             width="100%" 
             height="400" 
             style="border:0;" 
             allowfullscreen="" 
             loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade"
-            title="RISEby オフィス所在地"
+            title="RISEby Office Location"
           ></iframe>
         </div>
         <div class="mt-8 text-center">
           <p class="text-slate-600 mb-4">
-            <strong>渋谷スクランブルスクエア 15階</strong><br>
-            JR渋谷駅直結（東口改札より徒歩1分）
+            <strong>Shibuya Scramble Square, 15th Floor</strong><br>
+            Directly connected to JR Shibuya Station (1 min walk from East Exit)
           </p>
         </div>
       </div>
@@ -249,14 +227,14 @@
     <!-- CTA -->
     <section class="py-20 bg-slate-900 text-white">
       <div class="container mx-auto px-4 max-w-3xl text-center">
-        <h2 class="text-3xl font-bold mb-6">お気軽にご相談ください</h2>
+        <h2 class="text-3xl font-bold mb-6">Let's Start a Conversation</h2>
         <p class="text-slate-400 mb-10">
-          経営課題が明確でなくても構いません。<br>
-          経験豊富なコンサルタントが、貴社の状況を整理いたします。
+          Even if your challenges aren't fully defined,<br>
+          our experienced consultants will help clarify the path forward.
         </p>
         <a href="mailto:contact@riseby.net" class="inline-flex items-center gap-2 bg-white text-brand-blue px-10 py-4 rounded-full font-bold text-lg hover:bg-slate-100 transition-all hover:-translate-y-1 shadow-xl">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          お問い合わせ
+          Get in Touch
         </a>
       </div>
     </section>
@@ -268,10 +246,10 @@
       <div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
         <div class="md:w-1/3">
           <a href="./index.html" class="block mb-6">
-            <img src="./assets/images/logo.svg" alt="RISEby" class="h-8 brightness-0 invert opacity-90" />
+            <img src="../assets/images/logo.svg" alt="RISEby" class="h-8 brightness-0 invert opacity-90" />
           </a>
           <p class="text-slate-400 text-sm leading-relaxed mb-6">
-            企業の複合的な経営課題を、AI・戦略・テクノロジー・人の観点から包括的に解決するコンサルティングファーム。
+            A consulting firm delivering comprehensive solutions to complex enterprise challenges across AI, strategy, technology, and human capital.
           </p>
           <a href="mailto:contact@riseby.net" class="text-slate-400 hover:text-white transition-colors text-sm">
             contact@riseby.net
@@ -281,16 +259,16 @@
           <div>
             <h3 class="font-bold text-sm mb-4 text-white tracking-wider font-display">Company</h3>
             <ul class="space-y-2 text-sm text-slate-400">
-              <li><a href="./about.html" class="hover:text-white transition-colors">会社概要</a></li>
-              <li><a href="./index.html#services" class="hover:text-white transition-colors">サービス</a></li>
-              <li><a href="./blog/" class="hover:text-white transition-colors">ブログ</a></li>
+              <li><a href="./about.html" class="hover:text-white transition-colors">About Us</a></li>
+              <li><a href="./index.html#services" class="hover:text-white transition-colors">Services</a></li>
             </ul>
           </div>
           <div>
             <h3 class="font-bold text-sm mb-4 text-white tracking-wider font-display">Contact</h3>
             <ul class="space-y-2 text-sm text-slate-400">
-              <li><a href="mailto:contact@riseby.net" class="hover:text-white transition-colors">お問い合わせ</a></li>
-              <li><a href="./privacy.html" class="hover:text-white transition-colors">プライバシーポリシー</a></li>
+              <li><a href="mailto:contact@riseby.net" class="hover:text-white transition-colors">Get in Touch</a></li>
+              <li><a href="./privacy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+              <li><a href="../" class="hover:text-white transition-colors">🇯🇵 日本語</a></li>
             </ul>
           </div>
         </div>
@@ -304,10 +282,10 @@
   <!-- Noscript fallback for SEO -->
   <noscript>
     <div style="padding: 40px; text-align: center;">
-      <h1>RISEby inc. - 会社概要</h1>
-      <p>ライズバイ株式会社は、Accenture、Deloitte、EY、KPMG、PwC等の大手コンサルティングファーム出身者による実行特化型コンサルティング会社です。</p>
-      <p>所在地: 〒150-6115 東京都渋谷区渋谷2-24-12 渋谷スクランブルスクエア 15階</p>
-      <p>お問い合わせ: contact@riseby.net</p>
+      <h1>RISEby inc. — About Us</h1>
+      <p>RISEby is an implementation-focused consulting firm founded by alumni of Accenture, Deloitte, EY, KPMG, and PwC.</p>
+      <p>Location: Shibuya Scramble Square 15F, 2-24-12 Shibuya, Shibuya-ku, Tokyo 150-6115, Japan</p>
+      <p>Contact: contact@riseby.net</p>
     </div>
   </noscript>
 </body>
