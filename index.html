@@ -149,14 +149,24 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
+  <!-- DNS Prefetch for faster external resource loading -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
+  <link rel="dns-prefetch" href="//unpkg.com">
+  <link rel="dns-prefetch" href="//www.googletagmanager.com">
+  
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/apple-touch-icon.png">
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts with display swap for better performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Preload critical assets -->
+  <link rel="preload" href="./assets/images/logo.svg" as="image" type="image/svg+xml">
   
   <!-- Libraries -->
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
@@ -730,5 +740,91 @@
     root.render(<App />);
 
 </script>
+
+<!-- Noscript fallback for SEO crawlers -->
+<noscript>
+  <style>
+    .noscript-content { padding: 40px; max-width: 1200px; margin: 0 auto; }
+    .noscript-content h1 { font-size: 2em; margin-bottom: 20px; }
+    .noscript-content h2 { font-size: 1.5em; margin: 30px 0 15px; border-bottom: 2px solid #003E68; padding-bottom: 10px; }
+    .noscript-content p { line-height: 1.8; margin-bottom: 15px; }
+    .noscript-content ul { margin: 20px 0; padding-left: 20px; }
+    .noscript-content li { margin: 10px 0; }
+    .noscript-content a { color: #003E68; text-decoration: underline; }
+  </style>
+  <div class="noscript-content">
+    <h1>RISEby inc. - 実行特化型コンサルティング</h1>
+    <p>Accenture、Deloitte、EY、KPMG、PwC等大手ファーム出身者による実行特化型コンサルティング。戦略立案から実装・定着まで一気通貫で支援します。</p>
+    
+    <h2>サービス一覧</h2>
+    <ul>
+      <li><strong>AI・生成AI</strong>
+        <ul>
+          <li><a href="./services/ai_strategy.html">AI戦略・ロードマップ策定</a></li>
+          <li><a href="./services/gen_ai_implementation.html">生成AI実装・業務適用</a></li>
+          <li><a href="./services/ai_governance.html">AIガバナンス・リスク管理</a></li>
+        </ul>
+      </li>
+      <li><strong>経営戦略・M&A</strong>
+        <ul>
+          <li><a href="./services/portfolio_transformation.html">事業ポートフォリオ変革</a></li>
+          <li><a href="./services/new_business.html">新規事業創出</a></li>
+          <li><a href="./services/pmi_success.html">M&A統合（PMI）支援</a></li>
+          <li><a href="./services/turnaround.html">事業再生・撤退戦</a></li>
+        </ul>
+      </li>
+      <li><strong>DX・IT基盤</strong>
+        <ul>
+          <li><a href="./services/legacy_modernization.html">レガシー刷新・2025年の崖</a></li>
+          <li><a href="./services/cloud_native.html">クラウド移行・モダナイズ</a></li>
+          <li><a href="./services/security_zerotrust.html">サイバーセキュリティ</a></li>
+          <li><a href="./services/it_org_transformation.html">IT組織変革・内製化</a></li>
+        </ul>
+      </li>
+      <li><strong>データ・アナリティクス</strong>
+        <ul>
+          <li><a href="./services/data_driven_mgmt.html">データドリブン経営</a></li>
+          <li><a href="./services/data_platform.html">データ基盤・マネジメント</a></li>
+        </ul>
+      </li>
+      <li><strong>人事・組織</strong>
+        <ul>
+          <li><a href="./services/human_capital.html">人的資本経営・開示</a></li>
+          <li><a href="./services/job_based_hr.html">ジョブ型人事・報酬制度</a></li>
+          <li><a href="./services/succession_planning.html">サクセッションプラン</a></li>
+          <li><a href="./services/engagement_reskilling.html">エンゲージメント・リスキリング</a></li>
+        </ul>
+      </li>
+      <li><strong>オペレーション・SCM</strong>
+        <ul>
+          <li><a href="./services/scm_resilience.html">サプライチェーン強靭化</a></li>
+          <li><a href="./services/logistics_reform.html">物流改革・2024年問題</a></li>
+          <li><a href="./services/smart_factory.html">製造DX・スマートファクトリー</a></li>
+        </ul>
+      </li>
+      <li><strong>サステナビリティ・リスク</strong>
+        <ul>
+          <li><a href="./services/decarbonization_gx.html">脱炭素・GX推進</a></li>
+          <li><a href="./services/circular_economy.html">サーキュラーエコノミー</a></li>
+          <li><a href="./services/risk_management.html">リスクマネジメント・経済安保</a></li>
+        </ul>
+      </li>
+    </ul>
+    
+    <h2>会社情報</h2>
+    <p>
+      <strong>ライズバイ株式会社（RISEby inc.）</strong><br>
+      〒150-6115 東京都渋谷区渋谷2-24-12 渋谷スクランブルスクエア 15階<br>
+      Email: <a href="mailto:contact@riseby.net">contact@riseby.net</a>
+    </p>
+    
+    <h2>関連リンク</h2>
+    <ul>
+      <li><a href="./about.html">会社概要</a></li>
+      <li><a href="./blog/">ブログ・インサイト</a></li>
+      <li><a href="./privacy.html">プライバシーポリシー</a></li>
+    </ul>
+  </div>
+</noscript>
 </body>
 </html>
