@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://riseby.net/blog/ai/ai-strategy-mid-term-plan.html">
+    
+    <!-- SEO Meta Tags -->
+    
+    <!-- OGP -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="RISEby inc.">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://riseby.net/blog/ai/ai-strategy-mid-term-plan.html">
+    <meta property="og:title" content="中期経営計画へのAI戦略の組み込み方 | RISEby Blog">
+    <meta property="og:description" content="AIは「IT戦術」ではなく「経営戦略」の中核です。次期中期経営計画において、AI投資をどのように位置づけ、人的資本や財務目標と連動させるべきか、具体的なフレームワークを提示します。">
+    <meta property="og:image" content="https://riseby.net/assets/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>中期経営計画へのAI戦略の組み込み方 | RISEby Blog</title>
+    <meta name="description" content="AIは「IT戦術」ではなく「経営戦略」の中核です。次期中期経営計画において、AI投資をどのように位置づけ、人的資本や財務目標と連動させるべきか、具体的なフレームワークを提示します。">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- External Libraries (CDN) -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { blue: '#003E68', red: '#ED1C24', dark: '#0B0F19' }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+                        display: ['"Montserrat"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Style Overrides -->
+    <style>
+        body { font-family: "Noto Sans JP", sans-serif; -webkit-font-smoothing: antialiased; }
+        .font-display { font-family: "Montserrat", sans-serif; }
+        .mermaid { display: flex; justify-content: center; margin: 2rem 0; background: #f8fafc; padding: 1rem; border-radius: 0.5rem; }
+    </style>
+
+    <!-- JSON-LD Structure -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "中期経営計画へのAI戦略の組み込み方",
+      "datePublished": "2025-12-05",
+      "author": {
+        "@type": "Organization",
+        "name": "RISEby Inc.",
+        "url": "https://riseby.net"
+      }
+    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const Icon = ({ name, size = 24, className = "" }) => {
+            if (typeof lucide !== 'undefined' && lucide.icons && lucide.icons[name]) {
+                const iconData = lucide.icons[name];
+                return React.createElement('svg', {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    width: size,
+                    height: size,
+                    viewBox: "0 0 24 24",
+                    fill: "none",
+                    stroke: "currentColor",
+                    strokeWidth: 2,
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    className: className
+                }, iconData.map(([tag, attrs], index) => React.createElement(tag, { ...attrs, key: index })));
+            }
+            return <span className="inline-block w-4 h-4 bg-gray-300 rounded-full"></span>;
+        };
+
+        const Header = () => {
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-white/80 backdrop-blur-sm py-4 shadow-sm'}`}>
+                    <div className="container mx-auto px-4 flex items-center justify-between max-w-7xl">
+                        <a href="../../index.html" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                            <img src="../../assets/images/logo.svg" alt="RISEby" className="h-8 md:h-9" />
+                        </a>
+                        <nav className="hidden md:flex items-center gap-8">
+                            <a href="../../index.html#services" className="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">サービス</a>
+                            <a href="../../blog/" className="font-bold tracking-wide transition-colors text-brand-blue">ブログ</a>
+                            <a href="../../about.html" className="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white hover:bg-slate-800 px-6 py-2.5 rounded-full font-bold transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                                お問い合わせ
+                            </a>
+                        </nav>
+                        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2 text-slate-800">
+                            <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
+                        </button>
+                    </div>
+                    
+                    {mobileMenuOpen && (
+                        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-slate-100 shadow-xl p-4 flex flex-col gap-4 animate-fade-in-up">
+                            <a href="../../index.html#services" className="text-slate-800 font-bold py-3 border-b border-slate-50">サービス</a>
+                            <a href="../../blog/" className="text-brand-blue font-bold py-3 border-b border-slate-50">ブログ</a>
+                            <a href="../../about.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white text-center py-3.5 rounded-lg font-bold shadow-md mt-2">お問い合わせ</a>
+                        </div>
+                    )}
+                </header>
+            );
+        };
+
+        const Footer = () => (
+            <footer className="bg-[#0B0F19] text-white pt-24 pb-12 border-t border-slate-800 font-sans">
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <div className="flex flex-col lg:flex-row justify-between gap-16 mb-24">
+                        <div className="lg:w-1/3">
+                            <a href="../../index.html" className="block mb-8">
+                                <img src="../../assets/images/logo.svg" alt="RISEby" className="h-9 brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" />
+                            </a>
+                            <p className="text-slate-400 text-sm leading-relaxed mb-8">
+                                企業の複合的な経営課題を、AI・戦略・テクノロジー・人の観点から包括的に解決するコンサルティングファーム。
+                            </p>
+                            <div className="mb-10 text-sm text-slate-400 space-y-3">
+                                <p>〒150-6115 東京都渋谷区渋谷2-24-12</p>
+                                <p>渋谷スクランブルスクエア 15階</p>
+                                <a href="mailto:contact@riseby.net" className="hover:text-white transition-colors flex items-center gap-2 mt-6 group">
+                                    <span className="bg-slate-800 p-2 rounded-full group-hover:bg-slate-700 transition-colors"><Icon name="Mail" size={16} /></span>
+                                    contact@riseby.net
+                                </a>
+                            </div>
+                            <p className="text-slate-600 text-xs">
+                                &copy; {new Date().getFullYear()} RISEby Inc. All rights reserved.
+                            </p>
+                        </div>
+                        <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8 gap-y-14">
+                             <div>
+                                <h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Services</h3>
+                                <ul className="space-y-3">
+                                    <li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs transition-colors">サービス一覧</a></li>
+                                    <li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs transition-colors">新規事業開発</a></li>
+                                    <li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs transition-colors">DXコンサルティング</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Company</h3>
+                                <ul className="space-y-3">
+                                    <li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs transition-colors">会社概要</a></li>
+                                    <li><a href="../../blog/" className="text-slate-400 hover:text-white text-xs transition-colors">ブログ</a></li>
+                                    <li><a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white text-xs transition-colors">お問い合わせ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="border-t border-slate-800 pt-10 flex flex-wrap gap-8 justify-center text-xs text-slate-500">
+                        <a href="../../about.html" className="hover:text-white transition-colors">会社概要</a>
+                        <a href="../../privacy.html" className="hover:text-white transition-colors">プライバシーポリシー</a>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        const MermaidDiagram = ({ chart }) => {
+            useEffect(() => { mermaid.init(); }, []);
+            return <div className="mermaid overflow-x-auto">{chart}</div>;
+        };
+
+        const BarChart = ({ title, data }) => (
+            <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose">
+                <h4 className="text-lg font-bold mb-6 text-slate-800 border-b border-slate-100 pb-2">{title}</h4>
+                <div className="space-y-4">
+                    {data.map((item, index) => (
+                        <div key={index}>
+                            <div className="flex justify-between text-sm mb-1 font-medium">
+                                <span className="text-slate-700">{item.label}</span>
+                                <span className="text-brand-blue font-bold">{item.value}</span>
+                            </div>
+                            <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
+                                <div className="bg-brand-blue h-3 rounded-full transition-all duration-1000 ease-out" style={{ width: item.percentage }}></div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </figure>
+        );
+
+        const KeyPoint = ({ title, children }) => (
+            <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
+                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2">
+                    <Icon name="Lightbulb" size={20} />
+                    {title || "Key Point"}
+                </h5>
+                <div className="text-slate-700 text-sm leading-relaxed">{children}</div>
+            </div>
+        );
+
+        const StrategicPillars = () => (
+            <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose text-center">
+                <h4 className="text-lg font-bold mb-6 text-slate-800">AIを核とした中期経営計画の構造</h4>
+                <div className="relative w-full max-w-lg mx-auto aspect-[4/3]">
+                    <svg viewBox="0 0 400 300" className="w-full h-full">
+                        {/* Roof */}
+                        <path d="M50 80 L 200 20 L 350 80 Z" fill="#003E68" />
+                        <text x="200" y="70" textAnchor="middle" fontSize="14" fontWeight="bold" fill="white">KGI: 利益率・生産性の飛躍的向上</text>
+                        
+                        {/* Pillars */}
+                        <rect x="70" y="90" width="80" height="150" fill="#e0f2fe" stroke="#003E68" strokeWidth="2" />
+                        <text x="110" y="150" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#003E68" style={{writingMode: "vertical-rl"}}>事業モデル変革</text>
+                        
+                        <rect x="160" y="90" width="80" height="150" fill="#e0f2fe" stroke="#003E68" strokeWidth="2" />
+                        <text x="200" y="150" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#003E68" style={{writingMode: "vertical-rl"}}>人的資本投資</text>
+                        
+                        <rect x="250" y="90" width="80" height="150" fill="#e0f2fe" stroke="#003E68" strokeWidth="2" />
+                        <text x="290" y="150" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#003E68" style={{writingMode: "vertical-rl"}}>データ基盤整備</text>
+                        
+                        {/* Foundation */}
+                        <rect x="40" y="250" width="320" height="40" fill="#64748b" />
+                        <text x="200" y="275" textAnchor="middle" fontSize="12" fontWeight="bold" fill="white">ガバナンス & リスク管理</text>
+                    </svg>
+                </div>
+            </figure>
+        );
+
+        const BlogArticle = () => {
+            return (
+                <main className="pt-24 pb-16">
+                    <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-100">
+                            <header className="text-center mb-12 border-b border-slate-100 pb-10">
+                                <div className="flex justify-center mb-4">
+                                    <span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">
+                                        Corporate Planning
+                                    </span>
+                                </div>
+                                <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">
+                                    中期経営計画への<br/>AI戦略の組み込み方
+                                </h1>
+                                <div className="flex items-center justify-center space-x-4 text-sm text-slate-500">
+                                    <time dateTime="2025-12-05">2025.12.05</time>
+                                    <span>&middot;</span>
+                                    <span className="flex items-center gap-1">
+                                        <Icon name="User" size={14} />
+                                        RISEby Editorial Team
+                                    </span>
+                                </div>
+                            </header>
+
+                            <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
+                                <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">
+                                   「DX戦略」のページを1枚追加するだけでは、もはや投資家も従業員も納得しません。<br/><br/>
+                                   AIは企業の成長ドライバーそのものであり、中期経営計画（中計）の根幹に据えるべきテーマです。本記事では、3〜5年のスパンでAI投資を計画し、人的資本や財務戦略と整合させるためのフレームワークを解説します。
+                                </p>
+
+                                <h2>1. 「AI戦略」を中計の柱にする意義</h2>
+                                <p>
+                                    AIは単なるコスト削減ツールではありません。ビジネスモデルを変革し、非連続な成長を実現するためのテコです。中計では、AIを「IT戦術」ではなく「経営戦略」として位置づける必要があります。
+                                </p>
+                                <StrategicPillars />
+
+                                <h2>2. 3年間のロードマップ設計</h2>
+                                <p>
+                                    AI導入は一足飛びにはいきません。「基盤整備」→「適用拡大」→「事業変革」という段階的な進化を計画に落とし込みます。
+                                </p>
+                                <MermaidDiagram chart={`
+                                    gantt
+                                        title AI中期ロードマップ (3カ年)
+                                        dateFormat  YYYY-MM-DD
+                                        axisFormat  %Y
+                                        section 1年目: 基盤構築
+                                        データ統合・整備       :done, a1, 2026-01-01, 12M
+                                        パイロット導入         :active, a2, 2026-04-01, 9M
+                                        section 2年目: 展開・深化
+                                        全社展開・定着         :b1, 2027-01-01, 12M
+                                        業務プロセス再構築     :b2, 2027-04-01, 9M
+                                        section 3年目: 変革
+                                        AI前提の新規事業       :c1, 2028-01-01, 12M
+                                        完全自動化領域の拡大   :c2, 2028-04-01, 9M
+                                `} />
+
+                                <h2>3. 投資配分とKPIの設定</h2>
+                                <p>
+                                    従来のIT投資枠とは別枠で、戦略投資予算を確保する必要があります。また、KPIも「導入数」などの活動指標から、「一人当たり生産性」などの成果指標へとシフトさせます。
+                                </p>
+                                <BarChart 
+                                    title="推奨されるIT・AI予算の配分比率"
+                                    data={[
+                                        { label: "攻めの投資 (AI/新規事業)", value: "40% (拡大)", percentage: "40%" },
+                                        { label: "守りの投資 (基幹システム維持)", value: "40% (圧縮)", percentage: "40%" },
+                                        { label: "人材投資 (リスキリング)", value: "20% (必須)", percentage: "20%" }
+                                    ]}
+                                />
+                                
+                                <h3>設定すべきKPIツリー</h3>
+                                <MermaidDiagram chart={`
+                                    graph TD
+                                        KGI[KGI: 営業利益率 15%] --> KPI1[売上総利益の最大化]
+                                        KGI --> KPI2[販管費率の低減]
+                                        KPI1 --> Sub1[AIによる高付加価値化]
+                                        KPI2 --> Sub2[AIによる業務自動化率]
+                                        Sub2 --> Action1[問い合わせ自動回答率]
+                                        Sub2 --> Action2[資料作成時間削減]
+                                `} />
+
+                                <h2>4. 人的資本戦略との連動</h2>
+                                <p>
+                                    「AIを入れるので人は減らします」というメッセージでは、組織は崩壊します。「AI活用により付加価値の高い業務へシフトし、賃金を上げる」というポジティブなストーリーを中計で語ることが不可欠です。
+                                </p>
+
+                                <KeyPoint title="投資家へのメッセージ">
+                                    AI投資は「未来のキャッシュフロー」を生むための種まきです。<br/>
+                                    短期的なコスト増を恐れず、中長期的な競争優位の構築に向けた意思決定であることを、ロジカルに説明しましょう。
+                                </KeyPoint>
+
+                                <h2>まとめ</h2>
+                                <p>
+                                    AI戦略なき中計は、羅針盤のない航海と同じです。RISEbyでは、経営戦略と整合したAIロードマップの策定から、実行支援までをワンストップで提供します。
+                                </p>
+
+                            </div>
+
+                            <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
+                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
+                                <h3 className="text-2xl font-bold text-white mb-4">中期経営計画の策定支援</h3>
+                                <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">
+                                    AI時代の新しい成長ストーリーを、共に描きませんか？<br/>
+                                    戦略コンサルタントが壁打ち相手になります。
+                                </p>
+                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <a href="mailto:contact@riseby.net" className="inline-flex items-center justify-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all duration-300 shadow-lg">
+                                        <Icon name="Mail" size={18} /> 無料相談を予約
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </article>
+                </main>
+            );
+        };
+
+        const App = () => (
+            <div className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-800">
+                <Header />
+                <BlogArticle />
+                <Footer />
+            </div>
+        );
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

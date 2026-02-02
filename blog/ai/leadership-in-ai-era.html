@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://riseby.net/blog/ai/leadership-in-ai-era.html">
+    
+    <!-- OGP -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="RISEby inc.">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://riseby.net/blog/ai/leadership-in-ai-era.html">
+    <meta property="og:title" content="AI時代のリーダーシップ：正解のない問いに挑む力 | RISEby Blog">
+    <meta property="og:description" content="AIが「正解」を出す時代、リーダーの役割は「答えを知っていること」から「問いを立てること」へ変わります。これからのリーダーに求められる3つの資質とは？">
+    <meta property="og:image" content="https://riseby.net/assets/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>AI時代のリーダーシップ：正解のない問いに挑む力 | RISEby Blog</title>
+    <meta name="description" content="AIが「正解」を出す時代、リーダーの役割は「答えを知っていること」から「問いを立てること」へ変わります。これからのリーダーに求められる3つの資質とは？">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brand: { blue: '#003E68', red: '#ED1C24', dark: '#0B0F19' } },
+                    fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], display: ['"Montserrat"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>body { font-family: "Noto Sans JP", sans-serif; } .mermaid { display: flex; justify-content: center; margin: 2rem 0; background: #f8fafc; padding: 1rem; border-radius: 0.5rem; }</style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", "@type": "BlogPosting",
+      "headline": "AI時代のリーダーシップ：正解のない問いに挑む力",
+      "datePublished": "2025-10-25",
+      "author": { "@type": "Organization", "name": "RISEby Inc.", "url": "https://riseby.net" }
+    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const Icon = ({ name, size = 24, className = "" }) => {
+            if (typeof lucide !== 'undefined' && lucide.icons && lucide.icons[name]) {
+                const iconData = lucide.icons[name];
+                return React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", className: className }, iconData.map(([tag, attrs], index) => React.createElement(tag, { ...attrs, key: index })));
+            }
+            return <span className="inline-block w-4 h-4 bg-gray-300 rounded-full"></span>;
+        };
+
+        const Header = () => {
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-white/80 backdrop-blur-sm py-4 shadow-sm'}`}>
+                    <div className="container mx-auto px-4 flex items-center justify-between max-w-7xl">
+                        <a href="../../index.html" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                            <img src="../../assets/images/logo.svg" alt="RISEby" className="h-8 md:h-9" />
+                        </a>
+                        <nav className="hidden md:flex items-center gap-8">
+                            <a href="../../index.html#services" className="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">サービス</a>
+                            <a href="../../blog/" className="font-bold tracking-wide transition-colors text-brand-blue">ブログ</a>
+                            <a href="../../about.html" className="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white hover:bg-slate-800 px-6 py-2.5 rounded-full font-bold transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                                お問い合わせ
+                            </a>
+                        </nav>
+                        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2 text-slate-800">
+                            <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
+                        </button>
+                    </div>
+                    
+                    {mobileMenuOpen && (
+                        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-slate-100 shadow-xl p-4 flex flex-col gap-4 animate-fade-in-up">
+                            <a href="../../index.html#services" className="text-slate-800 font-bold py-3 border-b border-slate-50">サービス</a>
+                            <a href="../../blog/" className="text-brand-blue font-bold py-3 border-b border-slate-50">ブログ</a>
+                            <a href="../../about.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white text-center py-3.5 rounded-lg font-bold shadow-md mt-2">お問い合わせ</a>
+                        </div>
+                    )}
+                </header>
+            );
+        };
+
+        const Footer = () => (
+            <footer className="bg-[#0B0F19] text-white pt-24 pb-12 border-t border-slate-800 font-sans">
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <div className="flex flex-col lg:flex-row justify-between gap-16 mb-24">
+                        <div className="lg:w-1/3">
+                            <a href="../../index.html" className="block mb-8">
+                                <img src="../../assets/images/logo.svg" alt="RISEby" className="h-9 brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" />
+                            </a>
+                            <p className="text-slate-400 text-sm leading-relaxed mb-8">
+                                企業の複合的な経営課題を、AI・戦略・テクノロジー・人の観点から包括的に解決するコンサルティングファーム。
+                            </p>
+                            <div className="mb-10 text-sm text-slate-400 space-y-3">
+                                <p>〒150-6115 東京都渋谷区渋谷2-24-12</p>
+                                <p>渋谷スクランブルスクエア 15階</p>
+                                <a href="mailto:contact@riseby.net" className="hover:text-white transition-colors flex items-center gap-2 mt-6 group">
+                                    <span className="bg-slate-800 p-2 rounded-full group-hover:bg-slate-700 transition-colors"><Icon name="Mail" size={16} /></span>
+                                    contact@riseby.net
+                                </a>
+                            </div>
+                            <p className="text-slate-600 text-xs">
+                                &copy; {new Date().getFullYear()} RISEby Inc. All rights reserved.
+                            </p>
+                        </div>
+                        <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8 gap-y-14">
+                             <div>
+                                <h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Services</h3>
+                                <ul className="space-y-3">
+                                    <li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs transition-colors">サービス一覧</a></li>
+                                    <li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs transition-colors">新規事業開発</a></li>
+                                    <li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs transition-colors">DXコンサルティング</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Company</h3>
+                                <ul className="space-y-3">
+                                    <li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs transition-colors">会社概要</a></li>
+                                    <li><a href="../../blog/" className="text-slate-400 hover:text-white text-xs transition-colors">ブログ</a></li>
+                                    <li><a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white text-xs transition-colors">お問い合わせ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="border-t border-slate-800 pt-10 flex flex-wrap gap-8 justify-center text-xs text-slate-500">
+                        <a href="../../about.html" className="hover:text-white transition-colors">会社概要</a>
+                        <a href="../../privacy.html" className="hover:text-white transition-colors">プライバシーポリシー</a>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        const LeadershipShift = () => (
+            <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose">
+                <h4 className="text-lg font-bold mb-6 text-slate-800 border-b border-slate-100 pb-2">リーダーシップスタイルの変化</h4>
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-slate-100 p-4 rounded-lg text-center opacity-70">
+                        <h5 className="font-bold text-slate-600 mb-2">過去 (Knowledge)</h5>
+                        <ul className="text-sm text-slate-500 space-y-2 list-none">
+                            <li>答えを知っている</li>
+                            <li>管理・統制</li>
+                            <li>経験重視</li>
+                        </ul>
+                    </div>
+                    <div className="bg-blue-100 p-4 rounded-lg text-center border-2 border-brand-blue">
+                        <h5 className="font-bold text-brand-blue mb-2">未来 (Wisdom)</h5>
+                        <ul className="text-sm text-slate-700 space-y-2 list-none">
+                            <li><strong>問いを立てる</strong></li>
+                            <li><strong>ビジョン提示</strong></li>
+                            <li><strong>学習重視</strong></li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="text-center mt-4 text-brand-blue font-bold text-xl"><Icon name="ArrowDown" /> AIが代替できない領域へシフト</div>
+            </figure>
+        );
+
+        const MermaidDiagram = ({ chart }) => {
+            useEffect(() => { mermaid.init(); }, []);
+            return <div className="mermaid overflow-x-auto">{chart}</div>;
+        };
+
+        const KeyPoint = ({ title, children }) => (
+            <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
+                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "Key Point"}</h5>
+                <div className="text-slate-700 text-sm leading-relaxed">{children}</div>
+            </div>
+        );
+
+        const SkillRadar = () => (
+            <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose text-center">
+                <h4 className="text-lg font-bold mb-6 text-slate-800">これからのリーダーに必要な「3つの知性」</h4>
+                <div className="grid md:grid-cols-3 gap-4">
+                    <div className="bg-slate-50 p-4 rounded-xl">
+                        <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 text-brand-blue"><Icon name="HelpCircle" /></div>
+                        <h5 className="font-bold text-sm mb-2">課題設定力 (Issue)</h5>
+                        <p className="text-xs text-slate-600">AIに「何を解かせるか」を決める力。本質的な課題を見抜く洞察力。</p>
+                    </div>
+                    <div className="bg-slate-50 p-4 rounded-xl">
+                        <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-3 text-indigo-800"><Icon name="Heart" /></div>
+                        <h5 className="font-bold text-sm mb-2">人間理解力 (Empathy)</h5>
+                        <p className="text-xs text-slate-600">AIにはない共感や倫理観で、ステークホルダーを動機づける力。</p>
+                    </div>
+                    <div className="bg-slate-50 p-4 rounded-xl">
+                        <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3 text-emerald-800"><Icon name="GitMerge" /></div>
+                        <h5 className="font-bold text-sm mb-2">統合力 (Synthesis)</h5>
+                        <p className="text-xs text-slate-600">AIが出した断片的な解を繋ぎ合わせ、意思決定に落とし込む力。</p>
+                    </div>
+                </div>
+            </figure>
+        );
+
+        const BlogArticle = () => {
+            return (
+                <main className="pt-24 pb-16">
+                    <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-100">
+                            <header className="text-center mb-12 border-b border-slate-100 pb-10">
+                                <div className="flex justify-center mb-4"><span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">Leadership</span></div>
+                                <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">AI時代のリーダーシップ：<br/>正解のない問いに挑む力</h1>
+                                <div className="flex items-center justify-center space-x-4 text-sm text-slate-500"><time dateTime="2025-10-25">2025.10.25</time><span>&middot;</span><span className="flex items-center gap-1"><Icon name="User" size={14} /> RISEby Editorial Team</span></div>
+                            </header>
+                            <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
+                                <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">かつてリーダーの条件は「誰よりも業務を知っていること」でした。しかし、知識量や情報処理速度で人間がAIに勝つことは不可能です。<br/>AIがコモディティ化した世界で、人間のリーダーが発揮すべき価値とは何か？組織を導く新たなリーダーシップ像を考察します。</p>
+                                
+                                <h2>1. 「答え」から「問い」へのシフト</h2>
+                                <p>AIは問いを与えれば瞬時に答えを出します。つまり、「答え」の価値は暴落し、「良質な問い」の価値が高騰しています。リーダーの仕事は、AIに何を解かせるか（Issue Setting）を決めることです。</p>
+                                <LeadershipShift />
+
+                                <h2>2. 3つの必須スキル</h2>
+                                <p>これからのリーダーには、AIには代替できない人間的な資質が求められます。</p>
+                                <SkillRadar />
+
+                                <h2>3. 意思決定プロセスの変化</h2>
+                                <p>これまでは「勘と経験」か「データ分析」の二項対立でした。これからは、AIによるデータ分析を前提としつつ、最終的な「決断（責任を取ること）」を人間が行う形になります。</p>
+                                <MermaidDiagram chart={`
+                                    graph TD
+                                        A[課題] --> B[AIによるデータ分析・予測]
+                                        B --> C{選択肢の提示}
+                                        C --> D[人間による価値判断・倫理判断]
+                                        D --> E[意思決定]
+                                        E --> F[責任を負う]
+                                        
+                                        style B fill:#e0f2fe
+                                        style D fill:#dcfce7,stroke:#15803d,stroke-width:2px
+                                        style F fill:#fee2e2,stroke:#b91c1c,stroke-width:2px
+                                `} />
+
+                                <KeyPoint title="リーダーへの提言">
+                                    AIを恐れる必要はありません。AIを「最強の参謀」として使いこなし、自分自身は「ビジョンの提示」や「メンバーの動機付け」といった、より人間的な役割に集中してください。
+                                </KeyPoint>
+
+                                <h2>まとめ</h2>
+                                <p>技術が進化するほど、逆説的に「人間らしさ」の価値が高まります。正解のない時代を切り拓くのは、AIではなく、意志を持ったリーダーです。</p>
+                            </div>
+                            <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
+                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
+                                <h3 className="text-2xl font-bold text-white mb-4">エグゼクティブ・コーチング</h3>
+                                <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">AI時代のリーダーシップ開発、次世代幹部育成プログラムを提供しています。</p>
+                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <a href="mailto:contact@riseby.net" className="inline-flex items-center justify-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all duration-300 shadow-lg"><Icon name="Mail" size={18} /> お問い合わせ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </main>
+            );
+        };
+
+        const App = () => (
+            <div className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-800">
+                <Header />
+                <BlogArticle />
+                <Footer />
+            </div>
+        );
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

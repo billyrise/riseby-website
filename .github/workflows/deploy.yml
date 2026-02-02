@@ -1,0 +1,84 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: riseby-website
+          directory: .
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.head_ref || github.ref_name }}
+
+  # SEO Health Check (optional - runs on every deploy)
+  seo-check:
+    runs-on: ubuntu-latest
+    needs: deploy
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check sitemap exists
+        run: |
+          if [ -f "sitemap.xml" ]; then
+            echo "✅ sitemap.xml exists"
+          else
+            echo "❌ sitemap.xml is missing"
+            exit 1
+          fi
+
+      - name: Check robots.txt exists
+        run: |
+          if [ -f "robots.txt" ]; then
+            echo "✅ robots.txt exists"
+          else
+            echo "❌ robots.txt is missing"
+            exit 1
+          fi
+
+      - name: Check 404 page exists
+        run: |
+          if [ -f "404.html" ]; then
+            echo "✅ 404.html exists"
+          else
+            echo "❌ 404.html is missing"
+            exit 1
+          fi
+
+      - name: Validate HTML files have meta descriptions
+        run: |
+          error_count=0
+          for file in index.html about.html privacy.html; do
+            if [ -f "$file" ]; then
+              if grep -q 'name="description"' "$file"; then
+                echo "✅ $file has meta description"
+              else
+                echo "❌ $file is missing meta description"
+                error_count=$((error_count + 1))
+              fi
+            fi
+          done
+          if [ $error_count -gt 0 ]; then
+            exit 1
+          fi

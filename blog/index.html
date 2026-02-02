@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Insights | RISEby Blog</title>
+    <meta name="description" content="AI・生成AI、DX、経営戦略に関する最新のインサイトをお届けします。経営者・ビジネスリーダー向けの実践的なナレッジを発信。">
+    
+    <!-- OGP -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="RISEby inc.">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://riseby.net/blog/">
+    <meta property="og:title" content="Insights | RISEby Blog">
+    <meta property="og:description" content="AI・生成AI、DX、経営戦略に関する最新のインサイトをお届けします。">
+    <meta property="og:image" content="https://riseby.net/assets/images/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://riseby.net/blog/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Libraries -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { blue: '#003E68', red: '#ED1C24', dark: '#0B0F19' }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+                        display: ['"Montserrat"', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { font-family: "Noto Sans JP", sans-serif; -webkit-font-smoothing: antialiased; }
+        .font-display { font-family: "Montserrat", sans-serif; }
+        html { scroll-behavior: smooth; }
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+        
+        const ARTICLES = [
+        {
+            title: "動画生成AIの可能性：マーケティングと教育への応用",
+            description: "SoraやRunway Gen-3などの動画生成AIは、映像制作のコスト構造を根底から覆します。撮影不要で高品質なCMや教育用コンテンツを量産し、One-to-Oneの動画マーケティングを実現する未来図を描きます。",
+            date: "2026-02-15",
+            category: "AI",
+            url: "./ai/ai-video-generation.html"
+        },
+        {
+            title: "説明可能なAI（XAI）の重要性：ブラックボックス問題への解",
+            description: "AIがなぜその結論に至ったのか？ディープラーニングの「ブラックボックス問題」は、金融審査や医療診断におけるAI導入の障壁です。信頼性を担保するXAI技術（SHAP, LIME）と、説明責任を果たすための戦略を解説します。",
+            date: "2025-12-18",
+            category: "AI",
+            url: "./ai/ai-explainable-xai.html"
+        },
+        {
+            title: "2030年の企業像：AIと共存する未来",
+            description: "AGI（汎用人工知能）の実現が視野に入る2030年、企業組織はどう変わるのか。自律型AIエージェントが同僚となり、人間は「創造」と「意思決定」に特化する未来の働き方と組織構造（DAO的進化）を予測します。",
+            date: "2025-12-17",
+            category: "AI",
+            url: "./ai/ai-roi-simulation.html"
+        },
+        {
+            title: "AIを活用した働き方改革：長時間労働の是正",
+            description: "「働き方改革」が叫ばれて久しいですが、現場の業務量は減っていません。AIによる「ノンコア業務の徹底排除」と「会議・資料作成の自動化」により、労働時間を物理的に圧縮し、ウェルビーイングを実現する具体策を提示します。",
+            date: "2025-12-16",
+            category: "AI",
+            url: "./ai/ai-work-style-reform.html"
+        },
+        {
+            title: "生成AI導入の費用対効果シミュレーション",
+            description: "AI導入にはコストがかかりますが、それ以上のリターンが見込めるのか？ライセンス料、開発費、教育費などの投資（Input）と、工数削減、品質向上、売上増などの効果（Output）を定量的に算出し、ROIを可視化するモデルを提示します。",
+            date: "2025-12-16",
+            category: "AI",
+            url: "./ai/ai-corporate-vision-2030.html"
+        },
+        {
+            title: "「AIに仕事を奪われる」不安への対処：社員へのメッセージ",
+            description: "AI導入に対する現場の抵抗感や不安（AIアレルギー）を解消し、前向きな変化を引き出すためのコミュニケーション戦略。経営者が発信すべきメッセージと、心理的安全性を担保する具体的な施策を提言します。",
+            date: "2025-12-15",
+            category: "AI",
+            url: "./ai/ai-job-security-message.html"
+        },
+        {
+            title: "金融業界のAI革命：リスク管理と顧客サービスの高度化",
+            description: "金融機関におけるAI活用は、不正検知や与信審査といった「守り」の領域から、ハイパーパーソナライゼーションによる「攻め」の顧客サービスへと進化しています。FinTechの最前線と将来像を解説します。",
+            date: "2025-12-15",
+            category: "AI",
+            url: "./ai/ai-finance.html"
+        },
+        {
+            title: "AI時代のB2Bマーケティング戦略：顧客理解の深化",
+            description: "購買プロセスが複雑なB2Bにおいて、AIはいかにリードの解像度を高め、成約率を向上させるか。ABM（アカウントベースドマーケティング）の進化と、ハイパーパーソナライゼーション戦略について解説します。",
+            date: "2025-12-15",
+            category: "AI",
+            url: "./ai/ai-b2b-marketing.html"
+        },
+        {
+            title: "生成AIによる会議改革：議事録、要約、ネクストアクション",
+            description: "会議は企業の生産性を下げる最大の要因の一つです。生成AIを活用して議事録作成を自動化し、ファシリテーションや多言語翻訳まで担わせることで、会議を「報告の場」から「創造の場」へと変革する方法を解説します。",
+            date: "2025-12-12",
+            category: "AI",
+            url: "./ai/ai-meeting-reform.html"
+        },
+        {
+            title: "データプライバシーとAI：GDPR、個人情報保護法対応",
+            description: "AIによるデータ活用が進む中、GDPRや改正個人情報保護法への違反リスクは最大級の経営課題です。連合学習や差分プライバシーといった最新のプライバシー強化技術（PETs）と、法規制遵守のためのガバナンス体制を解説します。",
+            date: "2025-12-12",
+            category: "AI",
+            url: "./ai/ai-data-privacy.html"
+        },
+        {
+            title: "AI時代の人材ポートフォリオ：リスキリングと配置転換",
+            description: "AIによる自動化で消滅する業務と、新たに生まれる業務。組織の人材ポートフォリオをどう組み替えるべきか。データドリブンなスキル可視化と、痛みを伴わない公正なリスキリング・配置転換の戦略を論じます。",
+            date: "2025-12-11",
+            category: "AI",
+            url: "./ai/ai-talent-portfolio.html"
+        },
+        {
+            title: "画像生成AIのビジネス活用：クリエイティブ業務の変革",
+            description: "MidjourneyやDALL-E 3などの画像生成AIは、マーケティング素材の作成から製品デザインまで、クリエイティブの現場を劇的に変えています。著作権リスクを回避しながら、制作コストを削減しスピードを最大化する活用法を解説します。",
+            date: "2025-12-10",
+            category: "AI",
+            url: "./ai/ai-image-generation-biz.html"
+        },
+        {
+            title: "AI予算の適正配分：インフラ、人材、アプリケーションへの投資比率",
+            description: "AI予算の最適解とは？インフラ偏重やPoC貧乏を避け、ROIを最大化するための「黄金比率」と、フェーズごとの投資ポートフォリオ戦略を解説します。",
+            date: "2025-12-10",
+            category: "AI",
+            url: "./ai/ai-budget-allocation.html"
+        },
+        {
+            title: "製造業における生成AI活用：設計から保守まで",
+            description: "製造業のAI活用は「予知保全」だけではありません。Generative Designによる設計革新、熟練工の技能継承、そしてデジタルツインによるシミュレーションまで、ものづくりのバリューチェーン全体の変革を論じます。",
+            date: "2025-12-10",
+            category: "AI",
+            url: "./ai/ai-manufacturing.html"
+        },
+        {
+            title: "成功するAI PoCの進め方：期間、予算、評価基準",
+            description: "AIプロジェクトの登竜門であるPoC（概念実証）。「PoC疲れ」や「PoC死」を防ぎ、本番導入へスムーズに移行するための具体的なロードマップ、予算感、そしてGo/NoGoの判断基準を解説します。",
+            date: "2025-12-10",
+            category: "AI",
+            url: "./ai/ai-poc-success-guide.html"
+        },
+        {
+            title: "AI時代のセキュリティ対策：敵対的攻撃への備え",
+            description: "プロンプトインジェクションやデータポイズニングなど、AI特有の新たな脅威「敵対的攻撃」が急増しています。AI-TRISMフレームワークに基づく、セキュアなAI運用のための防衛策とガバナンス体制を解説します。",
+            date: "2025-12-10",
+            category: "AI",
+            url: "./ai/ai-security-adversarial.html"
+        },
+        {
+            title: "AI民主化の功罪：シャドーAI問題への対処",
+            description: "誰もが簡単にAIを使える「民主化」は生産性を高める一方、社員が勝手にAIツールを利用する「シャドーAI」という新たなリスクを生んでいます。禁止するのではなく、安全に管理・活用するためのガバナンス体制を解説します。",
+            date: "2025-12-09",
+            category: "AI",
+            url: "./ai/ai-democratization-shadow-ai.html"
+        },
+        {
+            title: "AI導入の抵抗勢力対策：現場を巻き込むチェンジマネジメント",
+            description: "AIプロジェクトの失敗原因の多くは技術ではなく「人の心」にあります。現場の「抵抗勢力」を「推進力」に変えるためのチェンジマネジメント手法（ADKARモデル等）を解説します。",
+            date: "2025-12-08",
+            category: "AI",
+            url: "./ai/ai-change-management.html"
+        },
+        {
+            title: "量子コンピュータとAIの融合：未来への展望",
+            description: "量子コンピュータの計算能力とAIの学習能力が融合する「Quantum AI」は、創薬、金融、物流などの複雑系課題を一瞬で解決する可能性を秘めています。実用化へのロードマップとビジネスインパクトを解説します。",
+            date: "2025-12-08",
+            category: "AI",
+            url: "./ai/quantum-ai-future.html"
+        },
+        {
+            title: "取締役会で議論すべきAIリスクとガバナンス",
+            description: "AIのリスク管理は現場任せにすべきではありません。取締役会が監督すべき3つのリスク（法的、レピュテーション、セキュリティ）と、攻めと守りのガバナンス体制構築について解説します。",
+            date: "2025-12-08",
+            category: "AI",
+            url: "./ai/ai-governance-board-agenda.html"
+        },
+        {
+            title: "AI活用のためのクラウド戦略：コスト最適化とスケーラビリティ",
+            description: "AIプロジェクトのコストが指数関数的に増大する「クラウド破産」を防ぐために。学習と推論のワークロードに応じたマルチクラウド戦略、FinOpsの実践、そしてGPUリソースの最適化手法を解説します。",
+            date: "2025-12-08",
+            category: "AI",
+            url: "./ai/ai-cloud-strategy.html"
+        },
+        {
+            title: "AIプロジェクトのPMO（Project Management Office）機能",
+            description: "AIプロジェクトは不確実性が高く、従来のウォーターフォール型管理では破綻します。アジャイルな進行管理、品質保証、そしてステークホルダー調整を担う「AI特化型PMO」の役割と機能について解説します。",
+            date: "2025-12-05",
+            category: "AI",
+            url: "./ai/ai-project-pmo.html"
+        },
+        {
+            title: "AIによるサプライチェーン最適化：予測精度の向上と在庫削減",
+            description: "不確実性の高い時代、サプライチェーンの強靭化は経営の最重要課題です。AIによる需要予測、ブルウィップ効果の抑制、そして自律型サプライチェーンへの進化について、具体的な戦略を論じます。",
+            date: "2025-12-05",
+            category: "AI",
+            url: "./ai/ai-supply-chain.html"
+        },
+        {
+            title: "生成AIによるシナリオプランニング：不確実性への備え",
+            description: "VUCAの時代、単一の未来予測は危険です。生成AIを活用して「楽観」「悲観」「現状維持」など複数の未来シナリオを高速にシミュレーションし、どのような未来が訪れても生き残るための「動的な戦略」を策定する方法を解説します。",
+            date: "2025-12-05",
+            category: "AI",
+            url: "./ai/ai-scenario-planning.html"
+        },
+        {
+            title: "AI時代の意思決定プロセス：データと直感の融合",
+            description: "AIは経営者の仕事を奪うのか？正解は「計算」と「確率」をAIに任せ、人間は「倫理」と「直感」に集中するハイブリッドな意思決定モデルです。OODAループの高速化と認知バイアスの排除について解説します。",
+            date: "2025-12-05",
+            category: "AI",
+            url: "./ai/ai-decision-making.html"
+        },
+        {
+            title: "コード生成AIによるシステム開発の超高速化",
+            description: "GitHub CopilotやClaude 3.5 SonnetなどのAIコーディングアシスタントは、エンジニアの生産性を倍増させています。要件定義からテスト、レガシーコードの移行まで、開発ライフサイクル全体を変革する手法を解説します。",
+            date: "2025-12-05",
+            category: "AI",
+            url: "./ai/ai-code-generation.html"
+        },
+        {
+            title: "中期経営計画へのAI戦略の組み込み方",
+            description: "AIは「IT戦術」ではなく「経営戦略」の中核です。次期中期経営計画において、AI投資をどのように位置づけ、人的資本や財務目標と連動させるべきか、具体的なフレームワークを提示します。",
+            date: "2025-12-05",
+            category: "AI",
+            url: "./ai/ai-strategy-mid-term-plan.html"
+        },
+        {
+            title: "スタートアップのAI活用戦略：大企業との連携可能性",
+            description: "AIの巨人たちと正面から戦うのは得策ではありません。スタートアップが狙うべき「Vertical AI（特化型AI）」戦略と、大企業のアセットを活用したオープンイノベーションの勝ち筋を解説します。",
+            date: "2025-12-05",
+            category: "AI",
+            url: "./ai/ai-startup-strategy.html"
+        },
+        {
+            title: "感情認識AIのビジネス活用：顧客の本音を探る",
+            description: "言葉にならない「ため息」や「表情の曇り」から、顧客の真のニーズを読み解く。感情認識AI（Emotion AI）の技術的進歩と、コールセンター、商談、マーケティングリサーチでの活用事例を紹介します。",
+            date: "2025-12-03",
+            category: "AI",
+            url: "./ai/ai-emotion-recognition.html"
+        },
+        {
+            title: "生成AIツールの選定基準：ChatGPT, Claude, Gemini徹底比較",
+            description: "2025年末、GPT-5.2、Gemini 3 Pro、Claude 4.5が出揃いました。推論、マルチモーダル、コーディングの各領域で覇権を争う3大モデルの最新ベンチマークを分析し、企業のユースケースに応じた最適なポートフォリオ戦略を提言します。",
+            date: "2025-12-01",
+            category: "AI",
+            url: "./ai/ai-tool-selection.html"
+        },
+        {
+            title: "公共セクター・自治体のAI活用事例と課題：GovTechの未来",
+            description: "人口減少と財政難に直面する自治体にとって、AIによる「スマート自治体」への転換は急務です。窓口業務の自動化からEBPM（証拠に基づく政策立案）まで、公共サービスの質を維持しながら効率化する戦略を提言します。",
+            date: "2025-12-01",
+            category: "AI",
+            url: "./ai/ai-public-sector.html"
+        },
+        {
+            title: "2026年AI予測：ビジネスモデルはどう変わるか？",
+            description: "生成AIブームの「次」に来るものとは？2026年にかけて起こる「エージェント経済圏」の台頭と、労働集約型から資本集約型へのビジネスモデル転換を予測します。",
+            date: "2025-12-01",
+            category: "AI",
+            url: "./ai/ai-business-model-2026.html"
+        },
+        {
+            title: "多言語対応AIによるグローバルコミュニケーションの円滑化",
+            description: "言葉の壁はもはやビジネスの障壁ではありません。リアルタイム翻訳AIと異文化理解を支援するコンテキストAIが、グローバルチームの生産性をどう変えるのか。多国籍企業の成功事例をもとに解説します。",
+            date: "2025-12-01",
+            category: "AI",
+            url: "./ai/ai-multilingual-communication.html"
+        },
+        {
+            title: "AIを活用した競合分析と市場調査の効率化",
+            description: "競合の動きをリアルタイムで把握し、市場の兆候を先読みする。AIエージェントによるWebスクレイピング、SNSセンチメント分析、そして決算資料の自動要約を駆使した「次世代のマーケットインテリジェンス」構築手法を解説します。",
+            date: "2025-12-01",
+            category: "AI",
+            url: "./ai/ai-competitive-intelligence.html"
+        },
+        {
+            title: "内製化 vs 外注化：AI開発体制の最適解",
+            description: "AIプロジェクトを成功させるには、開発体制（ソーシング戦略）の選択が鍵を握ります。コア領域の内製化とノンコア領域の戦略的アウトソーシングを組み合わせた「ハイブリッドモデル」の構築手法を解説します。",
+            date: "2025-11-30",
+            category: "AI",
+            url: "./ai/ai-insourcing-vs-outsourcing.html"
+        },
+        {
+            title: "AIエージェントが変える企業経営：自律型AIの衝撃と備え",
+            description: "AIは「チャットボット」から「自律型エージェント」へ。指示待ちではなく、自ら考えて行動するデジタル労働力が、企業の組織構造とビジネスモデルを根本から覆します。",
+            date: "2025-11-30",
+            category: "AI",
+            url: "./ai/autonomous-ai-agents-impact.html"
+        },
+        {
+            title: "CDO（Chief Data/Digital Officer）の役割と重要性",
+            description: "CIO（情報システム責任者）とCDO（最高デジタル/データ責任者）の違いとは？AI時代の企業変革を牽引するCDOに求められるスキルセット、権限、そしてキャリアパスについて解説します。",
+            date: "2025-11-28",
+            category: "AI",
+            url: "./ai/role-of-cdo.html"
+        },
+        {
+            title: "生成AIと顧客体験（CX）の革新：パーソナライゼーションの極致",
+            description: "顧客体験（CX）は「一律の対応」から「個への没入」へ。生成AIによるリアルタイム・パーソナライゼーションと、プロアクティブなサポート体制がもたらすLTV向上効果について解説します。",
+            date: "2025-11-28",
+            category: "AI",
+            url: "./ai/ai-cx-innovation.html"
+        },
+        {
+            title: "伝統企業のAI活用：レガシー文化との融合",
+            description: "創業100年企業がAIで生まれ変わるには？「職人の勘」や「紙文化」を否定せず、AIと融合させるための現実的なステップ論。伝統企業の強みである「現場力」をAIで拡張する方法を解説します。",
+            date: "2025-11-26",
+            category: "AI",
+            url: "./ai/legacy-company-ai-adoption.html"
+        },
+        {
+            title: "ヘルスケア・製薬業界のAI創薬と個別化医療",
+            description: "新薬開発の期間とコストを劇的に圧縮するAI創薬。AlphaFoldによるタンパク質構造解析から、リアルワールドデータを活用した個別化医療（プレシジョン・メディシン）まで、命を救うテクノロジーの最前線を解説します。",
+            date: "2025-11-25",
+            category: "AI",
+            url: "./ai/ai-healthcare-pharma.html"
+        },
+        {
+            title: "競合に勝つためのAI活用：差別化要因をどこに置くか",
+            description: "AIモデル自体はコモディティ化し、差別化要因にはなりません。独自データ、UX、業務プロセスという3つの領域で、いかに競合優位性を築くかの戦略論を解説します。",
+            date: "2025-11-25",
+            category: "AI",
+            url: "./ai/ai-competitive-advantage.html"
+        },
+        {
+            title: "DXの次はAX（AI Transformation）：変革のロードマップ",
+            description: "デジタライゼーション（DX）の次は、AIによる自律化（AX）です。データ基盤の整備からAIエージェントの実装まで、企業が辿るべき進化のロードマップを提示します。",
+            date: "2025-11-24",
+            category: "AI",
+            url: "./ai/ax-transformation-roadmap.html"
+        },
+        {
+            title: "AI時代のM&A戦略：技術獲得（Acqui-hire）の視点",
+            description: "AI人材と技術時間を金で買う。伝統的企業がAIスタートアップを買収する際の「Acqui-hire（人材獲得型買収）」の成功要因、PMIの難所、バリュエーションの考え方を解説します。",
+            date: "2025-11-23",
+            category: "AI",
+            url: "./ai/ai-ma-acqui-hire.html"
+        },
+        {
+            title: "生成AIによる新規事業創出：アイデア出しから検証まで",
+            description: "新規事業の成功率を10倍にする方法。AIによる強制発想、ペルソナシミュレーション、そしてMVP検証まで。AIを「共同創業者」として活用する次世代の事業開発プロセスを解説。",
+            date: "2025-11-22",
+            category: "AI",
+            url: "./ai/genai-new-business-creation.html"
+        },
+        {
+            title: "AI人材獲得競争に勝つための人事戦略",
+            description: "年収数千万円でも採用できないAI人材。激化する獲得競争を勝ち抜くための「ジョブ定義」「報酬設計」「魅力付け（EVP）」の戦略的フレームワークを公開します。",
+            date: "2025-11-21",
+            category: "AI",
+            url: "./ai/ai-talent-acquisition-strategy.html"
+        },
+        {
+            title: "プロンプトエンジニアリングの社内教育：スキル標準化",
+            description: "AI活用の成否は「問いかける力」で決まります。属人化しがちなプロンプト作成スキルを、組織全体で標準化し、底上げするための教育カリキュラムと評価制度について解説します。",
+            date: "2025-11-20",
+            category: "AI",
+            url: "./ai/ai-prompt-engineering.html"
+        },
+        {
+            title: "AIネイティブ企業の作り方：データドリブン文化の醸成",
+            description: "AIツールを導入するだけでは「AIネイティブ企業」にはなれません。組織のDNAを「勘と経験」から「データとアルゴリズム」へと書き換えるための、文化変革のアプローチを解説します。",
+            date: "2025-11-20",
+            category: "AI",
+            url: "./ai/building-ai-native-company.html"
+        },
+        {
+            title: "小売・流通業のAI戦略：需要予測とダイナミックプライシング",
+            description: "小売業の利益率を劇的に改善するAI戦略。廃棄ロスを削減する精密な需要予測と、収益を最大化するダイナミックプライシング（変動価格制）の実装モデルについて解説します。",
+            date: "2025-11-20",
+            category: "AI",
+            url: "./ai/ai-retail.html"
+        },
+        {
+            title: "AIを活用したナレッジマネジメント：社内Wikiの進化",
+            description: "従来の社内Wikiは「情報の墓場」になりがちでした。RAG（検索拡張生成）技術により、社内文書と対話できる「企業内GPT」を構築し、ナレッジを「探す」ものから「聞く」ものへと変革する方法を解説します。",
+            date: "2025-11-20",
+            category: "AI",
+            url: "./ai/ai-knowledge-management.html"
+        },
+        {
+            title: "AIネイティブ企業の作り方：データドリブン文化の醸成",
+            description: "AIツールを導入するだけでは「AIネイティブ企業」にはなれません。組織のDNAを「勘と経験」から「データとアルゴリズム」へと書き換えるための、文化変革のアプローチを解説します。",
+            date: "2025-11-20",
+            category: "AI",
+            url: "./ai/ai-native-culture.html"
+        },
+        {
+            title: "AI投資のROIを最大化するロードマップ策定法",
+            description: "AI導入は「魔法」ではなく「投資」です。Jカーブを描く投資回収計画、ポートフォリオ管理、そして撤退基準まで。確実に成果を出すためのロードマップ策定手法を公開します。",
+            date: "2025-11-15",
+            category: "AI",
+            url: "./ai/poc-fatigue-breakthrough.html"
+        },
+        {
+            title: "AI活用における外部パートナー選定のポイント",
+            description: "AIプロジェクトを内製化すべきか、外注すべきか？戦略コンサル、SIer、AIブティックなどパートナーの類型別特徴と、失敗しない選定基準（RFPの勘所）を解説します。",
+            date: "2025-11-15",
+            category: "AI",
+            url: "./ai/ai-partner-selection.html"
+        },
+        {
+            title: "AI投資のROIを最大化するロードマップ策定法",
+            description: "AI導入は「魔法」ではなく「投資」です。Jカーブを描く投資回収計画、ポートフォリオ管理、そして撤退基準まで。確実に成果を出すためのロードマップ策定手法を公開します。",
+            date: "2025-11-15",
+            category: "AI",
+            url: "./ai/ai-investment-roadmap.html"
+        },
+        {
+            title: "生成AI導入の失敗事例から学ぶ：避けるべき7つの落とし穴",
+            description: "他社の失敗は最高の教材です。「とりあえず導入」「丸投げ」「データ軽視」...AIプロジェクトを頓挫させる典型的な7つの失敗パターンと、その回避策を具体的に解説します。",
+            date: "2025-11-15",
+            category: "AI",
+            url: "./ai/ai-implementation-failures.html"
+        },
+        {
+            title: "建設・不動産業のAI DX：図面生成から工程管理まで",
+            description: "建設業界の長時間労働と人手不足を解決する鍵は「BIM × AI」にあります。生成AIによる設計自動化、現場画像解析による安全管理、そして不動産価格の精密予測まで、業界を変革するテクノロジーを解説します。",
+            date: "2025-11-15",
+            category: "AI",
+            url: "./ai/ai-construction-realestate.html"
+        },
+        {
+            title: "音声生成AI・ボイスボットによる電話対応の自動化",
+            description: "もはや「ロボット音声」ではありません。人間と区別がつかないほど自然な対話が可能な最新の音声AI（Voice AI）が、コールセンターの人手不足を解消し、24時間365日の顧客対応を実現します。",
+            date: "2025-11-15",
+            category: "AI",
+            url: "./ai/ai-voice-generation.html"
+        },
+        {
+            title: "エッジAIの可能性：現場でのリアルタイム処理",
+            description: "すべてのデータをクラウドに送る時代は終わりました。端末側で処理を行う「エッジAI」により、通信遅延ゼロのリアルタイム制御や、プライバシー保護を実現する新たなアーキテクチャを解説します。",
+            date: "2025-11-15",
+            category: "AI",
+            url: "./ai/edge-ai-possibilities.html"
+        },
+        {
+            title: "サービス業のAI活用：ホスピタリティと効率化の両立",
+            description: "人手不足が深刻なサービス業界において、「おもてなし（High Touch）」と「業務効率化（High Tech）」をどう両立させるか。AIによる動的シフト管理や感情分析を活用した、次世代のサービスモデルを提言します。",
+            date: "2025-11-10",
+            category: "AI",
+            url: "./ai/ai-service-hospitality.html"
+        },
+        {
+            title: "グローバル企業のAIガバナンス：各国規制への対応戦略",
+            description: "EU AI Actをはじめ、世界各国でAI規制が強化されています。グローバル展開する日本企業が直面する「規制の分断」リスクと、本社主導で構築すべき統合ガバナンス体制について解説します。",
+            date: "2025-11-10",
+            category: "AI",
+            url: "./ai/global-ai-governance.html"
+        },
+        {
+            title: "AI時代の組織論：人間とAIの役割分担をどう設計するか",
+            description: "AIは人間の仕事を奪うのか、それとも拡張するのか？「ケンタウロス型」組織への移行と、AI時代に求められる新たなマネジメント手法、役割分担の設計図を提示します。",
+            date: "2025-11-10",
+            category: "AI",
+            url: "./ai/ai-organization-design.html"
+        },
+        {
+            title: "生成AIによるホワイトカラーの生産性革命：実証データ分析",
+            description: "MITやハーバード大の研究など、生成AIがホワイトカラーの生産性に与える影響を実証データに基づいて分析。特に「スキルの平準化（Leveling Effect）」による組織力の底上げ効果について解説します。",
+            date: "2025-11-05",
+            category: "AI",
+            url: "./ai/white-collar-productivity.html"
+        },
+        {
+            title: "AI倫理と企業の社会的責任：信頼されるAIとは",
+            description: "AIにおける「公平性」「透明性」「説明責任」は、もはや倫理の問題ではなくビジネスの前提条件です。信頼されるAIシステムを構築するための指針と、ESG経営におけるAI倫理の位置付けを解説します。",
+            date: "2025-11-05",
+            category: "AI",
+            url: "./ai/ai-ethics-csr.html"
+        },
+        {
+            title: "社内データの資産化：AI活用のためのデータ整備戦略",
+            description: "AIはデータがなければただの箱です。PDFや日報など、社内に眠る「非構造化データ」をAIが理解できる「資産」に変えるための、具体的な整備ステップとアーキテクチャを解説します。",
+            date: "2025-11-01",
+            category: "AI",
+            url: "./ai/data-assetization-strategy.html"
+        },
+        {
+            title: "生成AIと知的財産権：経営者が知っておくべき法的リスク",
+            description: "AIが生成したコンテンツは誰のもの？著作権侵害のリスクは？法務担当者任せにせず、経営者が理解しておくべき「攻めと守り」の知財戦略を解説します。",
+            date: "2025-10-30",
+            category: "AI",
+            url: "./ai/genai-legal-risks.html"
+        },
+        {
+            title: "オープンソースAI活用のメリットとリスク：戦略的選択肢としてのOSS",
+            description: "Llama 3やMistralなど高性能なオープンソースLLMが台頭しています。ChatGPT等の商用APIと比較した際の、コスト、セキュリティ、制御性の観点からのメリットと、企業が負うべきリスク管理について解説します。",
+            date: "2025-10-30",
+            category: "AI",
+            url: "./ai/opensource-ai-merits-risks.html"
+        },
+        {
+            title: "AI時代のリーダーシップ：正解のない問いに挑む力",
+            description: "AIが「正解」を出す時代、リーダーの役割は「答えを知っていること」から「問いを立てること」へ変わります。これからのリーダーに求められる3つの資質とは？",
+            date: "2025-10-25",
+            category: "AI",
+            url: "./ai/leadership-in-ai-era.html"
+        },
+        {
+            title: "自社専用AIモデル構築の是非：ファインチューニング vs RAG徹底比較",
+            description: "社内データをAIに学習させるには？数千万円かかる「ファインチューニング」と、低コストな「RAG」。それぞれのメリット・デメリットと、自社に最適な手法の選び方を解説します。",
+            date: "2025-10-25",
+            category: "AI",
+            url: "./ai/fine-tuning-vs-rag.html"
+        },
+        {
+            title: "AIプロジェクトのKPI設定：成果をどう測るか",
+            description: "AIプロジェクトの8割が失敗する原因は、技術ではなく「測定」にあります。ROI偏重の罠を避け、学習価値やプロセス品質を含めた多面的な評価指標（Balanced Scorecard for AI）の設計フレームワークを解説します。",
+            date: "2025-10-25",
+            category: "AI",
+            url: "./ai/ai-project-kpi.html"
+        },
+        {
+            title: "生成AI導入による企業価値向上：PBR1倍割れ対策としてのAI",
+            description: "PBR1倍割れの解消は日本企業の喫緊の課題です。自社株買いなどの財務テクニックではなく、AI活用による「成長期待（PER）」と「資本効率（ROE）」の向上で、本質的に企業価値を高める戦略を提言します。",
+            date: "2025-10-12",
+            category: "AI",
+            url: "./ai/ai-pbr-improvement.html"
+        },
+        {
+            title: "経営層のための生成AIリテラシー講座：最低限知っておくべき技術動向",
+            description: "「LLM」「プロンプト」「RAG」…経営判断に必要なAI用語と概念を、技術知識ゼロでも分かるように解説。CTOやベンダーと対等に話すための基礎知識をインプットします。",
+            date: "2025-10-10",
+            category: "AI",
+            url: "./ai/genai-literacy-for-executives.html"
+        }
+        ];
+        
+        const Icon = ({ name, size = 24, className = "" }) => {
+            if (typeof lucide !== 'undefined' && lucide.icons && lucide.icons[name]) {
+                const iconData = lucide.icons[name];
+                return React.createElement('svg', {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    width: size,
+                    height: size,
+                    viewBox: "0 0 24 24",
+                    fill: "none",
+                    stroke: "currentColor",
+                    strokeWidth: 2,
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    className: className
+                }, iconData.map(([tag, attrs], index) => React.createElement(tag, { ...attrs, key: index })));
+            }
+            return <span className="inline-block w-4 h-4 bg-gray-300 rounded-full"></span>;
+        };
+        
+        const Header = () => {
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+            
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+            
+            return (
+                <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-white py-4 shadow-sm'}`}>
+                    <div className="container mx-auto px-4 flex items-center justify-between max-w-7xl">
+                        <a href="../index.html" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                            <img src="../assets/images/logo.svg" alt="RISEby" className="h-8 md:h-9" />
+                        </a>
+                        <nav className="hidden md:flex items-center gap-8">
+                            <a href="../index.html#services" className="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">サービス</a>
+                            <a href="./" className="font-bold tracking-wide transition-colors text-brand-blue">ブログ</a>
+                            <a href="../about.html" className="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white px-6 py-2.5 rounded-full font-bold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:bg-slate-800">
+                                お問い合わせ
+                            </a>
+                        </nav>
+                        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2 text-slate-800">
+                            <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
+                        </button>
+                    </div>
+                    {mobileMenuOpen && (
+                        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-slate-100 shadow-xl p-4 flex flex-col gap-4">
+                            <a href="../index.html#services" className="text-slate-800 font-bold py-3 border-b border-slate-50">サービス</a>
+                            <a href="./" className="text-brand-blue font-bold py-3 border-b border-slate-50">ブログ</a>
+                            <a href="../about.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white text-center py-3.5 rounded-lg font-bold shadow-md mt-2">お問い合わせ</a>
+                        </div>
+                    )}
+                </header>
+            );
+        };
+        
+        const Footer = () => {
+            const currentYear = new Date().getFullYear();
+            return (
+                <footer className="bg-[#0B0F19] text-white pt-20 pb-10 border-t border-slate-800">
+                    <div className="container mx-auto px-4 max-w-7xl">
+                        <div className="flex flex-col md:flex-row justify-between gap-12 mb-16">
+                            <div className="md:w-1/3">
+                                <a href="../index.html" className="block mb-6">
+                                    <img src="../assets/images/logo.svg" alt="RISEby" className="h-8 brightness-0 invert opacity-90" />
+                                </a>
+                                <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                                    企業の複合的な経営課題を、AI・戦略・テクノロジー・人の観点から包括的に解決するコンサルティングファーム。
+                                </p>
+                                <a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white transition-colors text-sm flex items-center gap-2">
+                                    <Icon name="Mail" size={16} />
+                                    contact@riseby.net
+                                </a>
+                            </div>
+                            <div className="grid grid-cols-2 gap-8">
+                                <div>
+                                    <h3 className="font-bold text-sm mb-4 text-white tracking-wider font-display">Company</h3>
+                                    <ul className="space-y-2 text-sm text-slate-400">
+                                        <li><a href="../about.html" className="hover:text-white transition-colors">会社概要</a></li>
+                                        <li><a href="../index.html#services" className="hover:text-white transition-colors">サービス</a></li>
+                                        <li><a href="./" className="hover:text-white transition-colors">ブログ</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-sm mb-4 text-white tracking-wider font-display">Contact</h3>
+                                    <ul className="space-y-2 text-sm text-slate-400">
+                                        <li><a href="mailto:contact@riseby.net" className="hover:text-white transition-colors">お問い合わせ</a></li>
+                                        <li><a href="../privacy.html" className="hover:text-white transition-colors">プライバシーポリシー</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {/* AIMOaaS Link */}
+                        <div className="border-t border-slate-800 pt-8 mb-6">
+                            <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+                                <a href="https://aimoaas.com/" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 bg-gradient-to-r from-violet-600 to-indigo-600 text-white px-6 py-3 rounded-full font-bold hover:shadow-xl hover:shadow-violet-500/20 transition-all hover:-translate-y-0.5">
+                                    <Icon name="Shield" size={18} />
+                                    <span>AIMOaaS™ - AIガバナンス運用代行</span>
+                                    <Icon name="ExternalLink" size={14} className="opacity-70 group-hover:opacity-100" />
+                                </a>
+                            </div>
+                        </div>
+                        <div className="flex flex-wrap gap-6 justify-center text-xs text-slate-500 mb-6">
+                            <a href="../about.html" className="hover:text-white transition-colors">会社概要</a>
+                            <a href="../privacy.html" className="hover:text-white transition-colors">プライバシーポリシー</a>
+                            <a href="https://aimoaas.com/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1">AIMOaaS <Icon name="ExternalLink" size={10} /></a>
+                        </div>
+                        <div className="text-center text-xs text-slate-500">
+                            © {currentYear} RISEby inc. All rights reserved.
+                        </div>
+                    </div>
+                </footer>
+            );
+        };
+        
+        const ArticleCard = ({ article, featured = false }) => {
+            const formatDate = (dateStr) => {
+                const date = new Date(dateStr);
+                return date.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
+            };
+            
+            if (featured) {
+                return (
+                    <a href={article.url} className="group block bg-gradient-to-br from-brand-blue to-slate-800 rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2">
+                        <div className="p-10 md:p-14">
+                            <div className="flex items-center gap-4 mb-6">
+                                <span className="bg-white/20 text-white text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider font-display">{article.category}</span>
+                                <span className="text-white/60 text-sm">{formatDate(article.date)}</span>
+                            </div>
+                            <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 leading-tight group-hover:text-blue-200 transition-colors">
+                                {article.title}
+                            </h2>
+                            <p className="text-white/70 text-lg leading-relaxed mb-8 line-clamp-3">
+                                {article.description}
+                            </p>
+                            <div className="flex items-center gap-2 text-white font-bold group-hover:gap-4 transition-all">
+                                <span>記事を読む</span>
+                                <Icon name="ArrowRight" size={20} className="group-hover:translate-x-2 transition-transform" />
+                            </div>
+                        </div>
+                    </a>
+                );
+            }
+            
+            return (
+                <a href={article.url} className="group block bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div className="p-6 md:p-8">
+                        <div className="flex items-center gap-3 mb-4">
+                            <span className="bg-violet-100 text-violet-700 text-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider font-display">{article.category}</span>
+                            <span className="text-slate-400 text-xs">{formatDate(article.date)}</span>
+                        </div>
+                        <h3 className="text-lg font-bold text-slate-900 mb-3 leading-snug group-hover:text-brand-blue transition-colors line-clamp-2">
+                            {article.title}
+                        </h3>
+                        <p className="text-slate-500 text-sm leading-relaxed line-clamp-2 mb-4">
+                            {article.description}
+                        </p>
+                        <div className="flex items-center gap-1 text-brand-blue text-sm font-bold group-hover:gap-2 transition-all">
+                            <span>続きを読む</span>
+                            <Icon name="ChevronRight" size={16} />
+                        </div>
+                    </div>
+                </a>
+            );
+        };
+        
+        const BlogIndex = () => {
+            const [searchQuery, setSearchQuery] = useState('');
+            const [visibleCount, setVisibleCount] = useState(12);
+            
+            const filteredArticles = useMemo(() => {
+                if (!searchQuery) return ARTICLES;
+                const query = searchQuery.toLowerCase();
+                return ARTICLES.filter(article => 
+                    article.title.toLowerCase().includes(query) ||
+                    article.description.toLowerCase().includes(query)
+                );
+            }, [searchQuery]);
+            
+            const featuredArticle = ARTICLES[0];
+            const regularArticles = filteredArticles.slice(searchQuery ? 0 : 1, visibleCount);
+            
+            return (
+                <div className="min-h-screen flex flex-col">
+                    <Header />
+                    
+                    <main className="flex-grow pt-24">
+                        {/* Hero Section */}
+                        <section className="py-16 md:py-24 bg-gradient-to-b from-slate-100 to-slate-50">
+                            <div className="container mx-auto px-4 max-w-7xl">
+                                <div className="text-center mb-12">
+                                    <div className="inline-block px-4 py-1.5 bg-slate-900 text-white rounded-full text-xs font-bold uppercase tracking-wider mb-6 font-display">
+                                        Insights
+                                    </div>
+                                    <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6">
+                                        ナレッジ & インサイト
+                                    </h1>
+                                    <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+                                        AI・DX・経営戦略の最新トレンドと実践的なナレッジを、経営者・ビジネスリーダー向けにお届けします。
+                                    </p>
+                                </div>
+                                
+                                {/* Search */}
+                                <div className="max-w-xl mx-auto mb-16">
+                                    <div className="relative">
+                                        <Icon name="Search" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                                        <input
+                                            type="text"
+                                            placeholder="記事を検索..."
+                                            value={searchQuery}
+                                            onChange={(e) => setSearchQuery(e.target.value)}
+                                            className="w-full pl-12 pr-4 py-4 rounded-2xl border border-slate-200 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-all text-lg"
+                                        />
+                                    </div>
+                                </div>
+                                
+                                {/* Featured Article */}
+                                {!searchQuery && (
+                                    <div className="mb-16">
+                                        <ArticleCard article={featuredArticle} featured />
+                                    </div>
+                                )}
+                            </div>
+                        </section>
+                        
+                        {/* Article Grid */}
+                        <section className="py-16 bg-slate-50">
+                            <div className="container mx-auto px-4 max-w-7xl">
+                                <div className="flex items-center justify-between mb-10">
+                                    <h2 className="text-2xl font-bold text-slate-900">
+                                        {searchQuery ? `検索結果: ${filteredArticles.length}件` : '最新の記事'}
+                                    </h2>
+                                    <div className="text-sm text-slate-500">
+                                        全{ARTICLES.length}記事
+                                    </div>
+                                </div>
+                                
+                                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                                    {regularArticles.map((article, idx) => (
+                                        <ArticleCard key={idx} article={article} />
+                                    ))}
+                                </div>
+                                
+                                {filteredArticles.length > visibleCount && (
+                                    <div className="text-center mt-12">
+                                        <button
+                                            onClick={() => setVisibleCount(prev => prev + 12)}
+                                            className="inline-flex items-center gap-2 bg-white border-2 border-slate-200 text-slate-700 px-8 py-4 rounded-full font-bold hover:border-brand-blue hover:text-brand-blue transition-all"
+                                        >
+                                            <span>もっと見る</span>
+                                            <Icon name="ChevronDown" size={20} />
+                                        </button>
+                                    </div>
+                                )}
+                                
+                                {filteredArticles.length === 0 && (
+                                    <div className="text-center py-20">
+                                        <Icon name="FileQuestion" size={48} className="mx-auto text-slate-300 mb-4" />
+                                        <p className="text-slate-500 text-lg">該当する記事が見つかりませんでした</p>
+                                    </div>
+                                )}
+                            </div>
+                        </section>
+                        
+                        {/* CTA Section */}
+                        <section className="py-20 bg-white border-t border-slate-200">
+                            <div className="container mx-auto px-4 max-w-3xl text-center">
+                                <h2 className="text-3xl font-bold text-slate-900 mb-6">
+                                    AI活用について相談する
+                                </h2>
+                                <p className="text-lg text-slate-600 mb-10">
+                                    記事を読んで興味を持たれた方は、お気軽にご相談ください。<br/>
+                                    経験豊富なコンサルタントが、貴社の課題解決をサポートします。
+                                </p>
+                                <a href="mailto:contact@riseby.net" className="inline-flex items-center gap-2 bg-brand-blue text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl hover:bg-slate-800 transition-all hover:-translate-y-1">
+                                    <Icon name="Mail" size={20} />
+                                    無料相談を申し込む
+                                </a>
+                            </div>
+                        </section>
+                    </main>
+                    
+                    <Footer />
+                </div>
+            );
+        };
+        
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<BlogIndex />);
+    </script>
+</body>
+</html>

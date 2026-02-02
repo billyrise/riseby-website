@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="96" fill="#003E68"/>
+  
+  <!-- R mark - clean single path -->
+  <path fill="#FFFFFF" d="
+    M150 400 V112 
+    H295 
+    C365 112 410 155 410 210 
+    C410 260 375 295 320 308 
+    L410 400 H335 
+    L255 318 H215 
+    V400 Z
+    M215 175 V255 
+    H280 
+    C320 255 345 235 345 215 
+    C345 195 320 175 280 175 Z
+  "/>
+  
+  <!-- Red accent dot -->
+  <circle cx="420" cy="420" r="36" fill="#ED1C24"/>
+</svg>

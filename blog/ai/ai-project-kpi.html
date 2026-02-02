@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://riseby.net/blog/ai/ai-project-kpi.html">
+    
+    <!-- OGP -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="RISEby inc.">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://riseby.net/blog/ai/ai-project-kpi.html">
+    <meta property="og:title" content="AIプロジェクトのKPI設定：成果をどう測るか | RISEby Blog">
+    <meta property="og:description" content="AIプロジェクトの8割が失敗する原因は、技術ではなく「測定」にあります。ROI偏重の罠を避け、学習価値やプロセス品質を含めた多面的な評価指標（Balanced Scorecard for AI）の設計フレームワークを解説します。">
+    <meta property="og:image" content="https://riseby.net/assets/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>AIプロジェクトのKPI設定：成果をどう測るか | RISEby Blog</title>
+    <meta name="description" content="AIプロジェクトの8割が失敗する原因は、技術ではなく「測定」にあります。ROI偏重の罠を避け、学習価値やプロセス品質を含めた多面的な評価指標（Balanced Scorecard for AI）の設計フレームワークを解説します。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brand: { blue: '#003E68', red: '#ED1C24', dark: '#0B0F19' } },
+                    fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], display: ['"Montserrat"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>body { font-family: "Noto Sans JP", sans-serif; } .mermaid { display: flex; justify-content: center; margin: 2rem 0; background: #f8fafc; padding: 1rem; border-radius: 0.5rem; }</style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", "@type": "BlogPosting",
+      "headline": "AIプロジェクトのKPI設定：成果をどう測るか",
+      "datePublished": "2025-10-25",
+      "author": { "@type": "Organization", "name": "RISEby Inc.", "url": "https://riseby.net" }
+    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const Icon = ({ name, size = 24, className = "" }) => {
+            if (typeof lucide !== 'undefined' && lucide.icons && lucide.icons[name]) {
+                const iconData = lucide.icons[name];
+                return React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", className: className }, iconData.map(([tag, attrs], index) => React.createElement(tag, { ...attrs, key: index })));
+            }
+            return <span className="inline-block w-4 h-4 bg-gray-300 rounded-full"></span>;
+        };
+
+        const Header = () => {
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-white/80 backdrop-blur-sm py-4 shadow-sm'}`}>
+                    <div className="container mx-auto px-4 flex items-center justify-between max-w-7xl">
+                        <a href="../../index.html" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                            <img src="../../assets/images/logo.svg" alt="RISEby" className="h-8 md:h-9" />
+                        </a>
+                        <nav className="hidden md:flex items-center gap-8">
+                            <a href="../../index.html#services" className="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">サービス</a>
+                            <a href="../../blog/" className="font-bold tracking-wide transition-colors text-brand-blue">ブログ</a>
+                            <a href="../../about.html" className="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white hover:bg-slate-800 px-6 py-2.5 rounded-full font-bold transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                                お問い合わせ
+                            </a>
+                        </nav>
+                        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2 text-slate-800">
+                            <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
+                        </button>
+                    </div>
+                    
+                    {mobileMenuOpen && (
+                        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-slate-100 shadow-xl p-4 flex flex-col gap-4 animate-fade-in-up">
+                            <a href="../../index.html#services" className="text-slate-800 font-bold py-3 border-b border-slate-50">サービス</a>
+                            <a href="../../blog/" className="text-brand-blue font-bold py-3 border-b border-slate-50">ブログ</a>
+                            <a href="../../about.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white text-center py-3.5 rounded-lg font-bold shadow-md mt-2">お問い合わせ</a>
+                        </div>
+                    )}
+                </header>
+            );
+        };
+
+        const Footer = () => (
+            <footer className="bg-[#0B0F19] text-white pt-24 pb-12 border-t border-slate-800 font-sans">
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <div className="flex flex-col lg:flex-row justify-between gap-16 mb-24">
+                        <div className="lg:w-1/3">
+                            <a href="../../index.html" className="block mb-8">
+                                <img src="../../assets/images/logo.svg" alt="RISEby" className="h-9 brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" />
+                            </a>
+                            <p className="text-slate-400 text-sm leading-relaxed mb-8">
+                                企業の複合的な経営課題を、AI・戦略・テクノロジー・人の観点から包括的に解決するコンサルティングファーム。
+                            </p>
+                            <div className="mb-10 text-sm text-slate-400 space-y-3">
+                                <p>〒150-6115 東京都渋谷区渋谷2-24-12</p>
+                                <p>渋谷スクランブルスクエア 15階</p>
+                                <a href="mailto:contact@riseby.net" className="hover:text-white transition-colors flex items-center gap-2 mt-6 group">
+                                    <span className="bg-slate-800 p-2 rounded-full group-hover:bg-slate-700 transition-colors"><Icon name="Mail" size={16} /></span>
+                                    contact@riseby.net
+                                </a>
+                            </div>
+                            <p className="text-slate-600 text-xs">
+                                &copy; {new Date().getFullYear()} RISEby Inc. All rights reserved.
+                            </p>
+                        </div>
+                        <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8 gap-y-14">
+                             <div>
+                                <h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Services</h3>
+                                <ul className="space-y-3">
+                                    <li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs transition-colors">サービス一覧</a></li>
+                                    <li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs transition-colors">新規事業開発</a></li>
+                                    <li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs transition-colors">DXコンサルティング</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Company</h3>
+                                <ul className="space-y-3">
+                                    <li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs transition-colors">会社概要</a></li>
+                                    <li><a href="../../blog/" className="text-slate-400 hover:text-white text-xs transition-colors">ブログ</a></li>
+                                    <li><a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white text-xs transition-colors">お問い合わせ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="border-t border-slate-800 pt-10 flex flex-wrap gap-8 justify-center text-xs text-slate-500">
+                        <a href="../../about.html" className="hover:text-white transition-colors">会社概要</a>
+                        <a href="../../privacy.html" className="hover:text-white transition-colors">プライバシーポリシー</a>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        const MermaidDiagram = ({ chart }) => {
+            useEffect(() => { mermaid.init(); }, []);
+            return <div className="mermaid overflow-x-auto">{chart}</div>;
+        };
+
+        const BarChart = ({ title, data }) => (
+            <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose">
+                <h4 className="text-lg font-bold mb-6 text-slate-800 border-b border-slate-100 pb-2">{title}</h4>
+                <div className="space-y-4">
+                    {data.map((item, index) => (
+                        <div key={index}>
+                            <div className="flex justify-between text-sm mb-1 font-medium">
+                                <span className="text-slate-700">{item.label}</span>
+                                <span className="text-brand-blue font-bold">{item.value}</span>
+                            </div>
+                            <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
+                                <div className="bg-brand-blue h-3 rounded-full" style={{ width: item.percentage }}></div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </figure>
+        );
+
+        const KeyPoint = ({ title, children }) => (
+            <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
+                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "Key Insight"}</h5>
+                <div className="text-slate-700 text-sm leading-relaxed">{children}</div>
+            </div>
+        );
+
+        // 修正版ピラミッド図：テキスト改行の調整と図形の幅拡大
+        const KpiPyramid = () => (
+            <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose text-center">
+                <h4 className="text-lg font-bold mb-6 text-slate-800">AIプロジェクトの3層KPIピラミッド</h4>
+                <div className="relative w-full max-w-md mx-auto aspect-[4/3]">
+                    <svg viewBox="0 0 400 300" className="w-full h-full">
+                        {/* Outcome Layer (Top Inverted Trapezoid) */}
+                        {/* Widen top: 150->120, 250->280. Bottom: 220->240, 180->160 */}
+                        <path d="M120 50 L 280 50 L 240 110 L 160 110 Z" fill="#003E68" stroke="none" />
+                        <text x="200" y="70" fontSize="13" fill="white" textAnchor="middle" fontWeight="bold">Outcome (経営成果)</text>
+                        <text x="200" y="85" fontSize="11" fill="white" textAnchor="middle">
+                            <tspan x="200" dy="0">売上貢献・</tspan>
+                            <tspan x="200" dy="12">コスト削減額</tspan>
+                        </text>
+
+                        {/* Output Layer (Middle Trapezoid) */}
+                        {/* Match top width to above: 160, 240. Bottom width: 140->120, 260->280 */}
+                        <path d="M160 115 L 240 115 L 280 190 L 120 190 Z" fill="#3b82f6" stroke="none" />
+                        <text x="200" y="135" fontSize="13" fill="white" textAnchor="middle" fontWeight="bold">
+                            <tspan x="200" dy="0">Output</tspan>
+                            <tspan x="200" dy="12">(業務プロセス)</tspan>
+                        </text>
+                        <text x="200" y="165" fontSize="11" fill="white" textAnchor="middle">
+                            <tspan x="200" dy="0">処理時間・</tspan>
+                            <tspan x="200" dy="12">自動化率</tspan>
+                        </text>
+
+                        {/* Input Layer (Bottom Trapezoid) */}
+                        {/* Match top width: 120, 280. Bottom width: 80, 320 */}
+                        <path d="M120 195 L 280 195 L 320 270 L 80 270 Z" fill="#93c5fd" stroke="none" />
+                        <text x="200" y="225" fontSize="13" fill="#003E68" textAnchor="middle" fontWeight="bold">Input (技術・基盤)</text>
+                        <text x="200" y="243" fontSize="11" fill="#003E68" textAnchor="middle">
+                            <tspan x="200" dy="0">モデル精度(F値)</tspan>
+                            <tspan x="200" dy="12">学習データ量</tspan>
+                        </text>
+                    </svg>
+                </div>
+            </figure>
+        );
+
+        const BalancedScorecard = () => (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-10 not-prose">
+                <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <div className="flex items-center gap-2 mb-2 text-brand-blue font-bold">
+                        <Icon name="DollarSign" size={18} /> 財務の視点 (Financial)
+                    </div>
+                    <ul className="text-sm text-slate-700 list-disc pl-5">
+                        <li>ROI (投資対効果)</li>
+                        <li>オポチュニティコストの削減</li>
+                    </ul>
+                </div>
+                <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <div className="flex items-center gap-2 mb-2 text-brand-blue font-bold">
+                        <Icon name="Users" size={18} /> 顧客の視点 (Customer)
+                    </div>
+                    <ul className="text-sm text-slate-700 list-disc pl-5">
+                        <li>顧客満足度 (NPS)</li>
+                        <li>応答速度・待機時間の短縮</li>
+                    </ul>
+                </div>
+                <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <div className="flex items-center gap-2 mb-2 text-brand-blue font-bold">
+                        <Icon name="Settings" size={18} /> 業務プロセスの視点 (Internal)
+                    </div>
+                    <ul className="text-sm text-slate-700 list-disc pl-5">
+                        <li>工数削減率 (Man-hour reduction)</li>
+                        <li>エラー発生率の低下</li>
+                    </ul>
+                </div>
+                <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <div className="flex items-center gap-2 mb-2 text-brand-blue font-bold">
+                        <Icon name="TrendingUp" size={18} /> 学習と成長の視点 (Learning)
+                    </div>
+                    <ul className="text-sm text-slate-700 list-disc pl-5">
+                        <li>AIモデルの再学習頻度</li>
+                        <li>社内AI人材の育成数</li>
+                    </ul>
+                </div>
+            </div>
+        );
+
+        const BlogArticle = () => {
+            return (
+                <main className="pt-24 pb-16">
+                    <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-100">
+                            <header className="text-center mb-12 border-b border-slate-100 pb-10">
+                                <div className="flex justify-center mb-4"><span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">Data Driven Management</span></div>
+                                <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">AIプロジェクトのKPI設定：<br/>成果をどう測るか</h1>
+                                <div className="flex items-center justify-center space-x-4 text-sm text-slate-500"><time dateTime="2025-10-25">2025.10.25</time><span>&middot;</span><span className="flex items-center gap-1"><Icon name="User" size={14} /> RISEby Editorial Team</span></div>
+                            </header>
+                            <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
+                                <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">「PoC（概念実証）疲れ」という言葉が蔓延しています。多くのAIプロジェクトが本番化に至らない最大の原因は、技術的な失敗ではなく、「何を成功とするか」の定義＝KPI設定の不備にあります。本記事では、単なるコスト削減に留まらない、多面的なAI評価のフレームワークを提示します。</p>
+                                
+                                <h2>1. 「精度」だけを追うな：KPIの3層構造</h2>
+                                <p>データサイエンティストは「モデルの精度（Accuracy/F値）」を追求しがちですが、経営層が求めているのは「ビジネスインパクト」です。このギャップを埋めるために、KPIを3つの階層で定義し、連動させる必要があります。</p>
+                                <KpiPyramid />
+                                <p>重要なのは因果関係です。モデルの精度向上（Input）が、どのように業務時間の短縮（Output）につながり、最終的にどれだけの利益（Outcome）を生むのか。このロジックツリーを描くことがプロジェクトリーダーの責務です。</p>
+
+                                <h2>2. 成果の多面性を捉える：AI版バランスト・スコアカード</h2>
+                                <p>AI導入の効果は財務数値だけではありません。「従業員体験（EX）の向上」や「組織の学習能力」といった無形資産への貢献も評価すべきです。</p>
+                                <BalancedScorecard />
+
+                                <h2>3. 定量化の罠：「削減工数」の正しい測り方</h2>
+                                <p>「月間100時間の工数削減」というKPIは分かりやすいですが、落とし穴があります。削減された時間が「昼寝」に使われては意味がありません。</p>
+                                <BarChart 
+                                    title="工数削減の「質」による評価ウェイト"
+                                    data={[
+                                        { label: "単純削減 (コストカット)", value: "評価ウェイト: 低", percentage: "30%" },
+                                        { label: "高付加価値業務へのシフト", value: "評価ウェイト: 中", percentage: "60%" },
+                                        { label: "新規事業・イノベーション創出", value: "評価ウェイト: 高", percentage: "90%" }
+                                    ]}
+                                />
+                                <p>「空いた時間で何をしたか」までを追跡し、そこから生まれた付加価値（新規提案数など）をKPIに組み込むべきです。</p>
+
+                                <h2>4. アジャイルなKPI運用サイクル</h2>
+                                <p>AIは学習によって進化します。初期段階（PoC）と運用段階では、追うべき指標が異なります。</p>
+                                <MermaidDiagram chart={`
+                                    graph LR
+                                        Phase1[PoCフェーズ] --> Phase2[パイロット導入]
+                                        Phase2 --> Phase3[全社展開・運用]
+                                        
+                                        subgraph KPI_Focus [KPIの重点]
+                                            K1["技術的実現性<br/>データの可用性"]
+                                            K2["ユーザー受容性<br/>業務適合率"]
+                                            K3["ROI<br/>運用安定性"]
+                                        end
+                                        
+                                        Phase1 -.-> K1
+                                        Phase2 -.-> K2
+                                        Phase3 -.-> K3
+                                        
+                                        style Phase3 fill:#dcfce7,stroke:#15803d
+                                `} />
+
+                                <KeyPoint title="「学習速度」という隠れたKPI">
+                                    初期フェーズにおける最大の成果は「失敗からの学び」です。「何がうまくいかなかったか」という知見（Negative Knowledge）がどれだけ蓄積されたかを、資産として評価する文化が必要です。
+                                </KeyPoint>
+
+                                <h2>まとめ</h2>
+                                <p>KPIは監視のためのツールではなく、プロジェクトを正しい方向へ導く羅針盤です。財務、顧客、プロセス、学習の4視点でバランスよく指標を設定し、AI活用の真価を引き出しましょう。</p>
+                            </div>
+                            <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
+                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
+                                <h3 className="text-2xl font-bold text-white mb-4">AIプロジェクト監査・KPI設計</h3>
+                                <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">貴社のAIプロジェクトは正しく評価されていますか？専門コンサルタントがKPI設計をレビューします。</p>
+                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <a href="mailto:contact@riseby.net" className="inline-flex items-center justify-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all duration-300 shadow-lg"><Icon name="Mail" size={18} /> 無料相談を予約</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </main>
+            );
+        };
+
+        const App = () => (
+            <div className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-800">
+                <Header />
+                <BlogArticle />
+                <Footer />
+            </div>
+        );
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

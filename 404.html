@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ページが見つかりません | RISEby inc.</title>
+  <meta name="description" content="お探しのページは見つかりませんでした。RISEbyのトップページまたはサービス一覧からお探しの情報をご確認ください。">
+  <meta name="robots" content="noindex, follow">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { blue: '#003E68', red: '#ED1C24', dark: '#0B0F19' }
+          },
+          fontFamily: {
+            sans: ['"Noto Sans JP"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+            display: ['"Montserrat"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: "Noto Sans JP", sans-serif; -webkit-font-smoothing: antialiased; }
+    .font-display { font-family: "Montserrat", sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+  
+  <!-- Header -->
+  <header class="bg-white shadow-sm py-4">
+    <div class="container mx-auto px-4 flex items-center justify-between max-w-7xl">
+      <a href="./index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+        <img src="./assets/images/logo.svg" alt="RISEby" class="h-8 md:h-9" />
+      </a>
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="./index.html#services" class="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">サービス</a>
+        <a href="./blog/" class="font-bold tracking-wide transition-colors hover:text-brand-blue text-slate-800">ブログ</a>
+        <a href="./about.html" class="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">会社概要</a>
+        <a href="mailto:contact@riseby.net" class="bg-brand-blue text-white px-6 py-2.5 rounded-full font-bold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:bg-slate-800">
+          お問い合わせ
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow flex items-center justify-center py-20">
+    <div class="container mx-auto px-4 text-center max-w-2xl">
+      <div class="mb-8">
+        <span class="text-9xl font-bold font-display text-brand-blue opacity-20">404</span>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+        ページが見つかりません
+      </h1>
+      <p class="text-lg text-slate-600 mb-10 leading-relaxed">
+        お探しのページは移動、削除された可能性があります。<br>
+        URLをご確認いただくか、以下のリンクからお探しください。
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="./index.html" class="inline-flex items-center justify-center gap-2 bg-brand-blue text-white px-8 py-4 rounded-full font-bold hover:bg-slate-800 transition-all shadow-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          トップページへ
+        </a>
+        <a href="./index.html#services" class="inline-flex items-center justify-center gap-2 border-2 border-brand-blue text-brand-blue px-8 py-4 rounded-full font-bold hover:bg-brand-blue hover:text-white transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          サービス一覧
+        </a>
+      </div>
+      
+      <!-- Helpful Links -->
+      <div class="mt-16 pt-10 border-t border-slate-200">
+        <h2 class="text-lg font-bold text-slate-900 mb-6">人気のコンテンツ</h2>
+        <div class="grid sm:grid-cols-3 gap-4 text-left">
+          <a href="./services/ai_strategy.html" class="p-4 bg-white rounded-xl border border-slate-100 hover:border-brand-blue hover:shadow-md transition-all group">
+            <h3 class="font-bold text-slate-900 group-hover:text-brand-blue transition-colors mb-1">AI戦略・ロードマップ策定</h3>
+            <p class="text-sm text-slate-500">全社AIロードマップの策定</p>
+          </a>
+          <a href="./services/gen_ai_implementation.html" class="p-4 bg-white rounded-xl border border-slate-100 hover:border-brand-blue hover:shadow-md transition-all group">
+            <h3 class="font-bold text-slate-900 group-hover:text-brand-blue transition-colors mb-1">生成AI実装・業務適用</h3>
+            <p class="text-sm text-slate-500">ChatGPT/LLMを実務レベルへ</p>
+          </a>
+          <a href="./blog/" class="p-4 bg-white rounded-xl border border-slate-100 hover:border-brand-blue hover:shadow-md transition-all group">
+            <h3 class="font-bold text-slate-900 group-hover:text-brand-blue transition-colors mb-1">ブログ・インサイト</h3>
+            <p class="text-sm text-slate-500">最新のナレッジを発信</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#0B0F19] text-white py-8">
+    <div class="container mx-auto px-4 max-w-7xl text-center">
+      <a href="./index.html" class="inline-block mb-4">
+        <img src="./assets/images/logo.svg" alt="RISEby" class="h-6 brightness-0 invert opacity-90" />
+      </a>
+      <p class="text-slate-500 text-sm">© 2024 RISEby inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Noscript fallback -->
+  <noscript>
+    <div style="padding: 40px; text-align: center;">
+      <h1>404 - ページが見つかりません</h1>
+      <p>お探しのページは見つかりませんでした。</p>
+      <p><a href="./index.html">トップページへ戻る</a></p>
+    </div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,36 @@
+# Cloudflare Pages Redirects
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+# Redirect www to non-www (canonical)
+https://www.riseby.net/* https://riseby.net/:splat 301
+
+# Common misspellings and alternate paths
+/home /index.html 301
+/index /index.html 301
+/company /about.html 301
+/company.html /about.html 301
+/aboutus /about.html 301
+/about-us /about.html 301
+
+# Privacy variations
+/privacy-policy /privacy.html 301
+/privacypolicy /privacy.html 301
+
+# Service redirects for common searches
+/ai /services/ai.html 301
+/dx /services/dx.html 301
+/strategy /services/strategy.html 301
+
+# Blog redirects
+/insights /blog/ 301
+/articles /blog/ 301
+/news /blog/ 301
+
+# Old URL patterns (if migrating from another structure)
+/service/* /services/:splat 301
+
+# Contact page redirect
+/contact mailto:contact@riseby.net 302
+
+# Custom 404 page
+/* /404.html 404

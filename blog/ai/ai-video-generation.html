@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://riseby.net/blog/ai/ai-video-generation.html">
+    
+    <!-- OGP -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="RISEby inc.">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://riseby.net/blog/ai/ai-video-generation.html">
+    <meta property="og:title" content="動画生成AIの可能性：マーケティングと教育への応用 | RISEby Blog">
+    <meta property="og:description" content="SoraやRunway Gen-3などの動画生成AIは、映像制作のコスト構造を根底から覆します。撮影不要で高品質なCMや教育用コンテンツを量産し、One-to-Oneの動画マーケティングを実現する未来図を描きます。">
+    <meta property="og:image" content="https://riseby.net/assets/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>動画生成AIの可能性：マーケティングと教育への応用 | RISEby Blog</title>
+    <meta name="description" content="SoraやRunway Gen-3などの動画生成AIは、映像制作のコスト構造を根底から覆します。撮影不要で高品質なCMや教育用コンテンツを量産し、One-to-Oneの動画マーケティングを実現する未来図を描きます。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brand: { blue: '#003E68', red: '#ED1C24', dark: '#0B0F19' } },
+                    fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], display: ['"Montserrat"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>body { font-family: "Noto Sans JP", sans-serif; } .mermaid { display: flex; justify-content: center; margin: 2rem 0; background: #f8fafc; padding: 1rem; border-radius: 0.5rem; }</style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", "@type": "BlogPosting",
+      "headline": "動画生成AIの可能性：マーケティングと教育への応用",
+      "datePublished": "2026-02-15",
+      "author": { "@type": "Organization", "name": "RISEby Inc.", "url": "https://riseby.net" }
+    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const Icon = ({ name, size = 24, className = "" }) => {
+            if (typeof lucide !== 'undefined' && lucide.icons && lucide.icons[name]) {
+                const iconData = lucide.icons[name];
+                return React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", className: className }, iconData.map(([tag, attrs], index) => React.createElement(tag, { ...attrs, key: index })));
+            }
+            return <span className="inline-block w-4 h-4 bg-gray-300 rounded-full"></span>;
+        };
+
+        const Header = () => {
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-white/80 backdrop-blur-sm py-4 shadow-sm'}`}>
+                    <div className="container mx-auto px-4 flex items-center justify-between max-w-7xl">
+                        <a href="../../index.html" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                            <img src="../../assets/images/logo.svg" alt="RISEby" className="h-8 md:h-9" />
+                        </a>
+                        <nav className="hidden md:flex items-center gap-8">
+                            <a href="../../index.html#services" className="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">サービス</a>
+                            <a href="../../blog/" className="font-bold tracking-wide transition-colors text-brand-blue">ブログ</a>
+                            <a href="../../about.html" className="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white hover:bg-slate-800 px-6 py-2.5 rounded-full font-bold transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                                お問い合わせ
+                            </a>
+                        </nav>
+                        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2 text-slate-800">
+                            <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
+                        </button>
+                    </div>
+                    
+                    {mobileMenuOpen && (
+                        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-slate-100 shadow-xl p-4 flex flex-col gap-4 animate-fade-in-up">
+                            <a href="../../index.html#services" className="text-slate-800 font-bold py-3 border-b border-slate-50">サービス</a>
+                            <a href="../../blog/" className="text-brand-blue font-bold py-3 border-b border-slate-50">ブログ</a>
+                            <a href="../../about.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white text-center py-3.5 rounded-lg font-bold shadow-md mt-2">お問い合わせ</a>
+                        </div>
+                    )}
+                </header>
+            );
+        };
+
+        const Footer = () => (
+            <footer className="bg-[#0B0F19] text-white pt-24 pb-12 border-t border-slate-800 font-sans">
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <div className="flex flex-col lg:flex-row justify-between gap-16 mb-24">
+                        <div className="lg:w-1/3">
+                            <a href="../../index.html" className="block mb-8">
+                                <img src="../../assets/images/logo.svg" alt="RISEby" className="h-9 brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" />
+                            </a>
+                            <p className="text-slate-400 text-sm leading-relaxed mb-8">
+                                企業の複合的な経営課題を、AI・戦略・テクノロジー・人の観点から包括的に解決するコンサルティングファーム。
+                            </p>
+                            <div className="mb-10 text-sm text-slate-400 space-y-3">
+                                <p>〒150-6115 東京都渋谷区渋谷2-24-12</p>
+                                <p>渋谷スクランブルスクエア 15階</p>
+                                <a href="mailto:contact@riseby.net" className="hover:text-white transition-colors flex items-center gap-2 mt-6 group">
+                                    <span className="bg-slate-800 p-2 rounded-full group-hover:bg-slate-700 transition-colors"><Icon name="Mail" size={16} /></span>
+                                    contact@riseby.net
+                                </a>
+                            </div>
+                            <p className="text-slate-600 text-xs">
+                                &copy; {new Date().getFullYear()} RISEby Inc. All rights reserved.
+                            </p>
+                        </div>
+                        <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8 gap-y-14">
+                             <div>
+                                <h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Services</h3>
+                                <ul className="space-y-3">
+                                    <li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs transition-colors">サービス一覧</a></li>
+                                    <li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs transition-colors">新規事業開発</a></li>
+                                    <li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs transition-colors">DXコンサルティング</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Company</h3>
+                                <ul className="space-y-3">
+                                    <li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs transition-colors">会社概要</a></li>
+                                    <li><a href="../../blog/" className="text-slate-400 hover:text-white text-xs transition-colors">ブログ</a></li>
+                                    <li><a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white text-xs transition-colors">お問い合わせ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="border-t border-slate-800 pt-10 flex flex-wrap gap-8 justify-center text-xs text-slate-500">
+                        <a href="../../about.html" className="hover:text-white transition-colors">会社概要</a>
+                        <a href="../../privacy.html" className="hover:text-white transition-colors">プライバシーポリシー</a>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        const MermaidDiagram = ({ chart }) => {
+            useEffect(() => { mermaid.init(); }, []);
+            return <div className="mermaid overflow-x-auto">{chart}</div>;
+        };
+
+        const BarChart = ({ title, data }) => (
+            <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose">
+                <h4 className="text-lg font-bold mb-6 text-slate-800 border-b border-slate-100 pb-2">{title}</h4>
+                <div className="space-y-4">
+                    {data.map((item, index) => (
+                        <div key={index}>
+                            <div className="flex justify-between text-sm mb-1 font-medium">
+                                <span className="text-slate-700">{item.label}</span>
+                                <span className="text-brand-blue font-bold">{item.value}</span>
+                            </div>
+                            <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
+                                <div className="bg-brand-blue h-3 rounded-full" style={{ width: item.percentage }}></div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </figure>
+        );
+
+        const KeyPoint = ({ title, children }) => (
+            <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
+                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "Insight"}</h5>
+                <div className="text-slate-700 text-sm leading-relaxed">{children}</div>
+            </div>
+        );
+
+        const VideoProductionCost = () => (
+            <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose text-center">
+                <h4 className="text-lg font-bold mb-6 text-slate-800">動画制作プロセスの変革：コストと時間</h4>
+                <div className="relative w-full max-w-2xl mx-auto aspect-[16/8]">
+                    <svg viewBox="0 0 600 300" className="w-full h-full">
+                        {/* Conventional */}
+                        <rect x="20" y="40" width="560" height="80" rx="4" fill="#e2e8f0" />
+                        <text x="50" y="65" fontSize="12" fill="#475569" fontWeight="bold">従来 (実写撮影)</text>
+                        
+                        <rect x="100" y="80" width="100" height="20" rx="4" fill="#cbd5e1" />
+                        <text x="150" y="95" textAnchor="middle" fontSize="10" fill="#475569">企画・台本</text>
+                        
+                        <rect x="210" y="80" width="150" height="20" rx="4" fill="#94a3b8" />
+                        <text x="285" y="95" textAnchor="middle" fontSize="10" fill="white">撮影・ロケ</text>
+                        
+                        <rect x="370" y="80" width="200" height="20" rx="4" fill="#64748b" />
+                        <text x="470" y="95" textAnchor="middle" fontSize="10" fill="white">編集・CG加工</text>
+                        
+                        {/* AI Driven */}
+                        <rect x="20" y="160" width="560" height="80" rx="4" fill="#e0f2fe" stroke="#003E68" strokeWidth="2" />
+                        <text x="50" y="185" fontSize="12" fill="#003E68" fontWeight="bold">AI生成 (Text-to-Video)</text>
+                        
+                        <rect x="100" y="200" width="100" height="20" rx="4" fill="#bfdbfe" />
+                        <text x="150" y="215" textAnchor="middle" fontSize="10" fill="#1e3a8a">プロンプト設計</text>
+                        
+                        <rect x="210" y="200" width="80" height="20" rx="4" fill="#3b82f6" />
+                        <text x="250" y="215" textAnchor="middle" fontSize="10" fill="white">生成</text>
+                        
+                        <text x="450" y="195" textAnchor="middle" fontSize="14" fill="#15803d" fontWeight="bold">リードタイム 1/10以下</text>
+                        
+                        <path d="M 320 210 L 550 210" stroke="#15803d" strokeWidth="2" strokeDasharray="4" markerEnd="url(#arrow-green)" />
+
+                        <defs>
+                            <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#15803d" /></marker>
+                        </defs>
+                    </svg>
+                </div>
+            </figure>
+        );
+
+        const BlogArticle = () => {
+            return (
+                <main className="pt-24 pb-16">
+                    <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-100">
+                            <header className="text-center mb-12 border-b border-slate-100 pb-10">
+                                <div className="flex justify-center mb-4"><span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">Video Tech</span></div>
+                                <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">動画生成AIの可能性：<br/>マーケティングと教育への応用</h1>
+                                <div className="flex items-center justify-center space-x-4 text-sm text-slate-500"><time dateTime="2026-02-15">2025.11.15</time><span>&middot;</span><span className="flex items-center gap-1"><Icon name="User" size={14} /> RISEby Creative Lab</span></div>
+                            </header>
+                            <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
+                                <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">テキストから数分で映画のような映像を生み出す「Sora」や「Runway Gen-3」の登場は、動画制作の民主化を決定づけました。もはや高価な機材も、ロケ地への移動も必要ありません。動画生成AIがビジネスにもたらす、コスト削減だけではない「質的転換」について論じます。</p>
+                                
+                                <h2>1. 「撮影」が不要になる日</h2>
+                                <p>従来の動画制作は、企画から撮影、編集まで数週間から数ヶ月を要する一大プロジェクトでした。しかし、動画生成AIは「プロンプト（指示文）」ひとつで、実写と見紛うばかりの映像を生成します。</p>
+                                <VideoProductionCost />
+                                <p>これにより、従来は予算的に不可能だった「捨て案」の動画化や、ニッチなターゲットに向けた大量のバリエーション制作が可能になります。</p>
+
+                                <h2>2. パーソナライズド動画マーケティング</h2>
+                                <p>顧客一人ひとりの名前を呼びかけ、購入履歴に基づいた商品を提案する動画を、数万人分自動生成することができます。メールの開封率やCVR（コンバージョン率）は、静止画と比較して劇的に向上します。</p>
+                                
+                                <MermaidDiagram chart={`
+                                    graph TD
+                                        CRM[顧客データベース] --> Generator{動画生成AI}
+                                        Generator -->|Aさん向け| VideoA["名前:Aさん<br/>商品:ゴルフ用品"]
+                                        Generator -->|Bさん向け| VideoB["名前:Bさん<br/>商品:キャンプ用品"]
+                                        
+                                        VideoA --> MailA[メール配信]
+                                        VideoB --> MailB[メール配信]
+                                        
+                                        style Generator fill:#e0f2fe,stroke:#003E68
+                                `} />
+
+                                <h2>3. 教育・研修（L&D）の革新</h2>
+                                <p>マニュアルを読むだけの研修は退屈で、定着率も低いです。AIアバターを使えば、テキストマニュアルを瞬時に「講師が解説する動画」に変換できます。多言語対応も容易で、グローバル拠点の教育水準を統一する強力なツールとなります。</p>
+
+                                <BarChart 
+                                    title="動画活用による学習効果の比較"
+                                    data={[
+                                        { label: "テキストのみ (理解度)", value: "基準 (100%)", percentage: "50%" },
+                                        { label: "動画マニュアル (理解度)", value: "1.8倍", percentage: "90%" },
+                                        { label: "コンテンツ制作コスト", value: "-85%削減", percentage: "85%" },
+                                        { label: "更新頻度 (鮮度)", value: "5倍", percentage: "95%" }
+                                    ]}
+                                />
+
+                                <KeyPoint title="ディープフェイクと倫理">
+                                    実在の人物を無断で生成することは深刻な倫理違反となります。企業利用においては、架空のアバターを使用するか、本人の明確な許諾を得た「公式クローン」を使用する厳格なガイドラインが必要です。
+                                </KeyPoint>
+
+                                <h2>まとめ</h2>
+                                <p>動画は「見る」ものから「生成する」ものへと変わりました。圧倒的な表現力を手にした企業は、顧客とのエンゲージメントをかつてないレベルへと引き上げることができるでしょう。</p>
+                            </div>
+                            <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
+                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
+                                <h3 className="text-2xl font-bold text-white mb-4">動画生成AI導入・活用支援</h3>
+                                <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">マーケティング動画の自動生成パイプライン構築から、社内研修動画の内製化まで支援します。</p>
+                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <a href="mailto:contact@riseby.net" className="inline-flex items-center justify-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all duration-300 shadow-lg"><Icon name="Mail" size={18} /> 無料相談を予約</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </main>
+            );
+        };
+
+        const App = () => (
+            <div className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-800">
+                <Header />
+                <BlogArticle />
+                <Footer />
+            </div>
+        );
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://riseby.net/blog/ai/global-ai-governance.html">
+    
+    <!-- OGP -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="RISEby inc.">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://riseby.net/blog/ai/global-ai-governance.html">
+    <meta property="og:title" content="グローバル企業のAIガバナンス：各国規制への対応戦略 | RISEby Blog">
+    <meta property="og:description" content="EU AI Actをはじめ、世界各国でAI規制が強化されています。グローバル展開する日本企業が直面する「規制の分断」リスクと、本社主導で構築すべき統合ガバナンス体制について解説します。">
+    <meta property="og:image" content="https://riseby.net/assets/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>グローバル企業のAIガバナンス：各国規制への対応戦略 | RISEby Blog</title>
+    <meta name="description" content="EU AI Actをはじめ、世界各国でAI規制が強化されています。グローバル展開する日本企業が直面する「規制の分断」リスクと、本社主導で構築すべき統合ガバナンス体制について解説します。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brand: { blue: '#003E68', red: '#ED1C24', dark: '#0B0F19' } },
+                    fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], display: ['"Montserrat"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>body { font-family: "Noto Sans JP", sans-serif; } .mermaid { display: flex; justify-content: center; margin: 2rem 0; background: #f8fafc; padding: 1rem; border-radius: 0.5rem; }</style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", "@type": "BlogPosting",
+      "headline": "グローバル企業のAIガバナンス：各国規制への対応戦略",
+      "datePublished": "2025-11-10",
+      "author": { "@type": "Organization", "name": "RISEby Inc.", "url": "https://riseby.net" }
+    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const Icon = ({ name, size = 24, className = "" }) => {
+            if (typeof lucide !== 'undefined' && lucide.icons && lucide.icons[name]) {
+                const iconData = lucide.icons[name];
+                return React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", className: className }, iconData.map(([tag, attrs], index) => React.createElement(tag, { ...attrs, key: index })));
+            }
+            return <span className="inline-block w-4 h-4 bg-gray-300 rounded-full"></span>;
+        };
+
+        const Header = () => {
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-white/80 backdrop-blur-sm py-4 shadow-sm'}`}>
+                    <div className="container mx-auto px-4 flex items-center justify-between max-w-7xl">
+                        <a href="../../index.html" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                            <img src="../../assets/images/logo.svg" alt="RISEby" className="h-8 md:h-9" />
+                        </a>
+                        <nav className="hidden md:flex items-center gap-8">
+                            <a href="../../index.html#services" className="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">サービス</a>
+                            <a href="../../blog/" className="font-bold tracking-wide transition-colors text-brand-blue">ブログ</a>
+                            <a href="../../about.html" className="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white hover:bg-slate-800 px-6 py-2.5 rounded-full font-bold transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                                お問い合わせ
+                            </a>
+                        </nav>
+                        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2 text-slate-800">
+                            <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
+                        </button>
+                    </div>
+                    
+                    {mobileMenuOpen && (
+                        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-slate-100 shadow-xl p-4 flex flex-col gap-4 animate-fade-in-up">
+                            <a href="../../index.html#services" className="text-slate-800 font-bold py-3 border-b border-slate-50">サービス</a>
+                            <a href="../../blog/" className="text-brand-blue font-bold py-3 border-b border-slate-50">ブログ</a>
+                            <a href="../../about.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white text-center py-3.5 rounded-lg font-bold shadow-md mt-2">お問い合わせ</a>
+                        </div>
+                    )}
+                </header>
+            );
+        };
+
+        const Footer = () => (
+            <footer className="bg-[#0B0F19] text-white pt-24 pb-12 border-t border-slate-800 font-sans">
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <div className="flex flex-col lg:flex-row justify-between gap-16 mb-24">
+                        <div className="lg:w-1/3">
+                            <a href="../../index.html" className="block mb-8">
+                                <img src="../../assets/images/logo.svg" alt="RISEby" className="h-9 brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" />
+                            </a>
+                            <p className="text-slate-400 text-sm leading-relaxed mb-8">
+                                企業の複合的な経営課題を、AI・戦略・テクノロジー・人の観点から包括的に解決するコンサルティングファーム。
+                            </p>
+                            <div className="mb-10 text-sm text-slate-400 space-y-3">
+                                <p>〒150-6115 東京都渋谷区渋谷2-24-12</p>
+                                <p>渋谷スクランブルスクエア 15階</p>
+                                <a href="mailto:contact@riseby.net" className="hover:text-white transition-colors flex items-center gap-2 mt-6 group">
+                                    <span className="bg-slate-800 p-2 rounded-full group-hover:bg-slate-700 transition-colors"><Icon name="Mail" size={16} /></span>
+                                    contact@riseby.net
+                                </a>
+                            </div>
+                            <p className="text-slate-600 text-xs">
+                                &copy; {new Date().getFullYear()} RISEby Inc. All rights reserved.
+                            </p>
+                        </div>
+                        <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8 gap-y-14">
+                             <div>
+                                <h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Services</h3>
+                                <ul className="space-y-3">
+                                    <li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs transition-colors">サービス一覧</a></li>
+                                    <li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs transition-colors">新規事業開発</a></li>
+                                    <li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs transition-colors">DXコンサルティング</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Company</h3>
+                                <ul className="space-y-3">
+                                    <li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs transition-colors">会社概要</a></li>
+                                    <li><a href="../../blog/" className="text-slate-400 hover:text-white text-xs transition-colors">ブログ</a></li>
+                                    <li><a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white text-xs transition-colors">お問い合わせ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="border-t border-slate-800 pt-10 flex flex-wrap gap-8 justify-center text-xs text-slate-500">
+                        <a href="../../about.html" className="hover:text-white transition-colors">会社概要</a>
+                        <a href="../../privacy.html" className="hover:text-white transition-colors">プライバシーポリシー</a>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        const WorldMap = () => (
+            <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose text-center">
+                <h4 className="text-lg font-bold mb-6 text-slate-800">世界のAI規制トレンド</h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                        <h5 className="font-bold text-brand-blue mb-2">EU (厳格)</h5>
+                        <p className="text-xs text-slate-700"><strong>EU AI Act:</strong> リスクベースアプローチ。違反には巨額の制裁金（全世界売上の最大7%）。</p>
+                    </div>
+                    <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <h5 className="font-bold text-slate-900 mb-2">米国 (イノベーション重視)</h5>
+                        <p className="text-xs text-slate-700">大統領令や州法による規制。自主規制と透明性を重視しつつ、安全保障リスクを警戒。</p>
+                    </div>
+                    <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <h5 className="font-bold text-slate-900 mb-2">中国 (国家統制)</h5>
+                        <p className="text-xs text-slate-700">生成AI管理弁法。社会主義的価値観への適合と、事前届出制。</p>
+                    </div>
+                </div>
+                <p className="text-xs text-slate-500 mt-4">※ 日本は「ソフトロー（ガイドライン）」中心だが、EU規制の影響は不可避。</p>
+            </figure>
+        );
+
+        const MermaidDiagram = ({ chart }) => {
+            useEffect(() => { mermaid.init(); }, []);
+            return <div className="mermaid overflow-x-auto">{chart}</div>;
+        };
+
+        const KeyPoint = ({ title, children }) => (
+            <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
+                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "Key Point"}</h5>
+                <div className="text-slate-700 text-sm leading-relaxed">{children}</div>
+            </div>
+        );
+
+        const GovernanceStrategy = () => (
+            <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose text-center">
+                <h4 className="text-lg font-bold mb-6 text-slate-800">グローバル・ガバナンスの階層構造</h4>
+                <div className="relative w-full max-w-md mx-auto aspect-[4/3]">
+                    <svg viewBox="0 0 400 300" className="w-full h-full">
+                        <path d="M50 280 L 350 280 L 300 200 L 100 200 Z" fill="#cbd5e1" stroke="white" strokeWidth="2" />
+                        <text x="200" y="250" fontSize="14" fontWeight="bold" fill="#475569" textAnchor="middle">ローカル対応 (各国の法規制)</text>
+                        
+                        <path d="M100 200 L 300 200 L 250 120 L 150 120 Z" fill="#94a3b8" stroke="white" strokeWidth="2" />
+                        <text x="200" y="170" fontSize="14" fontWeight="bold" fill="white" textAnchor="middle">グループ共通ルール</text>
+                        
+                        <path d="M150 120 L 250 120 L 200 40 Z" fill="#003E68" stroke="white" strokeWidth="2" />
+                        <text x="200" y="95" fontSize="14" fontWeight="bold" fill="white" textAnchor="middle">AI原則 (Principles)</text>
+                    </svg>
+                </div>
+            </figure>
+        );
+
+        const BlogArticle = () => {
+            return (
+                <main className="pt-24 pb-16">
+                    <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-100">
+                            <header className="text-center mb-12 border-b border-slate-100 pb-10">
+                                <div className="flex justify-center mb-4"><span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">Global Governance</span></div>
+                                <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">グローバル企業のAIガバナンス：<br/>各国規制への対応戦略</h1>
+                                <div className="flex items-center justify-center space-x-4 text-sm text-slate-500"><time dateTime="2025-11-10">2025.11.10</time><span>&middot;</span><span className="flex items-center gap-1"><Icon name="User" size={14} /> RISEby Editorial Team</span></div>
+                            </header>
+                            <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
+                                <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">国境を超えるデータとAIサービスに対し、世界各国が独自の規制網を敷き始めています。特にEU AI Actは、域外企業にも適用される「ブリュッセル効果」を持ちます。<br/>グローバル展開する日本企業は、どのようにしてコンプライアンスを維持しつつ、イノベーションを推進すべきか。その戦略を紐解きます。</p>
+                                
+                                <h2>1. 世界のAI規制地図（スプリンターネット化）</h2>
+                                <p>インターネットが分断されたように、AI規制も地域ごとに異なる基準が乱立しています。最も厳しい基準に合わせて全体を統一するか、地域ごとに最適化するか、経営判断が迫られます。</p>
+                                <WorldMap />
+
+                                <h2>2. EU AI Actへの対応実務</h2>
+                                <p>EU市場でビジネスを行う企業にとって、AI Actへの準拠は待ったなしです。AIシステムをリスクレベル（許容できない、高リスク、限定的、最小）に分類し、それぞれに応じた管理義務を果たす必要があります。</p>
+                                <MermaidDiagram chart={`
+                                    graph TD
+                                        Input[AIシステムの特定] --> Classify{リスク分類}
+                                        Classify --> Prohibited["禁止 (ソーシャルスコアリング等)"]
+                                        Classify --> High["高リスク (インフラ・人事・教育)"]
+                                        Classify --> Limited["限定的リスク (Chatbot)"]
+                                        Classify --> Minimal["最小リスク (スパムフィルタ)"]
+                                        
+                                        Prohibited --> Stop["開発・利用中止"]
+                                        High --> Heavy["適合性評価・品質管理・人による監視"]
+                                        Limited --> Light["透明性確保 (AIであることを明示)"]
+                                        Minimal --> Free["特段の義務なし (行動規範推奨)"]
+                                        
+                                        style Prohibited fill:#fee2e2,stroke:#b91c1c
+                                        style High fill:#fef9c3,stroke:#ca8a04
+                                        style Limited fill:#e0f2fe,stroke:#003E68
+                                        style Minimal fill:#dcfce7,stroke:#15803d
+                                `} />
+
+                                <h2>3. グローバル・ガバナンス体制の構築</h2>
+                                <p>本社主導で「守るべき最低ライン（Global Baseline）」を策定しつつ、各国法規制への細かな対応（Local Adaptation）は現地法人に委任する「連邦型ガバナンス」が有効です。</p>
+                                <GovernanceStrategy />
+
+                                <KeyPoint title="リスクベース・アプローチ">
+                                    すべてのAIを一律に管理しようとすると、管理コストが膨大になりイノベーションが止まります。<br/>
+                                    リスクの大きさに応じて管理強度を変える「濃淡管理」が重要です。
+                                </KeyPoint>
+
+                                <h2>まとめ</h2>
+                                <p>規制対応は「コスト」ですが、早期に対応することで「信頼」という資産に変わります。グローバル標準を見据えたガバナンス構築を急ぎましょう。</p>
+                            </div>
+                            <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
+                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
+                                <h3 className="text-2xl font-bold text-white mb-4">グローバル規制調査・対応支援</h3>
+                                <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">EU AI Act適合性評価や、グローバル・ガバナンス体制の構築をご支援します。</p>
+                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <a href="mailto:contact@riseby.net" className="inline-flex items-center justify-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all duration-300 shadow-lg"><Icon name="Mail" size={18} /> お問い合わせ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </main>
+            );
+        };
+
+        const App = () => (
+            <div className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-800">
+                <Header />
+                <BlogArticle />
+                <Footer />
+            </div>
+        );
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

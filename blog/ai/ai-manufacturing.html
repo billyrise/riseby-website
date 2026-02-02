@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://riseby.net/blog/ai/ai-manufacturing.html">
+    
+    <!-- OGP -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="RISEby inc.">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://riseby.net/blog/ai/ai-manufacturing.html">
+    <meta property="og:title" content="製造業における生成AI活用：設計から保守まで | RISEby Blog">
+    <meta property="og:description" content="製造業のAI活用は「予知保全」だけではありません。Generative Designによる設計革新、熟練工の技能継承、そしてデジタルツインによるシミュレーションまで、ものづくりのバリューチェーン全体の変革を論じます。">
+    <meta property="og:image" content="https://riseby.net/assets/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>製造業における生成AI活用：設計から保守まで | RISEby Blog</title>
+    <meta name="description" content="製造業のAI活用は「予知保全」だけではありません。Generative Designによる設計革新、熟練工の技能継承、そしてデジタルツインによるシミュレーションまで、ものづくりのバリューチェーン全体の変革を論じます。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brand: { blue: '#003E68', red: '#ED1C24', dark: '#0B0F19' } },
+                    fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], display: ['"Montserrat"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>body { font-family: "Noto Sans JP", sans-serif; } .mermaid { display: flex; justify-content: center; margin: 2rem 0; background: #f8fafc; padding: 1rem; border-radius: 0.5rem; }</style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", "@type": "BlogPosting",
+      "headline": "製造業における生成AI活用：設計から保守まで",
+      "datePublished": "2025-12-10",
+      "author": { "@type": "Organization", "name": "RISEby Inc.", "url": "https://riseby.net" }
+    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const Icon = ({ name, size = 24, className = "" }) => {
+            if (typeof lucide !== 'undefined' && lucide.icons && lucide.icons[name]) {
+                const iconData = lucide.icons[name];
+                return React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", className: className }, iconData.map(([tag, attrs], index) => React.createElement(tag, { ...attrs, key: index })));
+            }
+            return <span className="inline-block w-4 h-4 bg-gray-300 rounded-full"></span>;
+        };
+
+        const Header = () => {
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-white/80 backdrop-blur-sm py-4 shadow-sm'}`}>
+                    <div className="container mx-auto px-4 flex items-center justify-between max-w-7xl">
+                        <a href="../../index.html" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                            <img src="../../assets/images/logo.svg" alt="RISEby" className="h-8 md:h-9" />
+                        </a>
+                        <nav className="hidden md:flex items-center gap-8">
+                            <a href="../../index.html#services" className="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">サービス</a>
+                            <a href="../../blog/" className="font-bold tracking-wide transition-colors text-brand-blue">ブログ</a>
+                            <a href="../../about.html" className="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white hover:bg-slate-800 px-6 py-2.5 rounded-full font-bold transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                                お問い合わせ
+                            </a>
+                        </nav>
+                        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2 text-slate-800">
+                            <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
+                        </button>
+                    </div>
+                    
+                    {mobileMenuOpen && (
+                        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-slate-100 shadow-xl p-4 flex flex-col gap-4 animate-fade-in-up">
+                            <a href="../../index.html#services" className="text-slate-800 font-bold py-3 border-b border-slate-50">サービス</a>
+                            <a href="../../blog/" className="text-brand-blue font-bold py-3 border-b border-slate-50">ブログ</a>
+                            <a href="../../about.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white text-center py-3.5 rounded-lg font-bold shadow-md mt-2">お問い合わせ</a>
+                        </div>
+                    )}
+                </header>
+            );
+        };
+
+        const Footer = () => (
+            <footer className="bg-[#0B0F19] text-white pt-24 pb-12 border-t border-slate-800 font-sans">
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <div className="flex flex-col lg:flex-row justify-between gap-16 mb-24">
+                        <div className="lg:w-1/3">
+                            <a href="../../index.html" className="block mb-8">
+                                <img src="../../assets/images/logo.svg" alt="RISEby" className="h-9 brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" />
+                            </a>
+                            <p className="text-slate-400 text-sm leading-relaxed mb-8">
+                                企業の複合的な経営課題を、AI・戦略・テクノロジー・人の観点から包括的に解決するコンサルティングファーム。
+                            </p>
+                            <div className="mb-10 text-sm text-slate-400 space-y-3">
+                                <p>〒150-6115 東京都渋谷区渋谷2-24-12</p>
+                                <p>渋谷スクランブルスクエア 15階</p>
+                                <a href="mailto:contact@riseby.net" className="hover:text-white transition-colors flex items-center gap-2 mt-6 group">
+                                    <span className="bg-slate-800 p-2 rounded-full group-hover:bg-slate-700 transition-colors"><Icon name="Mail" size={16} /></span>
+                                    contact@riseby.net
+                                </a>
+                            </div>
+                            <p className="text-slate-600 text-xs">
+                                &copy; {new Date().getFullYear()} RISEby Inc. All rights reserved.
+                            </p>
+                        </div>
+                        <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8 gap-y-14">
+                             <div>
+                                <h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Services</h3>
+                                <ul className="space-y-3">
+                                    <li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs transition-colors">サービス一覧</a></li>
+                                    <li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs transition-colors">新規事業開発</a></li>
+                                    <li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs transition-colors">DXコンサルティング</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Company</h3>
+                                <ul className="space-y-3">
+                                    <li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs transition-colors">会社概要</a></li>
+                                    <li><a href="../../blog/" className="text-slate-400 hover:text-white text-xs transition-colors">ブログ</a></li>
+                                    <li><a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white text-xs transition-colors">お問い合わせ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="border-t border-slate-800 pt-10 flex flex-wrap gap-8 justify-center text-xs text-slate-500">
+                        <a href="../../about.html" className="hover:text-white transition-colors">会社概要</a>
+                        <a href="../../privacy.html" className="hover:text-white transition-colors">プライバシーポリシー</a>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        const MermaidDiagram = ({ chart }) => {
+            useEffect(() => { mermaid.init(); }, []);
+            return <div className="mermaid overflow-x-auto">{chart}</div>;
+        };
+
+        const BarChart = ({ title, data }) => (
+            <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose">
+                <h4 className="text-lg font-bold mb-6 text-slate-800 border-b border-slate-100 pb-2">{title}</h4>
+                <div className="space-y-4">
+                    {data.map((item, index) => (
+                        <div key={index}>
+                            <div className="flex justify-between text-sm mb-1 font-medium">
+                                <span className="text-slate-700">{item.label}</span>
+                                <span className="text-brand-blue font-bold">{item.value}</span>
+                            </div>
+                            <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
+                                <div className="bg-brand-blue h-3 rounded-full" style={{ width: item.percentage }}></div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </figure>
+        );
+
+        const KeyPoint = ({ title, children }) => (
+            <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
+                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "Insight"}</h5>
+                <div className="text-slate-700 text-sm leading-relaxed">{children}</div>
+            </div>
+        );
+
+        const DigitalTwin = () => (
+            <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose">
+                <h4 className="text-lg font-bold mb-6 text-slate-800 border-b border-slate-100 pb-2">デジタルツインによるPDCAの高速化</h4>
+                <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
+                    <div className="w-full md:w-1/3 text-center p-4 bg-slate-50 rounded-lg border border-slate-200">
+                        <Icon name="Factory" size={48} className="mx-auto text-slate-600 mb-2" />
+                        <h5 className="font-bold text-slate-800">Physical (物理空間)</h5>
+                        <p className="text-xs text-slate-500 mt-2">センサー・IoT・PLC<br/>リアルタイムデータ収集</p>
+                    </div>
+                    
+                    <div className="flex flex-col items-center text-brand-blue font-bold text-xs gap-2">
+                        <span>Sync</span>
+                        <Icon name="ArrowRightLeft" className="animate-pulse"/>
+                        <span>Simulate</span>
+                    </div>
+
+                    <div className="w-full md:w-1/3 text-center p-4 bg-blue-50 rounded-lg border border-brand-blue">
+                        <Icon name="Box" size={48} className="mx-auto text-brand-blue mb-2" />
+                        <h5 className="font-bold text-brand-blue">Virtual (仮想空間)</h5>
+                        <p className="text-xs text-slate-600 mt-2">AIによる未来予測・テスト<br/>パラメータ最適化</p>
+                    </div>
+                </div>
+            </figure>
+        );
+
+        const GenerativeDesignProcess = () => (
+            <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose">
+                <h4 className="text-lg font-bold mb-6 text-slate-800 text-center">ジェネレーティブ・デザインの革新性</h4>
+                <div className="relative w-full aspect-[2/1] bg-slate-50 rounded-lg overflow-hidden border border-slate-200 p-4">
+                    <svg viewBox="0 0 600 300" className="w-full h-full">
+                        {/* Human Approach */}
+                        <g transform="translate(50, 50)">
+                            <circle cx="50" cy="50" r="40" fill="#e2e8f0" stroke="#94a3b8" strokeWidth="2" />
+                            <text x="50" y="55" textAnchor="middle" fontSize="12" fill="#475569" fontWeight="bold">人間</text>
+                            <path d="M 100 50 L 150 50" stroke="#94a3b8" strokeWidth="2" markerEnd="url(#arrow)" />
+                            <rect x="160" y="30" width="80" height="40" rx="4" fill="white" stroke="#94a3b8" />
+                            <text x="200" y="55" textAnchor="middle" fontSize="10" fill="#475569">経験に基づく<br/>1つの設計案</text>
+                        </g>
+
+                        {/* AI Approach */}
+                        <g transform="translate(50, 180)">
+                            <circle cx="50" cy="50" r="40" fill="#dbeafe" stroke="#3b82f6" strokeWidth="2" />
+                            <text x="50" y="55" textAnchor="middle" fontSize="12" fill="#1e40af" fontWeight="bold">AI</text>
+                            
+                            <path d="M 100 50 L 150 20" stroke="#3b82f6" strokeWidth="2" />
+                            <path d="M 100 50 L 150 50" stroke="#3b82f6" strokeWidth="2" />
+                            <path d="M 100 50 L 150 80" stroke="#3b82f6" strokeWidth="2" />
+                            
+                            <rect x="160" y="0" width="80" height="40" rx="4" fill="white" stroke="#3b82f6" />
+                            <rect x="160" y="30" width="80" height="40" rx="4" fill="white" stroke="#3b82f6" />
+                            <rect x="160" y="60" width="80" height="40" rx="4" fill="white" stroke="#3b82f6" />
+                            
+                            <text x="280" y="50" fontSize="12" fill="#1e40af" fontWeight="bold">数千の最適解を生成</text>
+                            <text x="280" y="70" fontSize="10" fill="#3b82f6">軽量・強度・コスト</text>
+                        </g>
+                    </svg>
+                </div>
+            </figure>
+        );
+
+        const BlogArticle = () => {
+            return (
+                <main className="pt-24 pb-16">
+                    <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-100">
+                            <header className="text-center mb-12 border-b border-slate-100 pb-10">
+                                <div className="flex justify-center mb-4"><span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">Manufacturing DX</span></div>
+                                <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">製造業における生成AI活用：<br/>設計から保守まで</h1>
+                                <div className="flex items-center justify-center space-x-4 text-sm text-slate-500"><time dateTime="2025-12-10">2025.12.10</time><span>&middot;</span><span className="flex items-center gap-1"><Icon name="User" size={14} /> RISEby Industry Lab</span></div>
+                            </header>
+                            <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
+                                <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">「2025年の崖」を超え、日本の製造業が再び世界をリードするための鍵は、現場の「カイゼン」と最新の「AI技術」の融合にあります。外観検査などの部分最適に留まらず、設計・生産・保守のバリューチェーン全体をAIで刷新する戦略的アプローチについて論じます。</p>
+                                
+                                <h2>1. 設計革命：ジェネレーティブ・デザインによる創発</h2>
+                                <p>従来の設計プロセスは、エンジニアの経験と勘に依存していました。しかし、生成AIを活用した「ジェネレーティブ・デザイン」は、設計者が「強度」「重量」「素材」「コスト」といった制約条件を入力するだけで、AIが数百、数千もの設計案を提示します。</p>
+                                <GenerativeDesignProcess />
+                                <p>これにより、人間では発想し得ない有機的な形状（トポロジー最適化）が生まれ、製品の軽量化と材料コストの削減を同時に実現します。</p>
+
+                                <h2>2. 技能継承：熟練工の「暗黙知」をAI化する</h2>
+                                <p>団塊世代の引退に伴う技術伝承の断絶は深刻です。ベテランの操作ログ、視線データ、作業日報といったマルチモーダルデータをAIに学習させることで、彼らの「勘所」を形式知化します。</p>
+                                
+                                <MermaidDiagram chart={`
+                                    graph TD
+                                        Expert[熟練工] -->|行動データ/音声| AI[AIモデル学習]
+                                        AI -->|形式知化| Manual[動的マニュアル]
+                                        AI -->|リアルタイム支援| AR[スマートグラス/AR]
+                                        AR -->|OJT支援| Junior[若手作業員]
+                                        Junior -->|フィードバック| AI
+                                        
+                                        style Expert fill:#e0f2fe,stroke:#003E68
+                                        style Junior fill:#dcfce7,stroke:#16a34a
+                                `} />
+
+                                <h2>3. デジタルツインと予知保全</h2>
+                                <p>工場の稼働データをリアルタイムで仮想空間に再現（デジタルツイン）し、AIが将来の故障リスクをシミュレーションします。「壊れてから直す（事後保全）」や「定期的に直す（予防保全）」から、「壊れる予兆で直す（予知保全）」への転換は、ダウンタイムを極小化し、設備総合効率（OEE）を劇的に向上させます。</p>
+                                <DigitalTwin />
+
+                                <BarChart 
+                                    title="予知保全導入による定量的効果 (当社支援事例)"
+                                    data={[
+                                        { label: "ダウンタイム削減", value: "-45%", percentage: "45%" },
+                                        { label: "メンテナンスコスト削減", value: "-30%", percentage: "30%" },
+                                        { label: "設備寿命の延伸", value: "+20%", percentage: "20%" },
+                                        { label: "部品在庫の削減", value: "-25%", percentage: "25%" }
+                                    ]}
+                                />
+
+                                <h2>4. バリューチェーンの統合管理</h2>
+                                <p>設計、調達、生産、販売、保守。これまで分断されていた各プロセスをデータでつなぎ、AIが全体最適を図ります。</p>
+
+                                <MermaidDiagram chart={`
+                                    graph LR
+                                        Design["設計: Generative Design"] --> Prod["生産: 自律制御"]
+                                        Prod --> QA["品質: 画像AI検査"]
+                                        QA --> Maint["保守: 予知保全"]
+                                        Maint -.->|フィードバック| Design
+                                        
+                                        style Design fill:#f1f5f9,stroke:#64748b
+                                        style Maint fill:#dcfce7,stroke:#16a34a
+                                `} />
+
+                                <KeyPoint title="サービタイゼーション (モノからコトへ)">
+                                    製品を売って終わりではなく、AIが集めた稼働データを元に「運用の最適化」を提案するビジネスモデルへの転換が進んでいます。製造業は、データで価値を提供するソリューション・プロバイダーへと進化する必要があります。
+                                </KeyPoint>
+
+                                <h2>まとめ</h2>
+                                <p>AI活用はもはや選択肢ではなく、生存条件です。現場の知見とデジタル技術を高度に統合し、次世代のものづくり体制を構築しましょう。</p>
+                            </div>
+                            <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
+                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
+                                <h3 className="text-2xl font-bold text-white mb-4">製造DX・スマートファクトリー支援</h3>
+                                <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">貴社の工場のデジタル成熟度を診断し、AI導入のロードマップを策定します。</p>
+                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <a href="mailto:contact@riseby.net" className="inline-flex items-center justify-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all duration-300 shadow-lg"><Icon name="Mail" size={18} /> 無料相談を予約</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </main>
+            );
+        };
+
+        const App = () => (
+            <div className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-800">
+                <Header />
+                <BlogArticle />
+                <Footer />
+            </div>
+        );
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
