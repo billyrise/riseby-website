@@ -131,7 +131,7 @@ COMPONENT_HEADER = r'''
             
             <nav className="hidden md:flex items-center gap-8">
               <a href="__LINK_PREFIX__index.html#services" className={`font-bold tracking-wide transition-colors hover:opacity-70 ${textColor}`}>サービス</a>
-              <a href="__LINK_PREFIX__blog/" className={`font-bold tracking-wide transition-colors hover:text-brand-blue text-brand-blue`}>ブログ</a>
+              <a href="__LINK_PREFIX__blog/" className={`font-bold tracking-wide transition-colors hover:opacity-70 ${textColor}`}>ブログ</a>
               <a href="__LINK_PREFIX__about.html" className={`font-bold tracking-wide transition-colors hover:opacity-70 ${textColor}`}>会社概要</a>
               <a href="mailto:contact@riseby.net" className={`px-6 py-2.5 rounded-full font-bold transition-all duration-300 hover:scale-105 hover:shadow-lg ${ctaClass}`}>
                 お問い合わせ
@@ -146,7 +146,7 @@ COMPONENT_HEADER = r'''
           {mobileMenuOpen && (
             <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-slate-100 shadow-xl p-4 flex flex-col gap-4 animate-fade-in-up">
               <a href="__LINK_PREFIX__index.html#services" className="text-slate-800 font-bold py-3 border-b border-slate-50">サービス</a>
-              <a href="__LINK_PREFIX__blog/" className="text-brand-blue font-bold py-3 border-b border-slate-50">ブログ</a>
+              <a href="__LINK_PREFIX__blog/" className="text-slate-800 font-bold py-3 border-b border-slate-50">ブログ</a>
               <a href="__LINK_PREFIX__about.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">会社概要</a>
               <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white text-center py-3.5 rounded-lg font-bold shadow-md mt-2">お問い合わせ</a>
             </div>
