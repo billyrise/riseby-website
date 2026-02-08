@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://riseby.net/blog/ai-governance/gpai-llm-governance-overview.html">
+
+    <!-- OGP -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="RISEby inc.">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://riseby.net/blog/ai-governance/gpai-llm-governance-overview.html">
+    <meta property="og:title" content="GPAI/LLMガバナンス総論：従来AI統制との違い | RISEby Blog">
+    <meta property="og:description" content="汎用目的AI（GPAI）や大規模言語モデル（LLM）のガバナンスは、従来のAI統制の延長では足りません。EU AI ActのGPAI義務や技術文書・透明性の実務をふまえ、企業が「何を足すか」を整理します。">
+    <meta property="og:image" content="https://riseby.net/assets/images/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>GPAI/LLMガバナンス総論：従来AI統制との違い | RISEby Blog</title>
+    <meta name="description" content="汎用目的AI（GPAI）や大規模言語モデル（LLM）のガバナンスは、従来のAI統制の延長では足りません。EU AI ActのGPAI義務や技術文書・透明性の実務をふまえ、企業が「何を足すか」を整理します。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brand: { blue: '#003E68', red: '#ED1C24', dark: '#0B0F19' } },
+                    fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], display: ['"Montserrat"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>body { font-family: "Noto Sans JP", sans-serif; }
+    .mermaid { display: flex; justify-content: center; margin: 2rem 0; background: #f8fafc; padding: 1rem; border-radius: 0.5rem; }
+    .mermaid svg { max-width: 100%; }
+    /* 本文(prose-lg=18px)と同サイズに。図表は本文より小さくする場合も1pt差までとする共通ルール */
+    .mermaid svg text { font-size: 1.125rem !important; }
+    .mermaid .nodeLabel, .mermaid .edgeLabel { font-size: 1.125rem !important; }</style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", "@type": "BlogPosting",
+      "headline": "GPAI/LLMガバナンス総論：従来AI統制との違い",
+      "datePublished": "2026-02-05",
+      "author": { "@type": "Organization", "name": "RISEby Inc.", "url": "https://riseby.net" }
+    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const Icon = ({ name, size = 24, className = "" }) => {
+            if (typeof lucide !== 'undefined' && lucide.icons && lucide.icons[name]) {
+                const iconData = lucide.icons[name];
+                return React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", className: className }, iconData.map(([tag, attrs], index) => React.createElement(tag, { ...attrs, key: index })));
+            }
+            return <span className="inline-block w-4 h-4 bg-gray-300 rounded-full"></span>;
+        };
+
+        const Header = () => {
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+            return (
+                <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-white/80 backdrop-blur-sm py-4 shadow-sm'}`}>
+                    <div className="container mx-auto px-4 flex items-center justify-between max-w-7xl">
+                        <a href="../../index.html" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                            <img src="../../assets/images/logo.svg" alt="RISEby" className="h-8 md:h-9" />
+                        </a>
+                        <nav className="hidden md:flex items-center gap-8">
+                            <a href="../../index.html#services" className="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">サービス</a>
+                            <a href="../index.html" className="font-bold tracking-wide transition-colors text-slate-800">ブログ</a>
+                            <a href="../../about.html" className="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white hover:bg-slate-800 px-6 py-2.5 rounded-full font-bold transition-all duration-300 hover:scale-105 hover:shadow-lg">お問い合わせ</a>
+                        </nav>
+                        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2 text-slate-800">
+                            <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
+                        </button>
+                    </div>
+                    {mobileMenuOpen && (
+                        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-slate-100 shadow-xl p-4 flex flex-col gap-4 animate-fade-in-up">
+                            <a href="../../index.html#services" className="text-slate-800 font-bold py-3 border-b border-slate-50">サービス</a>
+                            <a href="../index.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">ブログ</a>
+                            <a href="../../about.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white text-center py-3.5 rounded-lg font-bold shadow-md mt-2">お問い合わせ</a>
+                        </div>
+                    )}
+                </header>
+            );
+        };
+
+        const Footer = () => (
+            <footer className="bg-[#0B0F19] text-white pt-24 pb-12 border-t border-slate-800 font-sans">
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <div className="flex flex-col lg:flex-row justify-between gap-16 mb-24">
+                        <div className="lg:w-1/3">
+                            <a href="../../index.html" className="block mb-8">
+                                <img src="../../assets/images/logo.svg" alt="RISEby" className="h-9 brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" />
+                            </a>
+                            <p className="text-slate-400 text-sm leading-relaxed mb-8">企業の複合的な経営課題を、AI・戦略・テクノロジー・人の観点から包括的に解決するコンサルティングファーム。</p>
+                            <div className="mb-10 text-sm text-slate-400 space-y-3">
+                                <p>〒150-6115 東京都渋谷区渋谷2-24-12</p>
+                                <p>渋谷スクランブルスクエア 15階</p>
+                                <a href="mailto:contact@riseby.net" className="hover:text-white transition-colors flex items-center gap-2 mt-6 group">
+                                    <span className="bg-slate-800 p-2 rounded-full group-hover:bg-slate-700 transition-colors"><Icon name="Mail" size={16} /></span>
+                                    contact@riseby.net
+                                </a>
+                            </div>
+                            <p className="text-slate-600 text-xs">&copy; {new Date().getFullYear()} RISEby Inc. All rights reserved.</p>
+                        </div>
+                        <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8 gap-y-14">
+                            <div>
+                                <h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Services</h3>
+                                <ul className="space-y-3">
+                                    <li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs transition-colors">サービス一覧</a></li>
+                                    <li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs transition-colors">新規事業開発</a></li>
+                                    <li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs transition-colors">DXコンサルティング</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Company</h3>
+                                <ul className="space-y-3">
+                                    <li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs transition-colors">会社概要</a></li>
+                                    <li><a href="../index.html" className="text-slate-400 hover:text-white text-xs transition-colors">ブログ</a></li>
+                                    <li><a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white text-xs transition-colors">お問い合わせ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="border-t border-slate-800 pt-10 flex flex-wrap gap-8 justify-center text-xs text-slate-500">
+                        <a href="../../about.html" className="hover:text-white transition-colors">会社概要</a>
+                        <a href="../../privacy.html" className="hover:text-white transition-colors">プライバシーポリシー</a>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        const MermaidDiagram = ({ chart }) => {
+            useEffect(() => {
+                if (typeof mermaid !== 'undefined') {
+                    mermaid.initialize({ theme: 'base', themeVariables: { fontSize: '18px', primaryTextColor: '#334155', primaryFontSize: '18px' } });
+                    mermaid.init();
+                }
+            }, []);
+            return <div className="mermaid overflow-x-auto max-w-4xl mx-auto text-lg">{chart}</div>;
+        };
+
+        const KeyPoint = ({ title, children }) => (
+            <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
+                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "Key Point"}</h5>
+                <div className="text-slate-700 text-sm leading-relaxed">{children}</div>
+            </div>
+        );
+
+        const CompareCards = () => (
+            <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose max-w-4xl mx-auto">
+                <figcaption className="text-lg font-bold mb-6 text-slate-800 text-center">従来AIとGPAI/LLMの統制の違い</figcaption>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-x-auto">
+                    <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <h5 className="font-bold text-slate-700 mb-3 flex items-center gap-2"><Icon name="Box" size={18} /> 従来AI（用途限定）</h5>
+                        <ul className="text-xs text-slate-700 space-y-1.5">
+                            <li>・入力・出力が用途で限定され予測可能</li>
+                            <li>・リスク分類がしやすく、QMS・技術文書で対応</li>
+                            <li>・透明性は「高リスク」領域で重点化</li>
+                            <li>・評価はテストケース・精度指標が中心</li>
+                        </ul>
+                    </div>
+                    <div className="bg-blue-50 p-4 rounded-lg border border-brand-blue/30">
+                        <h5 className="font-bold text-brand-blue mb-3 flex items-center gap-2"><Icon name="Cpu" size={18} /> GPAI/LLM（汎用）</h5>
+                        <ul className="text-xs text-slate-700 space-y-1.5">
+                            <li>・多様な用途・出力で不確実性が高い</li>
+                            <li>・技術文書・透明性・著作権・システミックリスクが必須</li>
+                            <li>・生成コンテンツの表示・ラベリングが独立論点</li>
+                            <li>・Evals・レッドチーム・継続モニタリングが中心</li>
+                        </ul>
+                    </div>
+                </div>
+            </figure>
+        );
+
+        const ControlLayersSvg = () => (
+            <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose text-center max-w-4xl mx-auto">
+                <figcaption className="text-lg font-bold mb-6 text-slate-800">統制の積み上げ：従来AIの上にGPAI/LLM層を追加</figcaption>
+                <div className="overflow-x-auto flex justify-center">
+                    <svg viewBox="0 0 480 200" className="w-full max-w-2xl aspect-[480/200]" style={{ minWidth: 320 }}>
+                        <rect x="30" y="138" width="420" height="52" rx="4" fill="#e2e8f0" stroke="#94a3b8" strokeWidth="1.5" />
+                        <text x="240" y="168" fontSize="13" fontWeight="bold" fill="#475569" textAnchor="middle">共通基盤（リスク評価・体制・監査証跡）</text>
+                        <rect x="40" y="72" width="400" height="58" rx="4" fill="#cbd5e1" stroke="#64748b" strokeWidth="1.5" />
+                        <text x="240" y="98" fontSize="13" fontWeight="bold" fill="#334155" textAnchor="middle">従来AI統制</text>
+                        <text x="240" y="118" fontSize="13" fontWeight="bold" fill="#334155" textAnchor="middle">（QMS・技術文書・適合性評価）</text>
+                        <rect x="50" y="8" width="380" height="58" rx="4" fill="#003E68" stroke="#0f172a" strokeWidth="1.5" />
+                        <text x="240" y="35" fontSize="13" fontWeight="bold" fill="white" textAnchor="middle">GPAI/LLM層</text>
+                        <text x="240" y="55" fontSize="13" fontWeight="bold" fill="white" textAnchor="middle">（透明性・Evals・データ境界）</text>
+                    </svg>
+                </div>
+            </figure>
+        );
+
+        const BlogArticle = () => {
+            return (
+                <main className="pt-24 pb-16">
+                    <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-100">
+                            <header className="text-center mb-12 border-b border-slate-100 pb-10">
+                                <div className="flex justify-center flex-wrap gap-2 mb-4">
+                                    <span className="bg-violet-100 text-violet-700 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">生成AI・GPAI</span>
+                                    <span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide">経営向け</span>
+                                    <span className="bg-amber-50 text-amber-700 text-xs px-3 py-1 rounded-full font-bold tracking-wide">Living</span>
+                                </div>
+                                <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">GPAI/LLMガバナンス総論：<br/>従来AI統制との違い</h1>
+                                <div className="flex items-center justify-center space-x-4 text-sm text-slate-500">
+                                    <time dateTime="2026-02-05">2026.02.05</time>
+                                    <span>&middot;</span>
+                                    <span className="flex items-center gap-1"><Icon name="User" size={14} /> RISEby Editorial Team</span>
+                                </div>
+                            </header>
+                            <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
+                                <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">
+                                    汎用目的AI（GPAI）や大規模言語モデル（LLM）が、社内業務から顧客向けサービスまで広く使われるようになり、従来の「用途限定AI」を前提にしたガバナンスだけでは不足することがはっきりしてきました。EUでは2025年8月からGPAIに対する義務が段階適用され、技術文書・透明性・著作権対応・システミックリスクなどが実務の焦点になっています。本稿では、従来AI統制とGPAI/LLMガバナンスの違いを整理し、企業が「何を土台にし、何を足すか」を判断できるようにします。
+                                </p>
+
+                                <h2>1. 従来AIとGPAI/LLMの何が違うか</h2>
+                                <p>従来のAIガバナンスは、特定用途（与信判定、採用スクリーニング、不良検知など）を想定した「入力と出力が比較的予測可能」なシステムを前提にしていました。リスク分類がしやすく、品質管理システム（QMS）や技術文書、適合性評価で足りる領域が多かったのです。</p>
+                                <p>一方、GPAIやLLMは「汎用」であるがゆえに、学習データの規模と多様性、出力の不確実性（ハルシネーションや有害出力）、そして利用者が多様な用途に転用する点が大きく異なります。規制側も、EU AI ActでGPAI向けの義務（技術文書の整備、透明性の確保、著作権対応、一定規模以上のモデルではシステミックリスク評価など）を別枠で設けており、従来の高リスクAIとは別の「レイヤー」として扱っています。</p>
+                                <CompareCards />
+
+                                <h2>2. 規制・フレームワークが求める「追加要素」</h2>
+                                <p>EU AI Actに加え、GPAI Code of Practice（欧州委員会、2025年7月公表）や、NISTの生成AI向けプロファイル（NIST AI 600-1）では、次のような要素が明確に求められています。</p>
+                                <ul>
+                                    <li><strong>技術文書</strong>：モデルの能力・限界・想定用途・リスクを説明する文書を整備し、更新する。</li>
+                                    <li><strong>透明性</strong>：AIであることの表示、生成コンテンツのラベリング、情報提供の設計。</li>
+                                    <li><strong>著作権・学習データ</strong>：学習データの権利処理と記録、生成物の取り扱い方針。</li>
+                                    <li><strong>システミックリスク</strong>：一定の能力・影響力を持つモデルについて、評価と軽減策を実施する。</li>
+                                </ul>
+                                <p>これらは、従来の「用途ごとの適合性評価」に上乗せする形で、GPAI/LLMを提供・利用する企業に課される実務です。</p>
+                                <ControlLayersSvg />
+
+                                <h2>3. 企業が整えるべき統制の差分</h2>
+                                <p>既存のAIガバナンス（リスクアセスメント、体制、監査証跡）を土台にしつつ、GPAI/LLM向けに以下を足す設計が現実的です。</p>
+                                <MermaidDiagram chart={`
+                                    graph LR
+                                        A[利用規程] --> B[データ境界]
+                                        B --> C[評価・Evals]
+                                        C --> D[透明性・表示]
+                                        D --> E[証跡・ログ]
+                                        style A fill:#e0f2fe,stroke:#003E68
+                                        style B fill:#e0f2fe,stroke:#003E68
+                                        style C fill:#e0f2fe,stroke:#003E68
+                                        style D fill:#e0f2fe,stroke:#003E68
+                                        style E fill:#e0f2fe,stroke:#003E68
+                                `} />
+                                <p><strong>利用規程</strong>では、社内利用と顧客提供で分けるべき要件（入力の制限、出力の検証、再配布の可否など）を明文化します。<strong>データ境界</strong>では、学習データ・微調整データ・プロンプト・ログを分けて、どこまでを自社責任で管理するかを定義します。<strong>評価（Evals）</strong>と<strong>レッドチーミング</strong>は、品質とリスクの両面で設計し、リリース前だけでなく継続モニタリングに繋げます。<strong>透明性・表示</strong>は、UI/UXと法務を接続した形で、生成コンテンツの表示ルールを決めます。最後に、<strong>証跡・ログ</strong>は監査と説明責任のために「何を残すか」を決めておく必要があります。</p>
+
+                                <KeyPoint title="従来AIの土台の上に、GPAI/LLM用の層を追加する">
+                                    既存のAIガバナンスを捨てる必要はありません。リスク評価・体制・監査証跡は共通の基盤として維持し、その上に「技術文書・透明性・Evals・データ境界・表示ルール」といったGPAI/LLM固有の統制を積み上げる設計にすると、重複を減らしつつ規制と監査の期待に応えられます。
+                                </KeyPoint>
+
+                                <h2>まとめ</h2>
+                                <p>GPAI/LLMのガバナンスは、従来AI統制の延長ではなく「追加レイヤー」として設計するのがよいです。EUをはじめ規制とフレームワークはLivingに更新されるため、四半期ごとの棚卸しと、技術文書・透明性・評価・証跡の実装を並行して進めることをお勧めします。</p>
+                            </div>
+                            <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
+                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
+                                <h3 className="text-2xl font-bold text-white mb-4">GPAI/LLMガバナンスの設計・実装支援</h3>
+                                <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">利用規程の策定、データ境界の整理、Evals・透明性の設計から監査証跡まで、一気通貫でサポートします。</p>
+                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <a href="mailto:contact@riseby.net" className="inline-flex items-center justify-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all duration-300 shadow-lg"><Icon name="Mail" size={18} /> お問い合わせ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </main>
+            );
+        };
+
+        const App = () => (
+            <div className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-800">
+                <Header />
+                <BlogArticle />
+                <Footer />
+            </div>
+        );
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

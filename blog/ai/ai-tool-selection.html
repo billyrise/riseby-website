@@ -11,11 +11,11 @@
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://riseby.net/blog/ai/ai-tool-selection.html">
     <meta property="og:title" content="生成AIツールの選定基準：ChatGPT, Claude, Gemini徹底比較 | RISEby Blog">
-    <meta property="og:description" content="2025年末、GPT-5.2、Gemini 3 Pro、Claude 4.5が出揃いました。推論、マルチモーダル、コーディングの各領域で覇権を争う3大モデルの最新ベンチマークを分析し、企業のユースケースに応じた最適なポートフォリオ戦略を提言します。">
-    <meta property="og:image" content="https://riseby.net/assets/og-image.jpg">
+    <meta property="og:description" content="2026年2月現在、GPT-5、Gemini 2、Claude 4をはじめとする主要LLMが競争を繰り広げています。推論、マルチモーダル、コーディングの各領域で覇権を争う3大モデルの最新動向と、企業のユースケースに応じた最適なポートフォリオ戦略を提言します。">
+    <meta property="og:image" content="https://riseby.net/assets/images/og-image.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <title>生成AIツールの選定基準：ChatGPT, Claude, Gemini徹底比較 | RISEby Blog</title>
-    <meta name="description" content="2025年末、GPT-5.2、Gemini 3 Pro、Claude 4.5が出揃いました。推論、マルチモーダル、コーディングの各領域で覇権を争う3大モデルの最新ベンチマークを分析し、企業のユースケースに応じた最適なポートフォリオ戦略を提言します。">
+    <meta name="description" content="2026年2月現在、主要LLM（GPT-5、Gemini 2、Claude 4など）の最新動向を比較。企業のユースケースに応じた最適なポートフォリオ戦略を提言します。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -147,7 +147,7 @@
 
         const ComparisonRadar = () => (
             <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose text-center">
-                <h4 className="text-lg font-bold mb-6 text-slate-800">2025年版：主要LLMの能力特性比較</h4>
+                <h4 className="text-lg font-bold mb-6 text-slate-800">2026年2月版：主要LLMの能力特性比較</h4>
                 <div className="relative w-full max-w-md mx-auto aspect-square">
                     <svg viewBox="0 0 300 300" className="w-full h-full">
                         {/* Radar Grid */}
@@ -184,9 +184,9 @@
                             <rect x="0" y="0" width="10" height="10" fill="#10a37f" />
                             <text x="15" y="10" fontSize="10" fill="#64748b">OpenAI (o3/GPT-5)</text>
                             <rect x="115" y="0" width="10" height="10" fill="#d97757" />
-                            <text x="130" y="10" fontSize="10" fill="#64748b">Claude 4.5</text>
+                            <text x="130" y="10" fontSize="10" fill="#64748b">Claude 4</text>
                             <rect x="195" y="0" width="10" height="10" fill="#4285f4" />
-                            <text x="210" y="10" fontSize="10" fill="#64748b">Gemini 3</text>
+                            <text x="210" y="10" fontSize="10" fill="#64748b">Gemini 2</text>
                         </g>
                     </svg>
                 </div>
@@ -195,14 +195,14 @@
 
         const SpecTable = () => (
             <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose overflow-x-auto">
-                <h4 className="text-lg font-bold mb-6 text-slate-800">最新3大モデルのスペック比較 (2025年12月現在)</h4>
+                <h4 className="text-lg font-bold mb-6 text-slate-800">最新3大モデルのスペック比較 (2026年2月現在)</h4>
                 <table className="w-full text-sm text-left text-slate-600">
                     <thead className="text-xs text-slate-700 uppercase bg-slate-50">
                         <tr>
                             <th className="px-6 py-3">比較項目</th>
-                            <th className="px-6 py-3 text-green-700">OpenAI (GPT-5.2 / o3)</th>
-                            <th className="px-6 py-3 text-blue-700">Google (Gemini 3 Pro)</th>
-                            <th className="px-6 py-3 text-orange-700">Anthropic (Claude 4.5)</th>
+                            <th className="px-6 py-3 text-green-700">OpenAI (GPT-5 / o3)</th>
+                            <th className="px-6 py-3 text-blue-700">Google (Gemini 2)</th>
+                            <th className="px-6 py-3 text-orange-700">Anthropic (Claude 4)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -252,7 +252,7 @@
                         {/* Google Area */}
                         <rect x="220" y="20" width="180" height="160" rx="8" fill="#eff6ff" stroke="#2563eb" strokeWidth="2" />
                         <text x="310" y="45" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#1e40af">Cloud & Mobile</text>
-                        <text x="310" y="90" textAnchor="middle" fontSize="14" fontWeight="bold" fill="#2563eb">Google (Gemini 3)</text>
+                        <text x="310" y="90" textAnchor="middle" fontSize="14" fontWeight="bold" fill="#2563eb">Google (Gemini 2)</text>
                         <text x="310" y="120" textAnchor="middle" fontSize="10" fill="#1e40af">
                             <tspan x="310" dy="0">Google Workspace</tspan>
                             <tspan x="310" dy="14">Android / Search</tspan>
@@ -286,23 +286,23 @@
                             <header className="text-center mb-12 border-b border-slate-100 pb-10">
                                 <div className="flex justify-center mb-4"><span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">Tool Selection</span></div>
                                 <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">生成AIツールの選定基準：<br/>ChatGPT, Claude, Gemini徹底比較</h1>
-                                <div className="flex items-center justify-center space-x-4 text-sm text-slate-500"><time dateTime="2025-12-15">2025.12.15</time><span>&middot;</span><span className="flex items-center gap-1"><Icon name="User" size={14} /> RISEby Tech Lab</span></div>
+                                <div className="flex items-center justify-center space-x-4 text-sm text-slate-500"><time dateTime="2026-02-03">2026.02.03</time><span>&middot;</span><span className="flex items-center gap-1"><Icon name="User" size={14} /> RISEby Tech Lab</span></div>
                             </header>
                             <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
-                                <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">2025年12月、生成AI界隈は新たな激動期を迎えています。OpenAIの「GPT-5.2」および推論特化の「o3」、Googleのマルチモーダルモンスター「Gemini 3 Pro」、そしてエンジニアの絶大なる支持を集めるAnthropicの「Claude 4.5」。<br/><br/>これら最新モデルは、もはや単なるチャットボットではありません。自律的に思考し、ツールを使いこなし、複雑なタスクを完遂する「エージェント」へと進化しています。本記事では、LMSYS等の最新ベンチマーク結果に基づき、各モデルの特性を深掘りし、企業のユースケースに合わせた最適なポートフォリオ戦略を提言します。</p>
+                                <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">2026年2月現在、生成AI界隈は推論特化モデル（o3系）と汎用フラッグシップの二軸化が進んでいます。OpenAIの「GPT-5」および推論特化の「o3」、Googleのマルチモーダル「Gemini 2」、そしてエンジニアに支持されるAnthropicの「Claude 4」。<br/><br/>これら最新モデルは、もはや単なるチャットボットではありません。自律的に思考し、ツールを使いこなし、複雑なタスクを完遂する「エージェント」へと進化しています。本記事では、LMSYS等の最新ベンチマーク結果に基づき、各モデルの特性を深掘りし、企業のユースケースに合わせた最適なポートフォリオ戦略を提言します。</p>
                                 
                                 <h2>1. 「三強」の最新動向と決定的な違い</h2>
                                 <p>かつての「ChatGPT一強」時代は終わり、現在は明確な「三すくみ」の状態にあります。それぞれのモデルが独自の強み（Moat）を確立しており、用途に応じた使い分けが不可欠です。</p>
                                 <ComparisonRadar />
                                 
-                                <h3>OpenAI: 論理推論とエージェントの覇者 (GPT-5.2 / o3)</h3>
-                                <p>OpenAIの最新フラッグシップGPT-5.2は、依然として汎用性において企業の標準機（デファクトスタンダード）の地位を維持しています。特筆すべきは、推論特化モデルo3 (o3-deep-research)の存在です。数学、科学、複雑なロジック構築において他社を圧倒しており、特に「Deep Research」機能は、数十分かかるようなWeb調査と分析を自律的に行い、レポートを生成する能力を持っています。</p>
+                                <h3>OpenAI: 論理推論とエージェントの覇者 (GPT-5 / o3)</h3>
+                                <p>OpenAIの最新フラッグシップGPT-5は、依然として汎用性において企業の標準機（デファクトスタンダード）の地位を維持しています。特筆すべきは、推論特化モデルo3の存在です。数学、科学、複雑なロジック構築において他社を圧倒しており、特に「Deep Research」機能は、数十分かかるようなWeb調査と分析を自律的に行い、レポートを生成する能力を持っています。</p>
                                 
-                                <h3>Google: マルチモーダルと検索連携の王者 (Gemini 3 Pro)</h3>
-                                <p>GoogleのGemini 3 Proは、テキストだけでなく、画像、音声、動画をネイティブに理解する能力で頭一つ抜けています。最大の特徴は200万トークン（2M+）を超えるコンテキストウィンドウです。数時間の会議動画や、膨大な契約書データを丸ごと読み込ませ、その中から特定の情報を抽出するようなタスクでは、Geminiの独壇場です。また、Google検索と連携したGrounding（情報の正確性担保）も最強です。</p>
+                                <h3>Google: マルチモーダルと検索連携の王者 (Gemini 2)</h3>
+                                <p>GoogleのGemini 2は、テキストだけでなく、画像、音声、動画をネイティブに理解する能力で頭一つ抜けています。最大の特徴は200万トークン（2M+）を超えるコンテキストウィンドウです。数時間の会議動画や、膨大な契約書データを丸ごと読み込ませ、その中から特定の情報を抽出するようなタスクでは、Geminiの独壇場です。また、Google検索と連携したGrounding（情報の正確性担保）も強みです。</p>
 
-                                <h3>Anthropic: 開発者体験と文章の質の極致 (Claude 4.5)</h3>
-                                <p>Claude 4.5 Sonnet / Opusは、「人間らしい自然な文章」と「コーディング能力」で開発者から熱烈な支持を受けています。新機能Computer Useは、AIがPC画面を見てカーソルを操作し、アプリをまたいで作業を行うという、RPAの代替となりうる革新的な機能です。複雑なリファクタリングや仕様書作成において、エンジニアは迷わずClaudeを選びます。</p>
+                                <h3>Anthropic: 開発者体験と文章の質の極致 (Claude 4)</h3>
+                                <p>Claude 4は、「人間らしい自然な文章」と「コーディング能力」で開発者から熱烈な支持を受けています。Computer Use機能は、AIがPC画面を見てカーソルを操作し、アプリをまたいで作業を行うという、RPAの代替となりうる革新的な機能です。複雑なリファクタリングや仕様書作成において、エンジニアは迷わずClaudeを選びます。</p>
 
                                 <SpecTable />
 
@@ -312,14 +312,14 @@
                                 <MermaidDiagram chart={`
                                     graph TD
                                         Start[AI導入の主目的は?] --> Q1{大量の動画/文書分析や<br/>最新情報の検索?}
-                                        Q1 -- Yes --> Gemini["Gemini 3 Pro<br/>(2Mトークン/検索)"]
+                                        Q1 -- Yes --> Gemini["Gemini 2<br/>(2Mトークン/検索)"]
                                         Q1 -- No --> Q2{アプリ開発や<br/>PC操作の自動化?}
                                         
-                                        Q2 -- Yes --> Claude["Claude 4.5 Sonnet<br/>(Coding/Computer Use)"]
+                                        Q2 -- Yes --> Claude["Claude 4<br/>(Coding/Computer Use)"]
                                         Q2 -- No --> Q3{複雑な計算/推論や<br/>自律エージェント?}
                                         
-                                        Q3 -- Yes --> OpenAI["OpenAI o3 / GPT-5.2<br/>(Deep Research)"]
-                                        Q3 -- No --> General["GPT-5.2 (汎用利用)"]
+                                        Q3 -- Yes --> OpenAI["OpenAI o3 / GPT-5<br/>(Deep Research)"]
+                                        Q3 -- No --> General["GPT-5 (汎用利用)"]
                                         
                                         style Gemini fill:#e0f2fe,stroke:#4285f4
                                         style Claude fill:#fff7ed,stroke:#ea580c

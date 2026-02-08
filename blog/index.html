@@ -76,9 +76,30 @@
         
         const ARTICLES = [
         {
+            title: "SaaSアポカリプスとCoworkショック（前編）：なぜ「AIが仕事を奪う」恐慌が起きたか",
+            description: "2026年2月初旬のCoworkショックの背景を解説。自律型AIと知識労働の置き換えリスク、ガバナンスの観点を整理します。",
+            date: "2026-02-05",
+            category: "AIガバナンス",
+            url: "./ai-governance/saas-apocalypse-cowork-shock-part1.html"
+        },
+        {
+            title: "SaaSアポカリプスとCoworkショック（中編）：世界の市場反応とAnthropic Coworkレポート",
+            description: "Coworkショックの中編。世界の市場反応とAnthropic Coworkレポートの要点、企業のアクションを整理します。",
+            date: "2026-02-05",
+            category: "AIガバナンス",
+            url: "./ai-governance/saas-apocalypse-cowork-shock-part2.html"
+        },
+        {
+            title: "SaaSアポカリプスとCoworkショック（後編）：Evidence bundleの重要性拡大とAIガバナンス",
+            description: "Coworkショック後編。Evidence bundleの重要性拡大と、AIガバナンスにおける証跡の設計・運用を解説します。",
+            date: "2026-02-05",
+            category: "AIガバナンス",
+            url: "./ai-governance/saas-apocalypse-cowork-shock-part3.html"
+        },
+        {
             title: "動画生成AIの可能性：マーケティングと教育への応用",
             description: "SoraやRunway Gen-3などの動画生成AIは、映像制作のコスト構造を根底から覆します。撮影不要で高品質なCMや教育用コンテンツを量産し、One-to-Oneの動画マーケティングを実現する未来図を描きます。",
-            date: "2026-02-15",
+            date: "2026-02-03",
             category: "AI",
             url: "./ai/ai-video-generation.html"
         },
@@ -665,7 +686,7 @@
                         {/* AIMOaaS Link */}
                         <div className="border-t border-slate-800 pt-8 mb-6">
                             <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-                                <a href="https://aimoaas.com/" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 bg-gradient-to-r from-violet-600 to-indigo-600 text-white px-6 py-3 rounded-full font-bold hover:shadow-xl hover:shadow-violet-500/20 transition-all hover:-translate-y-0.5">
+                                <a href="https://aimoaas.com/ja/" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 bg-gradient-to-r from-violet-600 to-indigo-600 text-white px-6 py-3 rounded-full font-bold hover:shadow-xl hover:shadow-violet-500/20 transition-all hover:-translate-y-0.5">
                                     <Icon name="Shield" size={18} />
                                     <span>AIMOaaS™ - AIガバナンス運用代行</span>
                                     <Icon name="ExternalLink" size={14} className="opacity-70 group-hover:opacity-100" />
@@ -675,7 +696,7 @@
                         <div className="flex flex-wrap gap-6 justify-center text-xs text-slate-500 mb-6">
                             <a href="../about.html" className="hover:text-white transition-colors">会社概要</a>
                             <a href="../privacy.html" className="hover:text-white transition-colors">プライバシーポリシー</a>
-                            <a href="https://aimoaas.com/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1">AIMOaaS <Icon name="ExternalLink" size={10} /></a>
+                            <a href="https://aimoaas.com/ja/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1">AIMOaaS <Icon name="ExternalLink" size={10} /></a>
                         </div>
                         <div className="text-center text-xs text-slate-500">
                             © {currentYear} RISEby inc. All rights reserved.
@@ -749,8 +770,8 @@
                 );
             }, [searchQuery]);
             
-            const featuredArticle = ARTICLES[0];
-            const regularArticles = filteredArticles.slice(searchQuery ? 0 : 1, visibleCount);
+            const featuredArticles = ARTICLES.slice(0, 3);
+            const regularArticles = filteredArticles.slice(searchQuery ? 0 : 3, visibleCount);
             
             return (
                 <div className="min-h-screen flex flex-col">
@@ -773,7 +794,7 @@
                                 </div>
                                 
                                 {/* Search */}
-                                <div className="max-w-xl mx-auto mb-16">
+                                <div className="max-w-xl mx-auto mb-12">
                                     <div className="relative">
                                         <Icon name="Search" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
                                         <input
@@ -785,11 +806,40 @@
                                         />
                                     </div>
                                 </div>
+
+                                {/* Category selector */}
+                                <div className="mb-16">
+                                    <p className="text-center text-sm font-bold text-slate-500 uppercase tracking-wider mb-6">カテゴリ</p>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                                        <a href="./ai/" className="group flex flex-col md:flex-row items-center gap-4 p-6 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg transition-all">
+                                            <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-violet-100 flex items-center justify-center group-hover:bg-violet-200 transition-colors">
+                                                <Icon name="Cpu" size={28} className="text-violet-600" />
+                                            </div>
+                                            <div className="text-center md:text-left flex-1">
+                                                <h3 className="text-lg font-bold text-slate-900 group-hover:text-violet-700 transition-colors">AI・生成AI</h3>
+                                                <p className="text-sm text-slate-500 mt-1">AI戦略、導入、活用事例など</p>
+                                            </div>
+                                            <Icon name="ChevronRight" size={20} className="text-slate-400 group-hover:text-violet-600 group-hover:translate-x-1 transition-all flex-shrink-0" />
+                                        </a>
+                                        <a href="./ai-governance/" className="group flex flex-col md:flex-row items-center gap-4 p-6 rounded-2xl bg-white border-2 border-slate-200 hover:border-amber-500 hover:shadow-lg transition-all">
+                                            <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-amber-100 flex items-center justify-center group-hover:bg-amber-200 transition-colors">
+                                                <Icon name="Shield" size={28} className="text-amber-700" />
+                                            </div>
+                                            <div className="text-center md:text-left flex-1">
+                                                <h3 className="text-lg font-bold text-slate-900 group-hover:text-amber-700 transition-colors">AIガバナンス</h3>
+                                                <p className="text-sm text-slate-500 mt-1">規制・評価・透明性・監査の実務</p>
+                                            </div>
+                                            <Icon name="ChevronRight" size={20} className="text-slate-400 group-hover:text-amber-600 group-hover:translate-x-1 transition-all flex-shrink-0" />
+                                        </a>
+                                    </div>
+                                </div>
                                 
-                                {/* Featured Article */}
+                                {/* Featured: Cowork関連3記事 */}
                                 {!searchQuery && (
-                                    <div className="mb-16">
-                                        <ArticleCard article={featuredArticle} featured />
+                                    <div className="mb-16 grid md:grid-cols-3 gap-6">
+                                        {featuredArticles.map((article, idx) => (
+                                            <ArticleCard key={idx} article={article} featured />
+                                        ))}
                                     </div>
                                 )}
                             </div>

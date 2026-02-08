@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="UTF-8">
+  <title>AIガバナンス記事一覧 | RISEby Blog</title>
+  <meta name="description" content="AIガバナンスに特化したブログシリーズ。EU AI Act、GPAI、生成AIの評価・透明性・監査・証跡など、経営層・法務・CISO・監査が意思決定できる実務知を提供します。">
+  <meta name="keywords" content="AIガバナンス,GPAI,LLM,EU AI Act,生成AI,監査,透明性,Evals">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="RISEby inc.">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:url" content="https://riseby.net/blog/ai-governance/">
+  <meta property="og:title" content="AIガバナンス記事一覧 | RISEby Blog">
+  <meta property="og:description" content="AIガバナンスに特化したブログシリーズ。規制・評価・透明性・監査の実務をお届けします。">
+  <meta property="og:image" content="https://riseby.net/assets/images/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://riseby.net/blog/ai-governance/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { navy: { DEFAULT: '#003E68', light: '#004D82' }, violet: { 600: '#7c3aed', 700: '#6d28d9' } },
+          fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], heading: ['Montserrat', '"Noto Sans JP"', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <style>
+    .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+    <nav class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <a href="../../index.html" class="flex items-center">
+          <img src="../../assets/images/logo.svg" alt="RISEby" class="h-8">
+        </a>
+        <div class="flex items-center space-x-4">
+          <a href="../index.html" class="text-gray-600 hover:text-navy transition">ブログ一覧</a>
+          <a href="mailto:contact@riseby.net" class="hidden md:inline-flex items-center px-5 py-2 bg-navy text-white rounded-full text-sm font-medium hover:bg-navy-light transition">無料相談する</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="pt-24 pb-16">
+    <section class="bg-gradient-to-br from-violet-700 to-purple-600 text-white py-16">
+      <div class="max-w-7xl mx-auto px-6">
+        <nav class="text-sm mb-6 text-white/70">
+          <a href="../../index.html" class="hover:text-white">ホーム</a>
+          <span class="mx-2">/</span>
+          <a href="../index.html" class="hover:text-white">ブログ</a>
+          <span class="mx-2">/</span>
+          <span class="text-white">AIガバナンス</span>
+        </nav>
+        <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">AIガバナンス</h1>
+        <p class="text-xl text-white/90 max-w-3xl">
+          規制・リスク・倫理・監査・透明性など、経営層・法務・CISO・監査が「今すぐ意思決定できる」実務知をお届けします。
+        </p>
+      </div>
+    </section>
+
+    <section class="py-12">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          <a href="./gpai-llm-governance-overview.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-violet-600 font-medium">生成AI・GPAI</span>
+              <span class="text-xs text-amber-600 font-medium ml-2">Living</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">GPAI/LLMガバナンス総論：従来AI統制との違い</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">汎用目的AI（GPAI）やLLMのガバナンスは、従来のAI統制の延長では足りません。EU AI ActのGPAI義務をふまえ、企業が「何を足すか」を整理します。</p>
+            </div>
+          </a>
+
+          <a href="./evals-basics.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">Safety・評価</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">Evalsの基礎：品質評価とリスク評価を分ける</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">生成AIの評価では品質評価とリスク評価を分けて設計することが重要です。何を測り、どう記録するかを整理します。</p>
+            </div>
+          </a>
+
+          <a href="./content-transparency-why-now.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-cyan-600 font-medium">透明性・真正性</span>
+              <span class="text-xs text-amber-600 font-medium ml-2">Living</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">生成コンテンツ透明性：なぜ今「独立論点」なのか</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">AI生成コンテンツの表示・ラベリングが規制と社会要請の両面で独立論点に。企業が取り組むべき設計の要点を解説します。</p>
+            </div>
+          </a>
+
+          <a href="./red-teaming-guide.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">Safety・評価</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">レッドチーミング：体制・範囲・記録の残し方</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">攻撃的入力で有害出力や脆弱性を検出するレッドチーミング。体制の組み方、範囲の決め方、記録と証跡の残し方を整理します。</p>
+            </div>
+          </a>
+
+          <a href="./transparency-accountability.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-indigo-600 font-medium">倫理</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">透明性義務：AI利用の開示と説明責任（顧客・規制・監査）</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">顧客・規制・監査のそれぞれに説明責任を果たす開示設計。何を誰にどう開示し、証跡をどう残すかを整理します。</p>
+            </div>
+          </a>
+
+          <a href="./saas-apocalypse-cowork-shock-part1.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-lime-600 font-medium">戦略</span>
+              <span class="text-xs text-amber-600 font-medium ml-2">Living</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">SaaSアポカリプスとCoworkショック（前編）：なぜ「AIが仕事を奪う」恐慌が起きたか</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">2026年2月初旬のCoworkショックの背景を解説。自律型AIと知識労働の置き換えリスク、ガバナンスの観点を整理します。</p>
+            </div>
+          </a>
+
+          <a href="./saas-apocalypse-cowork-shock-part2.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-violet-600 font-medium">生成AI・GPAI</span>
+              <span class="text-xs text-amber-600 font-medium ml-2">Living</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">SaaSアポカリプスとCoworkショック（中編）：世界の市場反応とAnthropic Coworkレポート</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">Coworkショックの中編。世界の市場反応とAnthropic Coworkレポートの要点、企業のアクションを整理します。</p>
+            </div>
+          </a>
+
+          <a href="./saas-apocalypse-cowork-shock-part3.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-purple-600 font-medium">監査</span>
+              <span class="text-xs text-amber-600 font-medium ml-2">Living</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">SaaSアポカリプスとCoworkショック（後編）：Evidence bundleの重要性拡大とAIガバナンス</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">Coworkショック後編。Evidence bundleの重要性拡大と、AIガバナンスにおける証跡の設計・運用を解説します。</p>
+            </div>
+          </a>
+
+          <a href="./llm-use-policy-internal-customer.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-violet-600 font-medium">生成AI・GPAI</span> <span class="text-xs text-amber-600 font-medium ml-2">Living</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">LLMの利用規程：社内/顧客提供で分けるべき要件</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">LLMの利用規程で社内と顧客提供を分けるべき要件を整理。規制・契約・証跡の観点で設計します。</p>
+            </div>
+          </a>
+
+          <a href="./rag-governance-reference-citation.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-violet-600 font-medium">生成AI・GPAI</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">RAGとガバナンス：参照・出典・更新の統制</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">RAGの参照・出典・ナレッジ更新をガバナンスに載せる設計。説明責任と品質の両立を整理します。</p>
+            </div>
+          </a>
+
+          <a href="./harmful-unlawful-output-control.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">Safety・評価</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">有害出力・違法支援：統制の設計（ポリシー/運用/監視）</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">有害出力・違法支援：統制の設計（ポリシー/運用/監視）。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ai-generated-display-ui-legal.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-cyan-600 font-medium">透明性・真正性</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">AI生成表示：UI/UXと法務の接続点</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">AI生成表示：UI/UXと法務の接続点。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./safety-case-accountability.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">Safety・評価</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">セーフティケース：説明責任を"構造"で作る</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">セーフティケース：説明責任を"構造"で作る。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./monitoring-alert-kri-design.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">Safety・評価</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">監視とアラート：運用で回るKRI設計</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">監視とアラート：運用で回るKRI設計。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./bias-evaluation-qualitative-quantitative.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">Safety・評価</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">バイアス評価：定性/定量の現実解</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">バイアス評価：定性/定量の現実解。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./watermark-metadata-limits.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-cyan-600 font-medium">透明性・真正性</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">透かし/メタデータ：限界と期待値調整</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">透かし/メタデータ：限界と期待値調整。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./llm-data-boundary.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-violet-600 font-medium">生成AI・GPAI</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">LLMのデータ境界：学習/微調整/推論/ログ</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">LLMのデータ境界：学習/微調整/推論/ログ。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./major-incident-criteria-escalation.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">Safety・評価</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">重大インシデント基準：どこからエスカレーションか</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">重大インシデント基準：どこからエスカレーションか。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./eval-automation-cicd.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">Safety・評価</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">評価の自動化：CI/CDに統制を埋め込む</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">評価の自動化：CI/CDに統制を埋め込む。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./generated-edited-classification-taxonomy.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-cyan-600 font-medium">透明性・真正性</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">生成/加工度の分類：運用で破綻しないタキソノミー</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">生成/加工度の分類：運用で破綻しないタキソノミー。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./deepfake-countermeasures.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-cyan-600 font-medium">透明性・真正性</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">ディープフェイク対策：企業ブランドを守る統制</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">ディープフェイク対策：企業ブランドを守る統制。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./continuous-evaluation-drift.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">Safety・評価</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">継続的評価：モデル更新とドリフトの監督</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">継続的評価：モデル更新とドリフトの監督。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./external-communication-design.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-lime-600 font-medium">戦略</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">対外コミュニケーション：顧客・投資家・当局への説明設計</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">対外コミュニケーション：顧客・投資家・当局への説明設計。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./eu-ai-act-overview.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-rose-600 font-medium">規制</span> <span class="text-xs text-amber-600 font-medium ml-2">Living</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">EU AI Act 総論：義務の全体像と段階適用の読み方</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">EU AI Act 総論：義務の全体像と段階適用の読み方。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./eu-ai-act-transparency.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-rose-600 font-medium">規制</span> <span class="text-xs text-amber-600 font-medium ml-2">Living</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">EU AI Act 透明性義務：通知・表示・情報提供の設計</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">EU AI Act 透明性義務：通知・表示・情報提供の設計。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./eu-ai-act-high-risk.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-rose-600 font-medium">規制</span> <span class="text-xs text-amber-600 font-medium ml-2">Living</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">EU AI Act 高リスクAI：適合性評価・QMS・技術文書の実務</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">EU AI Act 高リスクAI：適合性評価・QMS・技術文書の実務。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./eu-ai-act-prohibited.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-rose-600 font-medium">規制</span> <span class="text-xs text-amber-600 font-medium ml-2">Living</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">EU AI Act 禁止領域：禁止規定と設計上の回避策</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">EU AI Act 禁止領域：禁止規定と設計上の回避策。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./extra-territorial-brussels-effect.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-rose-600 font-medium">規制</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">域外適用（ブリュッセル効果）と本社責任：誰が何を担うか</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">域外適用（ブリュッセル効果）と本社責任：誰が何を担うか。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./regulatory-splinternet.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-rose-600 font-medium">規制</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">規制スプリンターネット：グローバル統制の設計原則</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">規制スプリンターネット：グローバル統制の設計原則。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./regulatory-horizon-scan.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-rose-600 font-medium">規制</span> <span class="text-xs text-amber-600 font-medium ml-2">Living</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">規制ホライズンスキャン：追跡の仕組み化（Living運用）</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">規制ホライズンスキャン：追跡の仕組み化（Living運用）。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./g7-oecd-hiroshima-ai-reporting.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-rose-600 font-medium">規制</span> <span class="text-xs text-amber-600 font-medium ml-2">Living</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">G7/OECD：広島AIプロセスの報告枠組みと企業対応</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">G7/OECD：広島AIプロセスの報告枠組みと企業対応。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./japan-ai-guidelines.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-rose-600 font-medium">規制</span> <span class="text-xs text-amber-600 font-medium ml-2">Living</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">日本：AI事業者ガイドラインの位置づけと企業実装（Living対応）</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">日本：AI事業者ガイドラインの位置づけと企業実装（Living対応）。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./us-ai-regulation-overview.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-rose-600 font-medium">規制</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">米国AI規制の全体像：連邦・州・業界の分散統治</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">米国AI規制の全体像：連邦・州・業界の分散統治。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./china-genai-regulation.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-rose-600 font-medium">規制</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">中国の生成AI規制：域内提供・モデル管理・留意点</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">中国の生成AI規制：域内提供・モデル管理・留意点。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./uk-singapore-soft-law.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-rose-600 font-medium">規制</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">英国・シンガポール等：ソフトロー型ガバナンスの実装比較</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">英国・シンガポール等：ソフトロー型ガバナンスの実装比較。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ai-risk-assessment-method.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-orange-600 font-medium">リスク</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">AIリスクアセスメント：手法・粒度・記録（監査耐性）</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">AIリスクアセスメント：手法・粒度・記録（監査耐性）。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ai-risk-appetite-framework.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-orange-600 font-medium">リスク</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">AIリスクアペタイト：経営判断に落とすフレーム</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">AIリスクアペタイト：経営判断に落とすフレーム。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./board-ai-governance-agenda.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-emerald-600 font-medium">体制</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">取締役会のAIガバナンス：議題テンプレと年間計画</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">取締役会のAIガバナンス：議題テンプレと年間計画。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./cxo-roles-ai-governance.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-emerald-600 font-medium">体制</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">CxOの役割分担：CISO・法務・DPO・CDO・監査</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">CxOの役割分担：CISO・法務・DPO・CDO・監査。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./centralized-vs-federated.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-emerald-600 font-medium">体制</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">中央集権 vs 連邦型：グローバル企業の最適解</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">中央集権 vs 連邦型：グローバル企業の最適解。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./shadow-ai-countermeasures.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-emerald-600 font-medium">体制</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">シャドウAI対策：禁止だけでなく正規ルートを作る</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">シャドウAI対策：禁止だけでなく正規ルートを作る。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./exception-management-control.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-blue-600 font-medium">運用OS</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">例外管理：現場スピードを落とさない統制</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">例外管理：現場スピードを落とさない統制。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./governance-maturity-roadmap.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-emerald-600 font-medium">体制</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">ガバナンス成熟度：自己評価と改善ロードマップ</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">ガバナンス成熟度：自己評価と改善ロードマップ。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./internal-audit-ai-controls.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-purple-600 font-medium">監査</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">内部監査が見るAI統制：評価観点と頻度</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">内部監査が見るAI統制：評価観点と頻度。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./external-audit-expectations.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-purple-600 font-medium">監査</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">外部監査の期待：企業が準備すべき証跡</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">外部監査の期待：企業が準備すべき証跡。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ai-assurance-vs-audit.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-purple-600 font-medium">監査</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">AI保証（Assurance）と監査の違い：使い分け</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">AI保証（Assurance）と監査の違い：使い分け。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./audit-trail-logs.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-purple-600 font-medium">監査</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">監査証跡としてのログ：何を残せば足りるか</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">監査証跡としてのログ：何を残せば足りるか。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./documentation-audit-artifacts.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-purple-600 font-medium">監査</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">文書化と監査証跡：必要十分なアーティファクトとは</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">文書化と監査証跡：必要十分なアーティファクトとは。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./evidence-bundle-audit.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-blue-600 font-medium">運用OS</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">Evidence Bundle：監査法人が欲しい"束ね方"</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">Evidence Bundle：監査法人が欲しい"束ね方"。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./evidence-minimum-requirements.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-blue-600 font-medium">運用OS</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">証跡の最小要件：何を残せば監査に耐えるか</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">証跡の最小要件：何を残せば監査に耐えるか。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ai-bom-supply-chain.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-blue-600 font-medium">運用OS</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">AI-BOM（モデル/データ/依存関係）：供給網透明性</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">AI-BOM（モデル/データ/依存関係）：供給網透明性。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./control-test-automation-ccm.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-blue-600 font-medium">運用OS</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">コントロールテストの自動化：継続的監査（CCM）</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">コントロールテストの自動化：継続的監査（CCM）。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./compliance-as-code.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-blue-600 font-medium">運用OS</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">ルールのコード化（Compliance-as-Code）：設計パターン</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">ルールのコード化（Compliance-as-Code）：設計パターン。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./audit-dashboard-board-metrics.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-blue-600 font-medium">運用OS</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">監査ダッシュボード：取締役会に刺さる指標</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">監査ダッシュボード：取締役会に刺さる指標。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ai-incident-response-escalation.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-orange-600 font-medium">リスク</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">AIインシデント対応：エスカレーションと当局/顧客説明</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">AIインシデント対応：エスカレーションと当局/顧客説明。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./production-monitoring-drift.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-sky-600 font-medium">ライフサイクル</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">本番モニタリング：ドリフト・品質・リスクの検知</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">本番モニタリング：ドリフト・品質・リスクの検知。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./version-management-reroll.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-sky-600 font-medium">ライフサイクル</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">バージョン管理：変更時の再評価とロールバック</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">バージョン管理：変更時の再評価とロールバック。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./deploy-checklist-release-approval.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-sky-600 font-medium">ライフサイクル</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">デプロイ前チェックリストとリリース承認</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">デプロイ前チェックリストとリリース承認。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ai-procurement-buy-build.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-sky-600 font-medium">ライフサイクル</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">AI調達（Buy/Build）：意思決定と統制</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">AI調達（Buy/Build）：意思決定と統制。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./third-party-ai-vendor-risk.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-orange-600 font-medium">リスク</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">サードパーティAIベンダーリスク：評価観点と契約連動</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">サードパーティAIベンダーリスク：評価観点と契約連動。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./training-data-rights-licensing.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-teal-600 font-medium">データ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">学習データの権利処理：ライセンスと記録</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">学習データの権利処理：ライセンスと記録。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./confidential-input-design.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">法務</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">機密情報：入力禁止だけで終わらせない設計</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">機密情報：入力禁止だけで終わらせない設計。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./next-year-planning-cycle.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-blue-600 font-medium">運用OS</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">翌年度計画：規制追随と改善サイクルの作り方</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">翌年度計画：規制追随と改善サイクルの作り方。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ai-data-governance-integration.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-teal-600 font-medium">データ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">AIとデータガバナンスの接点：統合設計の要点</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">AIとデータガバナンスの接点：統合設計の要点。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./gdpr-genai-personal-data.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-teal-600 font-medium">データ</span> <span class="text-xs text-amber-600 font-medium ml-2">Living</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">GDPRと生成AI：学習データ・個人データ処理の論点整理</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">GDPRと生成AI：学習データ・個人データ処理の論点整理。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./japan-pip-genai.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-teal-600 font-medium">データ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">日本の個人情報保護×生成AI：実務で詰むポイント</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">日本の個人情報保護×生成AI：実務で詰むポイント。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./synthetic-data-privacy.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-teal-600 font-medium">データ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">合成データ：有効性とプライバシーリスク</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">合成データ：有効性とプライバシーリスク。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./data-quality-gigo.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-teal-600 font-medium">データ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">データ品質（GIGO対策）：統制に落とす方法</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">データ品質（GIGO対策）：統制に落とす方法。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./data-retention-model-retirement.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-teal-600 font-medium">データ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">データ保持期間：モデル廃止時の取り扱いと監査証跡</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">データ保持期間：モデル廃止時の取り扱いと監査証跡。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./cross-border-data-sovereignty.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-teal-600 font-medium">データ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">越境データ：法域差・データ主権の設計</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">越境データ：法域差・データ主権の設計。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./pets-privacy-enhancing.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-teal-600 font-medium">データ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">PETs（プライバシー強化技術）：導入判断と統制</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">PETs（プライバシー強化技術）：導入判断と統制。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./dpia-ai-risk-integration.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-teal-600 font-medium">データ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">DPIAとAIリスク：統合評価の進め方</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">DPIAとAIリスク：統合評価の進め方。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./data-artifacts-audit-trail.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-teal-600 font-medium">データ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">監査証跡としてのデータ系アーティファクト：最低限セット</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">監査証跡としてのデータ系アーティファクト：最低限セット。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ai-output-copyright.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">法務</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">AI生成物の著作権：企業リスクの現実解</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">AI生成物の著作権：企業リスクの現実解。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./training-data-copyright-licensing.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">法務</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">学習データの著作権・利用許諾：整理の型</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">学習データの著作権・利用許諾：整理の型。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ai-vendor-contract-clauses.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">法務</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">AIベンダー契約：必須条項（監査権・透明性・責任分担）</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">AIベンダー契約：必須条項（監査権・透明性・責任分担）。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./liability-disclaimer-limits.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">法務</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">責任分担と免責の限界：事故時の落としどころ</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">責任分担と免責の限界：事故時の落としどころ。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ip-patent-ai-development.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">法務</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">特許・知財とAI開発：ガバナンスの要点</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">特許・知財とAI開発：ガバナンスの要点。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./cloud-ai-contract-data-sovereignty.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">法務</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">クラウドAI利用時の契約：データ主権・監査対応</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">クラウドAI利用時の契約：データ主権・監査対応。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./cross-border-data-contract.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">法務</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">越境データ契約：法域ごとの契約設計</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">越境データ契約：法域ごとの契約設計。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./dispute-evidence-log-document.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">法務</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">紛争時の証拠：ログと文書の証明力（eDiscovery含む）</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">紛争時の証拠：ログと文書の証明力（eDiscovery含む）。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./legal-governance-three-lines.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">法務</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">法務部門とガバナンス体制：三線防御の接続</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">法務部門とガバナンス体制：三線防御の接続。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./vendor-contract-living-clauses.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-amber-600 font-medium">法務</span> <span class="text-xs text-amber-600 font-medium ml-2">Living</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">サードパーティ契約更新：規制変化（Living）を織り込む条項</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">サードパーティ契約更新：規制変化（Living）を織り込む条項。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ai-cyber-threat-model.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-red-600 font-medium">セキュリティ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">AI×サイバー：脅威モデルの作り方</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">AI×サイバー：脅威モデルの作り方。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ai-access-control-zerotrust.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-red-600 font-medium">セキュリティ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">AIアクセス制御：ゼロトラストでどう守るか</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">AIアクセス制御：ゼロトラストでどう守るか。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./prompt-injection-control.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-red-600 font-medium">セキュリティ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">プロンプトインジェクション：統制（人/ルール/技術）の分担</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">プロンプトインジェクション：統制（人/ルール/技術）の分担。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./data-leakage-control-design.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-red-600 font-medium">セキュリティ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">データ漏えい：入力・出力・ログの統制設計</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">データ漏えい：入力・出力・ログの統制設計。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./model-poisoning-detection.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-red-600 font-medium">セキュリティ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">モデル改ざん・毒入れ：検知と防止の実装</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">モデル改ざん・毒入れ：検知と防止の実装。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./supply-chain-security-ai.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-red-600 font-medium">セキュリティ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">サプライチェーンセキュリティ：AIで増幅する論点</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">サプライチェーンセキュリティ：AIで増幅する論点。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./bcp-ai-dependency-failsafe.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-red-600 font-medium">セキュリティ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">事業継続（BCP）：AI依存リスクとフェイルセーフ</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">事業継続（BCP）：AI依存リスクとフェイルセーフ。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./incident-response-ai-isolation.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-red-600 font-medium">セキュリティ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">インシデント対応：AIの切り離し手順と説明責任</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">インシデント対応：AIの切り離し手順と説明責任。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./security-kri-monitoring.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-red-600 font-medium">セキュリティ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">セキュリティKRI：監視・アラートの設計</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">セキュリティKRI：監視・アラートの設計。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./security-eval-vendor-open-model.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-red-600 font-medium">セキュリティ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">セキュリティ評価：ベンダー/オープンモデル採用時の要件</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">セキュリティ評価：ベンダー/オープンモデル採用時の要件。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ai-bom-implementation.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-blue-600 font-medium">運用OS</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">AI-BOM（モデル/データ/依存関係）：供給網透明性の実装</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">AI-BOM（モデル/データ/依存関係）：供給網透明性の実装。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./sbom-integration-security.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-red-600 font-medium">セキュリティ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">SBOMとの統合：既存セキュリティ運用に繋ぐ</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">SBOMとの統合：既存セキュリティ運用に繋ぐ。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./dlp-idp-casb-design.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-red-600 font-medium">セキュリティ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">社内DLP/IdP/CASB連携：最小開発で守る設計</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">社内DLP/IdP/CASB連携：最小開発で守る設計。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./log-integrity-retention.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-red-600 font-medium">セキュリティ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">ログ保全：真正性（改ざん耐性）と保管要件</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">ログ保全：真正性（改ざん耐性）と保管要件。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./auditor-ai-security-findings.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-purple-600 font-medium">監査</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">監査法人が見るAIセキュリティ：指摘になりやすい点</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">監査法人が見るAIセキュリティ：指摘になりやすい点。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ethics-security-unified-control.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-red-600 font-medium">セキュリティ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">倫理×セキュリティ：統合統制の作り方</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">倫理×セキュリティ：統合統制の作り方。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./security-education-rules.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-red-600 font-medium">セキュリティ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">セキュリティ教育：現場が守れるルール化</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">セキュリティ教育：現場が守れるルール化。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./genai-red-line-boundaries.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-red-600 font-medium">セキュリティ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">生成AI利用のRed Line：機密・個人・規制産業の境界</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">生成AI利用のRed Line：機密・個人・規制産業の境界。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./security-investment-roi.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-red-600 font-medium">セキュリティ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">セキュリティ投資ROI：損失回避の定量化</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">セキュリティ投資ROI：損失回避の定量化。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./annual-plan-focus-areas.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-blue-600 font-medium">運用OS</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">年次計画：翌年度の重点（監査×セキュリティ×規制）</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">年次計画：翌年度の重点（監査×セキュリティ×規制）。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./iso-42001-aims-introduction.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-slate-600 font-medium">標準</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">ISO/IEC 42001（AIMS）導入の要点と落とし穴</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">ISO/IEC 42001（AIMS）導入の要点と落とし穴。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./nist-ai-rmf-implementation.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-slate-600 font-medium">標準</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">NIST AI RMF：企業ガバナンスへの落とし込み</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">NIST AI RMF：企業ガバナンスへの落とし込み。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./oecd-ai-principles-policy.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-slate-600 font-medium">標準</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">OECD AI原則：企業ポリシーへ翻訳する方法</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">OECD AI原則：企業ポリシーへ翻訳する方法。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ieee-international-standards.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-slate-600 font-medium">標準</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">IEEE等の国際標準動向：企業が追うべき範囲</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">IEEE等の国際標準動向：企業が追うべき範囲。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./model-card-datasheet-audit.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-slate-600 font-medium">標準</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">モデルカード・データシート：監査証跡としての実務</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">モデルカード・データシート：監査証跡としての実務。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./multi-framework-integration.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-slate-600 font-medium">標準</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">複数フレームワーク統合：重複排除と優先順位</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">複数フレームワーク統合：重複排除と優先順位。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./governance-doc-version-control.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-blue-600 font-medium">運用OS</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">ガバナンス文書のバージョン管理：公開と内部統制の両立</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">ガバナンス文書のバージョン管理：公開と内部統制の両立。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./regulatory-horizon-scan-ops.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-rose-600 font-medium">規制</span> <span class="text-xs text-amber-600 font-medium ml-2">Living</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">規制ホライズンスキャン：運用の型（四半期更新）</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">規制ホライズンスキャン：運用の型（四半期更新）。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./board-ai-agenda-metrics.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-emerald-600 font-medium">体制</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">取締役会のAIアジェンダ：議題例と報告指標</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">取締役会のAIアジェンダ：議題例と報告指標。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ai-ethics-committee-design.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-indigo-600 font-medium">倫理</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">AI倫理/ガバナンス委員会：形骸化を防ぐ設計</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">AI倫理/ガバナンス委員会：形骸化を防ぐ設計。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./cxo-roles-summary.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-emerald-600 font-medium">体制</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">CxOの役割分担：CISO・法務・DPO・CDO・監査</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">CxOの役割分担：CISO・法務・DPO・CDO・監査。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./centralized-federated-global.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-emerald-600 font-medium">体制</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">中央集権 vs 連邦型：グローバル企業の最適解</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">中央集権 vs 連邦型：グローバル企業の最適解。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./global-baseline-local-adaptation.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-emerald-600 font-medium">体制</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">グローバルベースラインとローカル適応：二層統制</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">グローバルベースラインとローカル適応：二層統制。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./use-case-approval-process.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-emerald-600 font-medium">体制</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">ユースケース承認プロセス：閾値と例外管理</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">ユースケース承認プロセス：閾値と例外管理。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./governance-maturity-model.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-emerald-600 font-medium">体制</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">ガバナンス成熟度モデル：自己評価と改善ロードマップ</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">ガバナンス成熟度モデル：自己評価と改善ロードマップ。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./subsidiary-sme-lightweight-governance.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-emerald-600 font-medium">体制</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">子会社・中小向け軽量ガバナンス：ミニマム統制</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">子会社・中小向け軽量ガバナンス：ミニマム統制。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./change-management-resistance.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-lime-600 font-medium">戦略</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">変更管理：導入時の抵抗と対処</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">変更管理：導入時の抵抗と対処。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./incentive-design-speed-control.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-lime-600 font-medium">戦略</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">インセンティブ設計：スピードと統制の両立</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">インセンティブ設計：スピードと統制の両立。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./governance-talent-roles.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-lime-600 font-medium">戦略</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">ガバナンス人材：必要ロール（LLMOps/監査/法務）</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">ガバナンス人材：必要ロール（LLMOps/監査/法務）。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./governance-investment-roi.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-lime-600 font-medium">戦略</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">ガバナンス投資のROI：経営報告の型</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">ガバナンス投資のROI：経営報告の型。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./industry-finance-ai-governance.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-pink-600 font-medium">業界</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">金融業界：AIガバナンス（規制×MRM×説明責任）</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">金融業界：AIガバナンス（規制×MRM×説明責任）。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./industry-insurance-underwriting.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-pink-600 font-medium">業界</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">保険業界：引受・不正検知・顧客説明の統制</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">保険業界：引受・不正検知・顧客説明の統制。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./industry-healthcare-regulation.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-pink-600 font-medium">業界</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">医療・ヘルスケア：規制・倫理・安全性評価</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">医療・ヘルスケア：規制・倫理・安全性評価。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./industry-pharma-life-science.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-pink-600 font-medium">業界</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">医薬品・ライフサイエンス：研究AIと規制の接点</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">医薬品・ライフサイエンス：研究AIと規制の接点。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./industry-manufacturing-quality.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-pink-600 font-medium">業界</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">製造業：品質・安全・サプライチェーンAI</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">製造業：品質・安全・サプライチェーンAI。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./industry-retail-ec-recommendation.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-pink-600 font-medium">業界</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">小売・EC：顧客データ・レコメンドの統制</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">小売・EC：顧客データ・レコメンドの統制。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./industry-public-sector.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-pink-600 font-medium">業界</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">公共セクター：透明性と説明責任の設計</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">公共セクター：透明性と説明責任の設計。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./industry-hr-recruitment-ai.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-pink-600 font-medium">業界</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">人事・採用AI：差別防止と監査可能性</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">人事・採用AI：差別防止と監査可能性。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./industry-marketing-ad-ai.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-pink-600 font-medium">業界</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">マーケティング・広告AI：透明性・消費者保護</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">マーケティング・広告AI：透明性・消費者保護。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./industry-automotive-mobility.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-pink-600 font-medium">業界</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">自動車・モビリティ：安全規格とAI（ソフト更新含む）</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">自動車・モビリティ：安全規格とAI（ソフト更新含む）。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./industry-ai-audit-comparison.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-pink-600 font-medium">業界</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">業界別AI監査：注目点の違い（横断まとめ）</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">業界別AI監査：注目点の違い（横断まとめ）。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./industry-risk-heatmap.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-pink-600 font-medium">業界</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">業界別リスク比較：ヒートマップで見る共通/固有リスク</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">業界別リスク比較：ヒートマップで見る共通/固有リスク。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./industry-kri-minimum-set.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-pink-600 font-medium">業界</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">業界別KRI：最小セットと閾値</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">業界別KRI：最小セットと閾値。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./outsourcing-bpo-si-ai.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-pink-600 font-medium">業界</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">外部委託（BPO/SI）とAI：責任分担と証跡</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">外部委託（BPO/SI）とAI：責任分担と証跡。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./data-sharing-joint-research.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-teal-600 font-medium">データ</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">データ共有（共同研究/共同開発）：契約と統制</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">データ共有（共同研究/共同開発）：契約と統制。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./customer-facing-ai-b2b.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-pink-600 font-medium">業界</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">顧客提供AI（B2B）：SLA・説明・監査要求への対応</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">顧客提供AI（B2B）：SLA・説明・監査要求への対応。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./internal-ai-b2e-shadow.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-pink-600 font-medium">業界</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">社内利用AI（B2E）：シャドウAI対策と普及の両立</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">社内利用AI（B2E）：シャドウAI対策と普及の両立。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./supervisor-authority-alignment.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-pink-600 font-medium">業界</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">監督当局対応：業界規制との整合を作る</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">監督当局対応：業界規制との整合を作る。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./incident-response-by-industry.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-pink-600 font-medium">業界</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">インシデント対応：業界別の"報告/説明"の癖</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">インシデント対応：業界別の"報告/説明"の癖。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./industry-templates-control-package.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-pink-600 font-medium">業界</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">業界別テンプレ：最短で整備する統制パッケージ</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">業界別テンプレ：最短で整備する統制パッケージ。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ai-ethics-principles-policy.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-indigo-600 font-medium">倫理</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">AI倫理原則の採用：企業方針へ落とす方法</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">AI倫理原則の採用：企業方針へ落とす方法。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./bias-fairness-hr-credit-healthcare.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-indigo-600 font-medium">倫理</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">バイアスと公平性：人事・与信・医療での実務</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">バイアスと公平性：人事・与信・医療での実務。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./xai-explainability-scope.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-indigo-600 font-medium">倫理</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">説明可能性（XAI）：どこまで求めるべきか</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">説明可能性（XAI）：どこまで求めるべきか。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./human-in-the-loop-design.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-indigo-600 font-medium">倫理</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">人間の監督（Human-in-the-loop）：設計と証跡化</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">人間の監督（Human-in-the-loop）：設計と証跡化。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./accountability-incident-design.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-indigo-600 font-medium">倫理</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">アカウンタビリティ：誰が責任を負うか（事故時設計）</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">アカウンタビリティ：誰が責任を負うか（事故時設計）。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./sustainability-environmental-ai.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-indigo-600 font-medium">倫理</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">サステナビリティ：環境負荷とAIガバナンス</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">サステナビリティ：環境負荷とAIガバナンス。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./worker-consumer-protection-genai.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-indigo-600 font-medium">倫理</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">労働者・消費者保護：生成AIの境界線</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">労働者・消費者保護：生成AIの境界線。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ethics-risk-monitoring-remediation.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-indigo-600 font-medium">倫理</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">倫理リスクのモニタリング：是正の"回し方"</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">倫理リスクのモニタリング：是正の"回し方"。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./reputation-risk-prevention.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-orange-600 font-medium">リスク</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">レピュテーションリスク：炎上パターンと予防線</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">レピュテーションリスク：炎上パターンと予防線。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ai-incident-reporting-authority.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-orange-600 font-medium">リスク</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">AIインシデント報告：当局通知・顧客説明の実務</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">AIインシデント報告：当局通知・顧客説明の実務。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ai-lifecycle-overview.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-sky-600 font-medium">ライフサイクル</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">AIライフサイクル俯瞰：企画〜廃止までの統制</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">AIライフサイクル俯瞰：企画〜廃止までの統制。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./development-phase-control.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-sky-600 font-medium">ライフサイクル</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">開発フェーズ統制：要件・設計・検証の最小証跡</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">開発フェーズ統制：要件・設計・検証の最小証跡。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./ai-procurement-decision-control.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-sky-600 font-medium">ライフサイクル</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">AI調達（Buy/Build）：意思決定と統制</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">AI調達（Buy/Build）：意思決定と統制。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./decommission-record-risk.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-sky-600 font-medium">ライフサイクル</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">廃止・停止：記録保持とリスクの終端処理</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">廃止・停止：記録保持とリスクの終端処理。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./continuous-conformity-assessment.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-blue-600 font-medium">運用OS</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">継続的適合性評価：監査対応を運用に組み込む</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">継続的適合性評価：監査対応を運用に組み込む。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./governance-continuous-improvement.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-blue-600 font-medium">運用OS</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">ガバナンスの継続的改善：監査→改善→再評価の循環</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">ガバナンスの継続的改善：監査→改善→再評価の循環。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./offensive-governance-trust.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-lime-600 font-medium">戦略</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">攻めのガバナンス：信頼獲得と競争優位</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">攻めのガバナンス：信頼獲得と競争優位。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./next-gen-regulation-preparation.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-lime-600 font-medium">戦略</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">次世代規制を見据えた準備：拡張可能な統制設計</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">次世代規制を見据えた準備：拡張可能な統制設計。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./governance-os-summary-roadmap.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-blue-600 font-medium">運用OS</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">"ガバナンス運用OS"総まとめ：最短導入ロードマップ</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">"ガバナンス運用OS"総まとめ：最短導入ロードマップ。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+          <a href="./next-year-plan-priority-summary.html" class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all overflow-hidden">
+            <div class="p-6">
+              <span class="text-xs text-blue-600 font-medium">運用OS</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-2 group-hover:text-navy transition">次年度計画：規制追随・人材・投資の優先順位（総括）</h3>
+              <p class="text-gray-600 text-sm mt-3 line-clamp-3">次年度計画：規制追随・人材・投資の優先順位（総括）。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。</p>
+            </div>
+          </a>
+
+        </div>
+        <div class="text-center mt-12">
+          <a href="../index.html" class="inline-flex items-center px-6 py-3 border-2 border-navy text-navy rounded-full font-medium hover:bg-navy hover:text-white transition">ブログ一覧に戻る</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-16">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-heading font-bold text-navy mb-4">AIガバナンスの設計・実装支援</h2>
+        <p class="text-gray-600 mb-8">規制対応、利用規程、評価・透明性の設計から監査証跡まで、一気通貫でサポートします。</p>
+        <a href="mailto:contact@riseby.net" class="inline-flex items-center px-8 py-4 bg-navy text-white rounded-full font-medium hover:bg-navy-light transition">お問い合わせ</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-6 md:mb-0">
+          <img src="../../assets/images/logo.svg" alt="RISEby" class="h-8 brightness-0 invert">
+          <p class="text-gray-400 text-sm mt-2">〒150-6115 東京都渋谷区渋谷2-24-12<br>渋谷スクランブルスクエア 15階</p>
+        </div>
+        <div class="flex space-x-6 text-sm">
+          <a href="../../about.html" class="text-gray-400 hover:text-white transition">会社概要</a>
+          <a href="../../privacy.html" class="text-gray-400 hover:text-white transition">プライバシーポリシー</a>
+          <a href="mailto:contact@riseby.net" class="text-gray-400 hover:text-white transition">お問い合わせ</a>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">© 2026 RISEby inc. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+</html>

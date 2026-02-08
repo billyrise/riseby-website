@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://riseby.net/blog/ai-governance/llm-use-policy-internal-customer.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="RISEby inc.">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://riseby.net/blog/ai-governance/llm-use-policy-internal-customer.html">
+    <meta property="og:title" content="LLMの利用規程：社内/顧客提供で分けるべき要件 | RISEby Blog">
+    <meta property="og:description" content="LLMの利用規程で社内と顧客提供を分けるべき要件を整理。規制・契約・証跡の観点で設計します。">
+    <meta property="og:image" content="https://riseby.net/assets/images/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>LLMの利用規程：社内/顧客提供で分けるべき要件 | RISEby Blog</title>
+    <meta name="description" content="LLMの利用規程で社内と顧客提供を分けるべき要件を整理。規制・契約・証跡の観点で設計します。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { brand: { blue: '#003E68', red: '#ED1C24', dark: '#0B0F19' } }, fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], display: ['"Montserrat"', 'sans-serif'] } } } }</script>
+    <style>body { font-family: "Noto Sans JP", sans-serif; }
+    .mermaid { display: flex; justify-content: center; margin: 2rem 0; background: #f8fafc; padding: 1rem; border-radius: 0.5rem; }
+    .mermaid svg { max-width: 100%; }
+    .mermaid svg text { font-size: 1.125rem !important; }
+    .mermaid .nodeLabel, .mermaid .edgeLabel { font-size: 1.125rem !important; }</style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"LLMの利用規程：社内/顧客提供で分けるべき要件","datePublished":"2026-02-05","author":{"@type":"Organization","name":"RISEby Inc.","url":"https://riseby.net"}}</script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const Icon = ({ name, size = 24, className = "" }) => {
+            if (typeof lucide !== 'undefined' && lucide.icons && lucide.icons[name])
+                return React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", className }, lucide.icons[name].map(([tag, attrs], i) => React.createElement(tag, { ...attrs, key: i })));
+            return <span className="inline-block w-4 h-4 bg-gray-300 rounded-full"></span>;
+        };
+        const Header = () => {
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+            useEffect(() => { const h = () => setScrolled(window.scrollY > 20); window.addEventListener('scroll', h); return () => window.removeEventListener('scroll', h); }, []);
+            return (
+                <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-white/80 backdrop-blur-sm py-4 shadow-sm'}`}>
+                    <div className="container mx-auto px-4 flex items-center justify-between max-w-7xl">
+                        <a href="../../index.html" className="flex items-center gap-3 hover:opacity-80"><img src="../../assets/images/logo.svg" alt="RISEby" className="h-8 md:h-9" /></a>
+                        <nav className="hidden md:flex items-center gap-8">
+                            <a href="../../index.html#services" className="font-bold tracking-wide hover:opacity-70 text-slate-800">サービス</a>
+                            <a href="../index.html" className="font-bold tracking-wide text-slate-800">ブログ</a>
+                            <a href="../../about.html" className="font-bold tracking-wide hover:opacity-70 text-slate-800">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white hover:bg-slate-800 px-6 py-2.5 rounded-full font-bold">お問い合わせ</a>
+                        </nav>
+                        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2 text-slate-800"><Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} /></button>
+                    </div>
+                    {mobileMenuOpen && (
+                        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t shadow-xl p-4 flex flex-col gap-4">
+                            <a href="../../index.html#services" className="text-slate-800 font-bold py-3 border-b border-slate-50">サービス</a>
+                            <a href="../index.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">ブログ</a>
+                            <a href="../../about.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white text-center py-3.5 rounded-lg font-bold mt-2">お問い合わせ</a>
+                        </div>
+                    )}
+                </header>
+            );
+        };
+        const Footer = () => (
+            <footer className="bg-[#0B0F19] text-white pt-24 pb-12 border-t border-slate-800">
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <div className="flex flex-col lg:flex-row justify-between gap-16 mb-24">
+                        <div className="lg:w-1/3">
+                            <a href="../../index.html" className="block mb-8"><img src="../../assets/images/logo.svg" alt="RISEby" className="h-9 brightness-0 invert opacity-90" /></a>
+                            <p className="text-slate-400 text-sm mb-8">企業の複合的な経営課題を、AI・戦略・テクノロジー・人の観点から包括的に解決するコンサルティングファーム。</p>
+                            <div className="mb-10 text-sm text-slate-400 space-y-3">
+                                <p>〒150-6115 東京都渋谷区渋谷2-24-12</p>
+                                <p>渋谷スクランブルスクエア 15階</p>
+                                <a href="mailto:contact@riseby.net" className="hover:text-white flex items-center gap-2 mt-6 group"><span className="bg-slate-800 p-2 rounded-full group-hover:bg-slate-700"><Icon name="Mail" size={16} /></span>contact@riseby.net</a>
+                            </div>
+                            <p className="text-slate-600 text-xs">&copy; {new Date().getFullYear()} RISEby Inc.</p>
+                        </div>
+                        <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8">
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Services</h3>
+                                <ul className="space-y-3"><li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs">サービス一覧</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">新規事業開発</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">DXコンサルティング</a></li></ul></div>
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Company</h3>
+                                <ul className="space-y-3"><li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs">会社概要</a></li><li><a href="../index.html" className="text-slate-400 hover:text-white text-xs">ブログ</a></li><li><a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white text-xs">お問い合わせ</a></li></ul></div>
+                        </div>
+                    </div>
+                    <div className="border-t border-slate-800 pt-10 flex flex-wrap gap-8 justify-center text-xs text-slate-500">
+                        <a href="../../about.html" className="hover:text-white">会社概要</a><a href="../../privacy.html" className="hover:text-white">プライバシーポリシー</a>
+                    </div>
+                </div>
+            </footer>
+        );
+        const MermaidDiagram = ({ chart }) => {
+            useEffect(() => { if (typeof mermaid !== 'undefined') { mermaid.initialize({ theme: 'base', themeVariables: { fontSize: '18px', primaryTextColor: '#334155', primaryFontSize: '18px' } }); mermaid.init(); } }, []);
+            return <div className="mermaid overflow-x-auto max-w-4xl mx-auto text-lg">{chart}</div>;
+        };
+        const KeyPoint = ({ title, children }) => (
+            <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
+                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "Key Point"}</h5>
+                <div className="text-slate-700 text-sm leading-relaxed">{children}</div>
+            </div>
+        );
+        const mermaidChart = `graph LR
+        A[利用規程] --> B[社内/顧客の分離]
+        B --> C[開示・証跡]
+        C --> D[契約・監査]
+        style A fill:#e0f2fe,stroke:#003E68
+        style B fill:#e0f2fe,stroke:#003E68
+        style C fill:#e0f2fe,stroke:#003E68
+        style D fill:#e0f2fe,stroke:#003E68`;
+        const BlogArticle = () => (
+            <main className="pt-24 pb-16">
+                <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-100">
+                        <header className="text-center mb-12 border-b border-slate-100 pb-10">
+                            <div className="flex justify-center flex-wrap gap-2 mb-4">
+                                <span className="bg-violet-100 text-violet-700 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">生成AI・GPAI</span>
+                                <span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide">実装向け</span>
+                                <span className="bg-amber-50 text-amber-700 text-xs px-3 py-1 rounded-full font-bold tracking-wide">Living</span>
+                            </div>
+                            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">LLMの利用規程：社内/顧客提供で分けるべき要件</h1>
+                            <div className="flex items-center justify-center space-x-4 text-sm text-slate-500">
+                                <time dateTime="2026-02-05">2026.02.05</time><span>&middot;</span>
+                                <span className="flex items-center gap-1"><Icon name="User" size={14} /> RISEby Editorial Team</span>
+                            </div>
+                        </header>
+                        <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
+                                <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">
+LLMを社内でだけ使う場合と、顧客に提供する場合では、求められる統制と契約要件が異なります。EU AI Actの透明性義務やGPAI Code of Practiceをふまえ、社内利用と顧客提供で分けるべき要件を整理し、利用規程の設計に落とし込みます。
+</p>
+                                <h2>1. 社内利用と顧客提供の違い</h2>
+                                <p>社内利用（B2E）では、入力の制限（機密・個人情報の禁止）、出力の検証（人間の確認範囲）、再配布・外部提供の禁止などが規程の中心になります。一方、顧客提供（B2B/B2C）では、AIであることの表示、生成コンテンツのラベリング、SLA・責任分担・監査権が契約と規程の両方で必要です。</p>
+                                <p>同じLLM基盤でも、利用形態によって「誰に説明責任を負うか」「どの証跡を残すか」が変わるため、規程は利用形態ごとに分けて定義するか、一つの規程の中でセクションを分けて明示する設計が望ましいです。</p>
+                                <MermaidDiagram chart={mermaidChart} />
+                                <h2>2. 社内利用規程で押さえる項目</h2>
+                                <p>機密情報・個人情報の入力禁止、許可された用途の列挙、出力の人間確認が必要な範囲、ログと監査証跡の保持期間、禁止行為（再配布・改変・商用転用の制限）を明文化します。シャドウAI対策として「正規ルート」の申請・承認フローも規程に含めると、禁止だけでなく誘導ができます。</p>
+                                <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose max-w-4xl mx-auto">
+                <figcaption className="text-lg font-bold mb-6 text-slate-800 text-center">社内利用と顧客提供で分ける要件</figcaption>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-x-auto">
+                    <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <h5 className="font-bold text-slate-700 mb-3 flex items-center gap-2"><Icon name="List" size={18} /> 社内利用（B2E）</h5>
+                        <ul className="text-sm text-slate-700 space-y-1.5">
+                            <li>入力制限・機密禁止</li>
+                            <li>出力の人間確認範囲</li>
+                            <li>ログ・証跡の保持</li>
+                        </ul>
+                    </div>
+                    <div className="bg-blue-50 p-4 rounded-lg border border-brand-blue/30">
+                        <h5 className="font-bold text-brand-blue mb-3 flex items-center gap-2"><Icon name="CheckCircle" size={18} /> 顧客提供（B2B/B2C）</h5>
+                        <ul className="text-sm text-slate-700 space-y-1.5">
+                            <li>AI利用の開示・表示</li>
+                            <li>SLA・責任分担</li>
+                            <li>監査権・情報提供</li>
+                        </ul>
+                    </div>
+                </div>
+            </figure>
+                                <h2>3. 顧客提供で分けるべき要件</h2>
+                                <p>顧客向けには、AI利用の開示、生成物の表示、苦情対応窓口、データの取り扱い（学習に使わない等）、監査権・情報提供義務を契約と利用規約の両方で定めます。業界規制（金融・医療等）がかかる場合は、その要件を満たす表示・説明・証跡を追加します。</p>
+                                <KeyPoint title="社内と顧客提供で「要件のセット」を分けて明文化する">
+                利用形態ごとに説明責任と証跡の範囲が変わるため、一つの規程で「社内用」と「顧客提供用」のセクションを分け、それぞれに必須項目をそろえる設計が実務的です。
+            </KeyPoint>
+                                
+                            <h2>参考・参照</h2>
+                            <ul className="list-disc pl-6 space-y-2 text-slate-700">
+                                <li><a href="https://digital-strategy.ec.europa.eu/en/faqs/navigating-ai-act" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">EU AI Act（欧州デジタル戦略）</a></li>
+                                <li><a href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">GPAI Code of Practice（欧州委員会）</a></li>
+                                <li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20250328_2.pdf" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">AI事業者ガイドライン（経済産業省）</a></li>
+                            </ul>
+                                <h2>まとめ</h2>
+                            <p>LLMの利用規程は、社内と顧客提供で分けて設計し、それぞれに必要な禁止・開示・証跡・契約を明示します。規制と監査の期待に合わせて四半期ごとに見直すと、Livingな運用ができます。</p>
+                        </div>
+                        <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
+                            <h3 className="text-2xl font-bold text-white mb-4">AIガバナンスの設計・実装支援</h3>
+                            <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">利用規程、評価・透明性の設計から監査証跡まで、一気通貫でサポートします。</p>
+                            <a href="mailto:contact@riseby.net" className="inline-flex items-center justify-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all"><Icon name="Mail" size={{18}} /> お問い合わせ</a>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        );
+        const App = () => <div className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-800"><Header /><BlogArticle /><Footer /></div>;
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

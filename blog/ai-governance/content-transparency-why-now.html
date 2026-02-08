@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://riseby.net/blog/ai-governance/content-transparency-why-now.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="RISEby inc.">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://riseby.net/blog/ai-governance/content-transparency-why-now.html">
+    <meta property="og:title" content="生成コンテンツ透明性：なぜ今「独立論点」なのか | RISEby Blog">
+    <meta property="og:description" content="AI生成コンテンツの表示・ラベリングが、規制と社会要請の両面で独立した論点になっています。EUの動向と企業が取り組むべき設計を解説します。">
+    <meta property="og:image" content="https://riseby.net/assets/images/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>生成コンテンツ透明性：なぜ今「独立論点」なのか | RISEby Blog</title>
+    <meta name="description" content="AI生成コンテンツの表示・ラベリングが、規制と社会要請の両面で独立した論点になっています。企業が取り組むべき設計を解説します。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { brand: { blue: '#003E68', red: '#ED1C24', dark: '#0B0F19' } }, fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], display: ['"Montserrat"', 'sans-serif'] } } } }</script>
+    <style>body { font-family: "Noto Sans JP", sans-serif; }
+    .mermaid { display: flex; justify-content: center; margin: 2rem 0; background: #f8fafc; padding: 1rem; border-radius: 0.5rem; }
+    .mermaid svg { max-width: 100%; }
+    .mermaid svg text { font-size: 1.125rem !important; }
+    .mermaid .nodeLabel, .mermaid .edgeLabel { font-size: 1.125rem !important; }</style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"生成コンテンツ透明性：なぜ今「独立論点」なのか","datePublished":"2026-02-05","author":{"@type":"Organization","name":"RISEby Inc.","url":"https://riseby.net"}}</script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const Icon = ({ name, size = 24, className = "" }) => {
+            if (typeof lucide !== 'undefined' && lucide.icons && lucide.icons[name])
+                return React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", className }, lucide.icons[name].map(([tag, attrs], i) => React.createElement(tag, { ...attrs, key: i })));
+            return <span className="inline-block w-4 h-4 bg-gray-300 rounded-full"></span>;
+        };
+        const Header = () => {
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+            useEffect(() => { const h = () => setScrolled(window.scrollY > 20); window.addEventListener('scroll', h); return () => window.removeEventListener('scroll', h); }, []);
+            return (
+                <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-white/80 backdrop-blur-sm py-4 shadow-sm'}`}>
+                    <div className="container mx-auto px-4 flex items-center justify-between max-w-7xl">
+                        <a href="../../index.html" className="flex items-center gap-3 hover:opacity-80"><img src="../../assets/images/logo.svg" alt="RISEby" className="h-8 md:h-9" /></a>
+                        <nav className="hidden md:flex items-center gap-8">
+                            <a href="../../index.html#services" className="font-bold tracking-wide hover:opacity-70 text-slate-800">サービス</a>
+                            <a href="../index.html" className="font-bold tracking-wide text-slate-800">ブログ</a>
+                            <a href="../../about.html" className="font-bold tracking-wide hover:opacity-70 text-slate-800">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white hover:bg-slate-800 px-6 py-2.5 rounded-full font-bold">お問い合わせ</a>
+                        </nav>
+                        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2 text-slate-800"><Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} /></button>
+                    </div>
+                    {mobileMenuOpen && (
+                        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t shadow-xl p-4 flex flex-col gap-4">
+                            <a href="../../index.html#services" className="text-slate-800 font-bold py-3 border-b border-slate-50">サービス</a>
+                            <a href="../index.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">ブログ</a>
+                            <a href="../../about.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white text-center py-3.5 rounded-lg font-bold mt-2">お問い合わせ</a>
+                        </div>
+                    )}
+                </header>
+            );
+        };
+        const Footer = () => (
+            <footer className="bg-[#0B0F19] text-white pt-24 pb-12 border-t border-slate-800">
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <div className="flex flex-col lg:flex-row justify-between gap-16 mb-24">
+                        <div className="lg:w-1/3">
+                            <a href="../../index.html" className="block mb-8"><img src="../../assets/images/logo.svg" alt="RISEby" className="h-9 brightness-0 invert opacity-90" /></a>
+                            <p className="text-slate-400 text-sm mb-8">企業の複合的な経営課題を、AI・戦略・テクノロジー・人の観点から包括的に解決するコンサルティングファーム。</p>
+                            <div className="mb-10 text-sm text-slate-400 space-y-3">
+                                <p>〒150-6115 東京都渋谷区渋谷2-24-12</p>
+                                <p>渋谷スクランブルスクエア 15階</p>
+                                <a href="mailto:contact@riseby.net" className="hover:text-white flex items-center gap-2 mt-6 group"><span className="bg-slate-800 p-2 rounded-full group-hover:bg-slate-700"><Icon name="Mail" size={16} /></span>contact@riseby.net</a>
+                            </div>
+                            <p className="text-slate-600 text-xs">&copy; {new Date().getFullYear()} RISEby Inc.</p>
+                        </div>
+                        <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8">
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Services</h3>
+                                <ul className="space-y-3"><li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs">サービス一覧</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">新規事業開発</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">DXコンサルティング</a></li></ul></div>
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Company</h3>
+                                <ul className="space-y-3"><li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs">会社概要</a></li><li><a href="../index.html" className="text-slate-400 hover:text-white text-xs">ブログ</a></li><li><a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white text-xs">お問い合わせ</a></li></ul></div>
+                        </div>
+                    </div>
+                    <div className="border-t border-slate-800 pt-10 flex flex-wrap gap-8 justify-center text-xs text-slate-500">
+                        <a href="../../about.html" className="hover:text-white">会社概要</a><a href="../../privacy.html" className="hover:text-white">プライバシーポリシー</a>
+                    </div>
+                </div>
+            </footer>
+        );
+        const MermaidDiagram = ({ chart }) => {
+            useEffect(() => { if (typeof mermaid !== 'undefined') { mermaid.initialize({ theme: 'base', themeVariables: { fontSize: '18px', primaryTextColor: '#334155', primaryFontSize: '18px' } }); mermaid.init(); } }, []);
+            return <div className="mermaid overflow-x-auto max-w-4xl mx-auto text-lg">{chart}</div>;
+        };
+        const KeyPoint = ({ title, children }) => (
+            <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
+                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "Key Point"}</h5>
+                <div className="text-slate-700 text-sm leading-relaxed">{children}</div>
+            </div>
+        );
+        const WhyNowCards = () => (
+            <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose max-w-4xl mx-auto">
+                <figcaption className="text-lg font-bold mb-6 text-slate-800 text-center">透明性が「独立論点」になった理由</figcaption>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-x-auto">
+                    <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <h5 className="font-bold text-slate-800 mb-3 flex items-center gap-2"><Icon name="Scale" size={18} /> 規制</h5>
+                        <p className="text-sm text-slate-700">EUでAI生成コンテンツの透明性に関するコード策定が進行。表示・ラベリングが義務化の方向です。</p>
+                    </div>
+                    <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <h5 className="font-bold text-slate-800 mb-3 flex items-center gap-2"><Icon name="Users" size={18} /> 社会要請</h5>
+                        <p className="text-sm text-slate-700">ディープフェイクや偽情報への懸念から、消費者・投資家が「AIかどうか」の開示を求める動きが強まっています。</p>
+                    </div>
+                </div>
+            </figure>
+        );
+        const BlogArticle = () => (
+            <main className="pt-24 pb-16">
+                <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-100">
+                        <header className="text-center mb-12 border-b border-slate-100 pb-10">
+                            <div className="flex justify-center flex-wrap gap-2 mb-4">
+                                <span className="bg-cyan-100 text-cyan-800 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">透明性・真正性</span>
+                                <span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide">経営向け</span>
+                                <span className="bg-amber-50 text-amber-700 text-xs px-3 py-1 rounded-full font-bold tracking-wide">Living</span>
+                            </div>
+                            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">生成コンテンツ透明性：<br/>なぜ今「独立論点」なのか</h1>
+                            <div className="flex items-center justify-center space-x-4 text-sm text-slate-500">
+                                <time dateTime="2026-02-05">2026.02.05</time><span>&middot;</span>
+                                <span className="flex items-center gap-1"><Icon name="User" size={14} /> RISEby Editorial Team</span>
+                            </div>
+                        </header>
+                        <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
+                            <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">
+                                AIが生成したテキスト・画像・音声を、利用者や社会が「AI由来」と分かるように表示する「透明性」が、従来のAI説明責任とは別の、独立した論点として注目されています。EUではAI生成コンテンツの透明性に関するコード策定が進み、企業は表示・ラベリング・分類の実装を迫られています。本稿では、なぜ今この論点が浮上したのかと、企業が取り組むべき設計の要点を整理します。
+                            </p>
+                            <h2>1. なぜ「透明性」が独立論点になったか</h2>
+                            <p>これまでは、AIの透明性といえば「なぜその結論になったか」の説明可能性（XAI）や、高リスクAIにおける情報提供が中心でした。しかし生成AIの普及により、出力そのものが「人間が書いたのかAIが生成したのか」の区別がつきにくくなり、偽情報・ディープフェイク・著作権問題が社会問題化しました。規制側も、EUを中心に「生成コンテンツであることの表示」を義務づける動きが具体化しており、従来の説明責任とは別枠で「コンテンツの出自の透明性」が論点になっています。</p>
+                            <WhyNowCards />
+                            <h2>2. 規制と社会要請の交点</h2>
+                            <p>EUでは、AI生成コンテンツの透明性に関するコードやガイドラインの策定が進行中です。限定的リスクAIに対する透明性義務（AIであることの明示）に加え、生成物の表示・加工度の分類・透かしやメタデータの利用が議論されています。一方、消費者団体や投資家は、広告・マーケ・カスタマーサポートなどでAIが関与している場合の開示を求める声を強めており、規制がなくても「表示しておく」ことが信頼とリスク管理の観点から推奨されています。</p>
+                            <MermaidDiagram chart={`
+                                graph TD
+                                    A[生成コンテンツ] --> B{用途・加工度}
+                                    B --> C[完全生成：表示義務]
+                                    B --> D[AI支援・編集：開示推奨]
+                                    B --> E[人間主体：任意]
+                                    style C fill:#fef9c3,stroke:#ca8a04
+                                    style D fill:#e0f2fe,stroke:#003E68
+                            `} />
+                            <h2>3. 企業が取り組むべき設計の要点</h2>
+                            <p>まず、自社のコンテンツを「完全にAI生成」「AI支援・人間が編集」「人間主体」など、運用で破綻しないタキソノミーで分類し、どこまで表示するかを方針化します。次に、UI/UXと法務を接続した形で、表示のタイミング・文言・ラベリングのルールを決めます。広告・マーケ・対顧客コミュニケーションでは、表示義務や業界ガイドラインを確認し、証跡として「表示判断の根拠」を残せるようにします。</p>
+                            <KeyPoint title="表示ルールを「運用で回る」形で定義する">
+                                「全部表示」「全部非表示」の二択ではなく、用途・リスク・法域に応じた表示ルールを明文化し、例外や更新の手順も決めておくと、規制変更や監査対応に強い体制になります。
+                            </KeyPoint>
+                            <h2>まとめ</h2>
+                            <p>生成コンテンツの透明性は、規制と社会要請の両面で独立論点化しています。表示・ラベリング・分類の設計を早めに整え、四半期ごとに規制動向を追うことをお勧めします。</p>
+                        </div>
+                        <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
+                            <h3 className="text-2xl font-bold text-white mb-4">透明性・表示設計の支援</h3>
+                            <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">表示ルールの策定、タキソノミー設計、UI/UXと法務の接続までサポートします。</p>
+                            <a href="mailto:contact@riseby.net" className="inline-flex items-center justify-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all"><Icon name="Mail" size={18} /> お問い合わせ</a>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        );
+        const App = () => <div className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-800"><Header /><BlogArticle /><Footer /></div>;
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

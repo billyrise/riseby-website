@@ -17,8 +17,11 @@
   <meta property="og:image" content="https://riseby.net/assets/images/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
   
-  <!-- Canonical -->
+  <!-- Canonical & Alternate (hreflang) -->
   <link rel="canonical" href="https://riseby.net/services/">
+  <link rel="alternate" hreflang="ja" href="https://riseby.net/services/">
+  <link rel="alternate" hreflang="en" href="https://riseby.net/en/services/">
+  <link rel="alternate" hreflang="x-default" href="https://riseby.net/services/">
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -139,9 +142,16 @@
         <a href="../index.html" class="flex items-center">
           <img src="../assets/images/logo.svg" alt="RISEby" class="h-8">
         </a>
-        <a href="mailto:contact@riseby.net" class="hidden md:inline-flex items-center px-5 py-2 bg-navy text-white rounded-full text-sm font-medium hover:bg-navy-light transition">
-          無料相談する
-        </a>
+        <div class="hidden md:flex items-center gap-6">
+          <a href="../index.html#services" class="text-gray-700 hover:text-navy font-medium text-sm">サービス</a>
+          <a href="../blog/" class="text-gray-700 hover:text-navy font-medium text-sm">ブログ</a>
+          <a href="../about.html" class="text-gray-700 hover:text-navy font-medium text-sm">会社概要</a>
+          <a href="https://aimoaas.com/ja/" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-navy font-medium text-sm">AIMOaaS™</a>
+          <a href="../en/" class="text-gray-700 hover:text-navy font-medium text-sm flex items-center gap-1">🇺🇸 EN</a>
+          <a href="mailto:contact@riseby.net" class="inline-flex items-center px-5 py-2 bg-navy text-white rounded-full text-sm font-medium hover:bg-navy-light transition">
+            無料相談する
+          </a>
+        </div>
       </div>
     </nav>
   </header>

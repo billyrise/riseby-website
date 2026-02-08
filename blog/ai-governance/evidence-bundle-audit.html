@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://riseby.net/blog/ai-governance/evidence-bundle-audit.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="RISEby inc.">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://riseby.net/blog/ai-governance/evidence-bundle-audit.html">
+    <meta property="og:title" content="Evidence Bundle：監査法人が欲しい&quot;束ね方&quot; | RISEby Blog">
+    <meta property="og:description" content="Evidence Bundle：監査法人が欲しい&quot;束ね方&quot;。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。">
+    <meta property="og:image" content="https://riseby.net/assets/images/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Evidence Bundle：監査法人が欲しい&quot;束ね方&quot; | RISEby Blog</title>
+    <meta name="description" content="Evidence Bundle：監査法人が欲しい&quot;束ね方&quot;。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { brand: { blue: '#003E68', red: '#ED1C24', dark: '#0B0F19' } }, fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], display: ['"Montserrat"', 'sans-serif'] } } } }</script>
+    <style>body { font-family: "Noto Sans JP", sans-serif; }
+    .mermaid { display: flex; justify-content: center; margin: 2rem 0; background: #f8fafc; padding: 1rem; border-radius: 0.5rem; }
+    .mermaid svg { max-width: 100%; }
+    .mermaid svg text { font-size: 1.125rem !important; }
+    .mermaid .nodeLabel, .mermaid .edgeLabel { font-size: 1.125rem !important; }</style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Evidence Bundle：監査法人が欲しい&quot;束ね方&quot;","datePublished":"2026-02-05","author":{"@type":"Organization","name":"RISEby Inc.","url":"https://riseby.net"}}</script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const Icon = ({ name, size = 24, className = "" }) => {
+            if (typeof lucide !== 'undefined' && lucide.icons && lucide.icons[name])
+                return React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", className }, lucide.icons[name].map(([tag, attrs], i) => React.createElement(tag, { ...attrs, key: i })));
+            return <span className="inline-block w-4 h-4 bg-gray-300 rounded-full"></span>;
+        };
+        const Header = () => {
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+            useEffect(() => { const h = () => setScrolled(window.scrollY > 20); window.addEventListener('scroll', h); return () => window.removeEventListener('scroll', h); }, []);
+            return (
+                <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-white/80 backdrop-blur-sm py-4 shadow-sm'}`}>
+                    <div className="container mx-auto px-4 flex items-center justify-between max-w-7xl">
+                        <a href="../../index.html" className="flex items-center gap-3 hover:opacity-80"><img src="../../assets/images/logo.svg" alt="RISEby" className="h-8 md:h-9" /></a>
+                        <nav className="hidden md:flex items-center gap-8">
+                            <a href="../../index.html#services" className="font-bold tracking-wide hover:opacity-70 text-slate-800">サービス</a>
+                            <a href="../index.html" className="font-bold tracking-wide text-slate-800">ブログ</a>
+                            <a href="../../about.html" className="font-bold tracking-wide hover:opacity-70 text-slate-800">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white hover:bg-slate-800 px-6 py-2.5 rounded-full font-bold">お問い合わせ</a>
+                        </nav>
+                        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2 text-slate-800"><Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} /></button>
+                    </div>
+                    {mobileMenuOpen && (
+                        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t shadow-xl p-4 flex flex-col gap-4">
+                            <a href="../../index.html#services" className="text-slate-800 font-bold py-3 border-b border-slate-50">サービス</a>
+                            <a href="../index.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">ブログ</a>
+                            <a href="../../about.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white text-center py-3.5 rounded-lg font-bold mt-2">お問い合わせ</a>
+                        </div>
+                    )}
+                </header>
+            );
+        };
+        const Footer = () => (
+            <footer className="bg-[#0B0F19] text-white pt-24 pb-12 border-t border-slate-800">
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <div className="flex flex-col lg:flex-row justify-between gap-16 mb-24">
+                        <div className="lg:w-1/3">
+                            <a href="../../index.html" className="block mb-8"><img src="../../assets/images/logo.svg" alt="RISEby" className="h-9 brightness-0 invert opacity-90" /></a>
+                            <p className="text-slate-400 text-sm mb-8">企業の複合的な経営課題を、AI・戦略・テクノロジー・人の観点から包括的に解決するコンサルティングファーム。</p>
+                            <div className="mb-10 text-sm text-slate-400 space-y-3">
+                                <p>〒150-6115 東京都渋谷区渋谷2-24-12</p>
+                                <p>渋谷スクランブルスクエア 15階</p>
+                                <a href="mailto:contact@riseby.net" className="hover:text-white flex items-center gap-2 mt-6 group"><span className="bg-slate-800 p-2 rounded-full group-hover:bg-slate-700"><Icon name="Mail" size={16} /></span>contact@riseby.net</a>
+                            </div>
+                            <p className="text-slate-600 text-xs">&copy; {new Date().getFullYear()} RISEby Inc.</p>
+                        </div>
+                        <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8">
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Services</h3>
+                                <ul className="space-y-3"><li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs">サービス一覧</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">新規事業開発</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">DXコンサルティング</a></li></ul></div>
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Company</h3>
+                                <ul className="space-y-3"><li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs">会社概要</a></li><li><a href="../index.html" className="text-slate-400 hover:text-white text-xs">ブログ</a></li><li><a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white text-xs">お問い合わせ</a></li></ul></div>
+                        </div>
+                    </div>
+                    <div className="border-t border-slate-800 pt-10 flex flex-wrap gap-8 justify-center text-xs text-slate-500">
+                        <a href="../../about.html" className="hover:text-white">会社概要</a><a href="../../privacy.html" className="hover:text-white">プライバシーポリシー</a>
+                    </div>
+                </div>
+            </footer>
+        );
+        const MermaidDiagram = ({ chart }) => {
+            useEffect(() => { if (typeof mermaid !== 'undefined') { mermaid.initialize({ theme: 'base', themeVariables: { fontSize: '18px', primaryTextColor: '#334155', primaryFontSize: '18px' } }); mermaid.init(); } }, []);
+            return <div className="mermaid overflow-x-auto max-w-4xl mx-auto text-lg">{chart}</div>;
+        };
+        const KeyPoint = ({ title, children }) => (
+            <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
+                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "Key Point"}</h5>
+                <div className="text-slate-700 text-sm leading-relaxed">{children}</div>
+            </div>
+        );
+        const mermaidChart = `graph LR
+        A[申請] --> B[審査]
+        B --> C[例外管理]
+        C --> D[証跡・更新]
+        style A fill:#e0f2fe,stroke:#003E68
+        style B fill:#e0f2fe,stroke:#003E68
+        style C fill:#e0f2fe,stroke:#003E68
+        style D fill:#e0f2fe,stroke:#003E68`;
+        const BlogArticle = () => (
+            <main className="pt-24 pb-16">
+                <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-100">
+                        <header className="text-center mb-12 border-b border-slate-100 pb-10">
+                            <div className="flex justify-center flex-wrap gap-2 mb-4">
+                                <span className="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">運用OS</span>
+                                <span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide">実装向け</span>
+                                
+                            </div>
+                            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">Evidence Bundle：監査法人が欲しい"束ね方"</h1>
+                            <div className="flex items-center justify-center space-x-4 text-sm text-slate-500">
+                                <time dateTime="2026-02-05">2026.02.05</time><span>&middot;</span>
+                                <span className="flex items-center gap-1"><Icon name="User" size={14} /> RISEby Editorial Team</span>
+                            </div>
+                        </header>
+                        <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
+                                <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">
+Evidence Bundle：監査法人が欲しい"束ね方"は、企業のAIガバナンスにおいて経営・法務・監査が意思決定するうえで重要なテーマです。規制・フレームワークの動向をふまえ、実装と証跡の両面で使える形に整理します。本稿では背景、設計のポイント、監査・説明責任への接続まで一通り押さえ、次のアクションに繋げられるようにします。
+</p>
+                                <h2>1. 背景と求められる統制</h2>
+                                <p>規制や業界の期待は年々具体化しており、同じテーマでも「何を証跡として残すか」「誰が責任を負うか」を明確にしておくことが、監査と説明責任に対応するうえで不可欠です。</p>
+                                <p>本テーマに関連する主な規制・ガイドライン（EU AI Act、NIST AI RMF、各国ガイドライン等）を参照し、自社の利用形態に合わせて統制の粒度を決めます。</p>
+                                <p>Living（生きている文書）として更新される規制には、四半期ごとの棚卸しやホライズンスキャンを組み込むと、後手に回りにくくなります。</p>
+                                <MermaidDiagram chart={mermaidChart} />
+                                <h2>2. 設計のポイント</h2>
+                                <p>ポリシーとプロセスを分けて設計し、プロセスでは申請・承認・記録・例外管理を一気通貫で回せるようにします。ツールで自動化できる部分と、人の判断が必要な部分を切り分け、証跡が残る設計にします。</p>
+                                <p>特に高リスク用途や対外的な提供では、適合性評価・技術文書・QMSの要件を満たす設計を前もって組み込んでおくことが、規制対応と監査の効率化につながります。</p>
+                                <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose max-w-4xl mx-auto">
+                <figcaption className="text-lg font-bold mb-6 text-slate-800 text-center">運用の流れ</figcaption>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-x-auto">
+                    <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <h5 className="font-bold text-slate-700 mb-3 flex items-center gap-2"><Icon name="List" size={18} /> 申請・審査</h5>
+                        <ul className="text-sm text-slate-700 space-y-1.5">
+                            <li>ユースケース登録</li>
+                            <li>リスク閾値</li>
+                            <li>例外申請</li>
+                        </ul>
+                    </div>
+                    <div className="bg-blue-50 p-4 rounded-lg border border-brand-blue/30">
+                        <h5 className="font-bold text-brand-blue mb-3 flex items-center gap-2"><Icon name="CheckCircle" size={18} /> 証跡・更新</h5>
+                        <ul className="text-sm text-slate-700 space-y-1.5">
+                            <li>ログ</li>
+                            <li>Evidence Bundle</li>
+                            <li>四半期見直し</li>
+                        </ul>
+                    </div>
+                </div>
+            </figure>
+                                <h2>3. 監査・説明責任への接続</h2>
+                                <p>内部監査や外部監査が期待する「何をどこまで残すか」を事前に整理し、ログ・文書・承認履歴を束ねたEvidence Bundleを定期的に更新できるようにします。</p>
+                                <p>規制がLivingに更新される場合は、四半期ごとの棚卸しを推奨します。自社の状況を整理したい、証跡の設計から相談したい場合は、専門家への相談も有効です。</p>
+                                <KeyPoint title="証跡と責任の範囲を事前に決め、運用で回す">
+                どの統制も「誰が何を記録し、誰が説明するか」を明示し、監査と規制対応に耐える証跡を残す設計にすると、後から追いかけずに済みます。自社で確認したい点やロードマップの整理について、相談したい場合はお気軽にご連絡ください。
+            </KeyPoint>
+                                
+                            <h2>参考・参照</h2>
+                            <ul className="list-disc pl-6 space-y-2 text-slate-700">
+                                <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">NIST AI RMF・生成AIプロファイル</a></li>
+                                <li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20250328_2.pdf" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">AI事業者ガイドライン（経済産業省）</a></li>
+                                <li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">ISO/IEC 42001（AIMS）</a></li>
+                            </ul>
+                                <h2>まとめ</h2>
+                            <p>Evidence Bundle：監査法人が欲しい"束ね方"について、背景・設計・監査接続の三点を押さえ、実装と証跡を両立させる設計が重要です。規制追随と改善サイクルを組み込んだ運用を推奨します。</p>
+                            <p>次の一歩として、自社の利用形態と規制の適用範囲を洗い出し、どこから統制を強化するか優先順位をつけるところから始めることをお勧めします。ご不明点や具体的な設計の相談は、お気軽に問い合わせください。</p>
+                        </div>
+                        <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
+                            <h3 className="text-2xl font-bold text-white mb-4">AIガバナンスの設計・実装支援</h3>
+                            <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">利用規程、評価・透明性の設計から監査証跡まで、一気通貫でサポートします。</p>
+                            <a href="mailto:contact@riseby.net" className="inline-flex items-center justify-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all"><Icon name="Mail" size={{18}} /> お問い合わせ</a>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        );
+        const App = () => <div className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-800"><Header /><BlogArticle /><Footer /></div>;
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

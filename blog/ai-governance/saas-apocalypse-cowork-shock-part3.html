@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://riseby.net/blog/ai-governance/saas-apocalypse-cowork-shock-part3.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="RISEby inc.">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://riseby.net/blog/ai-governance/saas-apocalypse-cowork-shock-part3.html">
+    <meta property="og:title" content="SaaSアポカリプスとCoworkショック（後編）：Evidence bundleの重要性拡大とAIガバナンス | RISEby Blog">
+    <meta property="og:description" content="Coworkショック後編。Evidence bundleの重要性拡大と、AIガバナンスにおける証跡の設計・運用を解説します。">
+    <meta property="og:image" content="https://riseby.net/assets/images/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>SaaSアポカリプスとCoworkショック（後編）：Evidence bundleの重要性拡大とAIガバナンス | RISEby Blog</title>
+    <meta name="description" content="Coworkショック後編。Evidence bundleの重要性拡大と、AIガバナンスにおける証跡の設計・運用を解説します。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { brand: { blue: '#003E68', red: '#ED1C24', dark: '#0B0F19' } }, fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], display: ['"Montserrat"', 'sans-serif'] } } } }</script>
+    <style>body { font-family: "Noto Sans JP", sans-serif; }
+    .mermaid { display: flex; justify-content: center; margin: 2rem 0; background: #f8fafc; padding: 1rem; border-radius: 0.5rem; }
+    .mermaid svg { max-width: 100%; }
+    .mermaid svg text { font-size: 1.125rem !important; }
+    .mermaid .nodeLabel, .mermaid .edgeLabel { font-size: 1.125rem !important; }</style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"SaaSアポカリプスとCoworkショック（後編）：Evidence bundleの重要性拡大とAIガバナンス","datePublished":"2026-02-05","author":{"@type":"Organization","name":"RISEby Inc.","url":"https://riseby.net"}}</script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const Icon = ({ name, size = 24, className = "" }) => {
+            if (typeof lucide !== 'undefined' && lucide.icons && lucide.icons[name])
+                return React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", className }, lucide.icons[name].map(([tag, attrs], i) => React.createElement(tag, { ...attrs, key: i })));
+            return <span className="inline-block w-4 h-4 bg-gray-300 rounded-full"></span>;
+        };
+        const Header = () => {
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+            useEffect(() => { const h = () => setScrolled(window.scrollY > 20); window.addEventListener('scroll', h); return () => window.removeEventListener('scroll', h); }, []);
+            return (
+                <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-white/80 backdrop-blur-sm py-4 shadow-sm'}`}>
+                    <div className="container mx-auto px-4 flex items-center justify-between max-w-7xl">
+                        <a href="../../index.html" className="flex items-center gap-3 hover:opacity-80"><img src="../../assets/images/logo.svg" alt="RISEby" className="h-8 md:h-9" /></a>
+                        <nav className="hidden md:flex items-center gap-8">
+                            <a href="../../index.html#services" className="font-bold tracking-wide hover:opacity-70 text-slate-800">サービス</a>
+                            <a href="../index.html" className="font-bold tracking-wide text-slate-800">ブログ</a>
+                            <a href="../../about.html" className="font-bold tracking-wide hover:opacity-70 text-slate-800">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white hover:bg-slate-800 px-6 py-2.5 rounded-full font-bold">お問い合わせ</a>
+                        </nav>
+                        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2 text-slate-800"><Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} /></button>
+                    </div>
+                    {mobileMenuOpen && (
+                        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t shadow-xl p-4 flex flex-col gap-4">
+                            <a href="../../index.html#services" className="text-slate-800 font-bold py-3 border-b border-slate-50">サービス</a>
+                            <a href="../index.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">ブログ</a>
+                            <a href="../../about.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white text-center py-3.5 rounded-lg font-bold mt-2">お問い合わせ</a>
+                        </div>
+                    )}
+                </header>
+            );
+        };
+        const Footer = () => (
+            <footer className="bg-[#0B0F19] text-white pt-24 pb-12 border-t border-slate-800">
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <div className="flex flex-col lg:flex-row justify-between gap-16 mb-24">
+                        <div className="lg:w-1/3">
+                            <a href="../../index.html" className="block mb-8"><img src="../../assets/images/logo.svg" alt="RISEby" className="h-9 brightness-0 invert opacity-90" /></a>
+                            <p className="text-slate-400 text-sm mb-8">企業の複合的な経営課題を、AI・戦略・テクノロジー・人の観点から包括的に解決するコンサルティングファーム。</p>
+                            <div className="mb-10 text-sm text-slate-400 space-y-3">
+                                <p>〒150-6115 東京都渋谷区渋谷2-24-12</p>
+                                <p>渋谷スクランブルスクエア 15階</p>
+                                <a href="mailto:contact@riseby.net" className="hover:text-white flex items-center gap-2 mt-6 group"><span className="bg-slate-800 p-2 rounded-full group-hover:bg-slate-700"><Icon name="Mail" size={16} /></span>contact@riseby.net</a>
+                            </div>
+                            <p className="text-slate-600 text-xs">&copy; {new Date().getFullYear()} RISEby Inc.</p>
+                        </div>
+                        <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8">
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Services</h3>
+                                <ul className="space-y-3"><li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs">サービス一覧</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">新規事業開発</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">DXコンサルティング</a></li></ul></div>
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Company</h3>
+                                <ul className="space-y-3"><li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs">会社概要</a></li><li><a href="../index.html" className="text-slate-400 hover:text-white text-xs">ブログ</a></li><li><a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white text-xs">お問い合わせ</a></li></ul></div>
+                        </div>
+                    </div>
+                    <div className="border-t border-slate-800 pt-10 flex flex-wrap gap-8 justify-center text-xs text-slate-500">
+                        <a href="../../about.html" className="hover:text-white">会社概要</a><a href="../../privacy.html" className="hover:text-white">プライバシーポリシー</a>
+                    </div>
+                </div>
+            </footer>
+        );
+        const MermaidDiagram = ({ chart }) => {
+            useEffect(() => { if (typeof mermaid !== 'undefined') { mermaid.initialize({ theme: 'base', themeVariables: { fontSize: '18px', primaryTextColor: '#334155', primaryFontSize: '18px' } }); mermaid.init(); } }, []);
+            return <div className="mermaid overflow-x-auto max-w-4xl mx-auto text-lg">{chart}</div>;
+        };
+        const KeyPoint = ({ title, children }) => (
+            <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
+                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "Key Point"}</h5>
+                <div className="text-slate-700 text-sm leading-relaxed">{children}</div>
+            </div>
+        );
+        const mermaidChart = `graph LR
+        A[エージェント利用] --> B[ログ・承認]
+        B --> C[Evidence bundle]
+        C --> D[監査・規制対応]
+        style A fill:#e0f2fe,stroke:#003E68
+        style B fill:#e0f2fe,stroke:#003E68
+        style C fill:#dcfce7,stroke:#15803d
+        style D fill:#e0f2fe,stroke:#003E68`;
+        const BlogArticle = () => (
+            <main className="pt-24 pb-16">
+                <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-100">
+                        <header className="text-center mb-12 border-b border-slate-100 pb-10">
+                            <div className="flex justify-center flex-wrap gap-2 mb-4">
+                                <span className="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">監査</span>
+                                <span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide">実装向け</span>
+                                <span className="bg-amber-50 text-amber-700 text-xs px-3 py-1 rounded-full font-bold tracking-wide">Living</span>
+                            </div>
+                            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">SaaSアポカリプスとCoworkショック（後編）：Evidence bundleの重要性拡大とAIガバナンス</h1>
+                            <div className="flex items-center justify-center space-x-4 text-sm text-slate-500">
+                                <time dateTime="2026-02-05">2026.02.05</time><span>&middot;</span>
+                                <span className="flex items-center gap-1"><Icon name="User" size={14} /> RISEby Editorial Team</span>
+                            </div>
+                        </header>
+                        <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
+                                <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">
+Coworkショックの後編では、自律型AIエージェントの普及が進むなか、今後のAIガバナンスにおいてEvidence bundle（証跡の束）の重要性がどう拡大するかを論じます。監査・規制対応・説明責任を一気通貫で支える設計を整理します。
+</p>
+                                <h2>1. なぜEvidence bundleがこれまで以上に重要になるか</h2>
+                                <p>AIエージェントがファイル操作・データ抽出・意思決定に近いタスクを実行する場合、「何を・いつ・どの条件で行ったか」を証跡として残さないと、監査や規制当局・顧客からの説明要求に応えられません。Coworkのようなツールが社内に広がると、従来の「人が操作したログ」に加え、「エージェントが実行したアクションのログ」「入力・出力・承認の記録」を束ねたEvidence bundleが、説明責任の要になります。</p>
+                                <p>EU AI Actをはじめとする規制では、高リスク用途や透明性義務に伴い、技術文書・ログ・評価結果を保持することが求められます。Evidence bundleは、それらを一括で管理・提示する考え方です。</p>
+                                <MermaidDiagram chart={mermaidChart} />
+                                <h2>2. Evidence bundleに含めるべき要素</h2>
+                                <p>最低限、次の要素を束ねる設計が推奨されます。利用規程と承認履歴、エージェントの入力・出力・実行ログ、評価（Evals）の結果と日付、インシデントや例外の記録、そして規制・監査要件ごとのマッピングです。Coworkのような自律型エージェントを利用する場合は、どのタスクを許可したか・どのデータにアクセスさせたか・出力を誰が確認したかを、証跡として残すプロセスが欠かせません。</p>
+                                <p>これらを「監査法人が欲しい束ね方」で整え、四半期やリリース単位で更新できるようにしておくと、突発的な説明要求にも対応しやすくなります。</p>
+                                <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose max-w-4xl mx-auto">
+                <figcaption className="text-lg font-bold mb-6 text-slate-800 text-center">Evidence bundleの構成</figcaption>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-x-auto">
+                    <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <h5 className="font-bold text-slate-700 mb-3 flex items-center gap-2"><Icon name="List" size={18} /> 記録・証跡</h5>
+                        <ul className="text-sm text-slate-700 space-y-1.5">
+                            <li>利用規程・承認履歴</li>
+                            <li>入力・出力・実行ログ</li>
+                            <li>Evals結果と日付</li>
+                        </ul>
+                    </div>
+                    <div className="bg-blue-50 p-4 rounded-lg border border-brand-blue/30">
+                        <h5 className="font-bold text-brand-blue mb-3 flex items-center gap-2"><Icon name="CheckCircle" size={18} /> 監査・規制</h5>
+                        <ul className="text-sm text-slate-700 space-y-1.5">
+                            <li>インシデント・例外の記録</li>
+                            <li>規制要件とのマッピング</li>
+                            <li>四半期・リリース単位の更新</li>
+                        </ul>
+                    </div>
+                </div>
+            </figure>
+                                <h2>3. 今後のAIガバナンス：設計と運用の両輪</h2>
+                                <p>Evidence bundleは一度作って終わりではなく、プロダクトの変更・規制のLivingな更新・監査サイクルに合わせて更新し続ける必要があります。Coworkショックを経て、企業は「AIエージェントをどう統制し、どう説明するか」をガバナンスの中心に据える動きを強めています。設計の段階で証跡の取り方を組み込み、運用でログと承認をためていく両輪が、今後のAIガバナンスの標準になっていくでしょう。</p>
+                                <KeyPoint title="証跡を束ね、説明責任を設計の中心に置く">
+                Evidence bundleを事前に設計し、エージェント利用の承認・ログ・評価を運用でためていくことで、規制と監査の波に後手を取らずに済みます。設計から相談したい場合は、お気軽にご連絡ください。
+            </KeyPoint>
+                                
+                            <h2>参考・参照</h2>
+                            <ul className="list-disc pl-6 space-y-2 text-slate-700">
+                                <li><a href="https://www.businessinsider.com/anthropic-claude-cowork-release-ai-vibecoded-2026-1" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">Anthropic、Claude Coworkを発表（Business Insider）</a></li>
+                                <li><a href="https://news.bensbites.com/posts/55738-anthropics-claude-cowork-launch-has-revived-fears-about-disruption-that-weighed-on-saas-stocks-in-2025-morgan-stanley-saas-index-is-down-15-so-far-in-2026" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">SaaS株への波及・モルガン・スタンレー指数（Bloomberg / Ben's Bites）</a></li>
+                                <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">NIST AI RMF・生成AIプロファイル</a></li>
+                                <li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20250328_2.pdf" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">AI事業者ガイドライン（経済産業省）</a></li>
+                            </ul>
+                                <h2>まとめ</h2>
+                            <p>自律型AIエージェントの普及に伴い、Evidence bundleの重要性はさらに高まります。利用規程・ログ・評価・例外記録を束ね、監査と規制対応に耐える証跡を設計しておくことが、Coworkショック以降のAIガバナンスでは不可欠です。本シリーズで扱った背景・市場・Evidenceの三点を、自社のロードマップに落とし込む際は、お気軽にご相談ください。</p>
+                        </div>
+                        <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
+                            <h3 className="text-2xl font-bold text-white mb-4">AIガバナンスの設計・実装支援</h3>
+                            <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">利用規程、評価・透明性の設計から監査証跡まで、一気通貫でサポートします。AIMOaaSでガバナンス運用を効率化。</p>
+                            <div className="flex flex-wrap justify-center gap-4">
+                                <a href="https://aimoaas.com/ja/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all">AIMOaaSをみる</a>
+                                <a href="mailto:contact@riseby.net" className="inline-flex items-center gap-2 border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-slate-900 transition-all"><Icon name="Mail" size={18} /> お問い合わせ</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        );
+        const App = () => <div className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-800"><Header /><BlogArticle /><Footer /></div>;
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
