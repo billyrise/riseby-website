@@ -817,13 +817,13 @@ def build_body_html(article):
                 <figcaption className="text-lg font-bold mb-6 text-slate-800 text-center">{escape_html(card_caption)}</figcaption>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-x-auto">
                     <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                        <h5 className="font-bold text-slate-700 mb-3 flex items-center gap-2"><Icon name="List" size={{18}} /> {escape_html(card_left_title)}</h5>
+                        <h5 className="font-bold text-slate-700 mb-3 flex items-center gap-2"><Icon name="List" size={18} /> {escape_html(card_left_title)}</h5>
                         <ul className="text-sm text-slate-700 space-y-1.5">
 {left_lis}
                         </ul>
                     </div>
                     <div className="bg-blue-50 p-4 rounded-lg border border-brand-blue/30">
-                        <h5 className="font-bold text-brand-blue mb-3 flex items-center gap-2"><Icon name="CheckCircle" size={{18}} /> {escape_html(card_right_title)}</h5>
+                        <h5 className="font-bold text-brand-blue mb-3 flex items-center gap-2"><Icon name="CheckCircle" size={18} /> {escape_html(card_right_title)}</h5>
                         <ul className="text-sm text-slate-700 space-y-1.5">
 {right_lis}
                         </ul>
@@ -855,7 +855,7 @@ def render_article(article):
                             <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">利用規程、評価・透明性の設計から監査証跡まで、一気通貫でサポートします。AIMOaaSでガバナンス運用を効率化。</p>
                             <div className="flex flex-wrap justify-center gap-4">
                                 <a href="{escape_attr(AIMOaaS_URL)}" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all">AIMOaaSをみる</a>
-                                <a href="mailto:contact@riseby.net" className="inline-flex items-center gap-2 border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-slate-900 transition-all"><Icon name="Mail" size={{18}} /> お問い合わせ</a>
+                                <a href="mailto:contact@riseby.net" className="inline-flex items-center gap-2 border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-slate-900 transition-all"><Icon name="Mail" size={18} /> お問い合わせ</a>
                             </div>
                         </div>'''
     else:
@@ -863,7 +863,7 @@ def render_article(article):
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
                             <h3 className="text-2xl font-bold text-white mb-4">AIガバナンスの設計・実装支援</h3>
                             <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">利用規程、評価・透明性の設計から監査証跡まで、一気通貫でサポートします。</p>
-                            <a href="mailto:contact@riseby.net" className="inline-flex items-center justify-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all"><Icon name="Mail" size={{18}} /> お問い合わせ</a>
+                            <a href="mailto:contact@riseby.net" className="inline-flex items-center justify-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all"><Icon name="Mail" size={18} /> お問い合わせ</a>
                         </div>'''
 
     return f"""<!DOCTYPE html>
