@@ -73,7 +73,7 @@
                     <div className="flex flex-col lg:flex-row justify-between gap-16 mb-24">
                         <div className="lg:w-1/3">
                             <a href="../../index.html" className="block mb-8"><img src="../../assets/images/logo.svg" alt="RISEby" className="h-9 brightness-0 invert opacity-90" /></a>
-                            <p className="text-slate-400 text-sm mb-8">企業の複合的な経営課題を、AI・戦略・テクノロジー・人の観点から包括的に解決するコンサルティングファーム。</p>
+                            <p className="text-slate-400 text-sm mb-8">複合的な経営課題を、AI・戦略・テクノロジー・人の観点から整理し、実行に落とすコンサルティングファーム。</p>
                             <div className="mb-10 text-sm text-slate-400 space-y-3">
                                 <p>〒150-6115 東京都渋谷区渋谷2-24-12</p>
                                 <p>渋谷スクランブルスクエア 15階</p>
@@ -82,9 +82,9 @@
                             <p className="text-slate-600 text-xs">&copy; {new Date().getFullYear()} RISEby Inc.</p>
                         </div>
                         <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8">
-                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Services</h3>
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">サービス</h3>
                                 <ul className="space-y-3"><li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs">サービス一覧</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">新規事業開発</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">DXコンサルティング</a></li></ul></div>
-                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Company</h3>
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">会社</h3>
                                 <ul className="space-y-3"><li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs">会社概要</a></li><li><a href="../index.html" className="text-slate-400 hover:text-white text-xs">ブログ</a></li><li><a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white text-xs">お問い合わせ</a></li></ul></div>
                         </div>
                     </div>
@@ -100,9 +100,24 @@
         };
         const KeyPoint = ({ title, children }) => (
             <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
-                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "Key Point"}</h5>
-                <div className="text-slate-700 text-sm leading-relaxed">{children}</div>
+                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "要点"}</h5>
+                <div className="text-slate-700 text-base leading-relaxed">{children}</div>
             </div>
+        );
+        const CompareCard = ({ caption, leftTitle, leftItems, rightTitle, rightItems }) => (
+            <figure className="my-8 not-prose">
+                <figcaption className="font-bold text-slate-700 mb-3 text-base">{caption}</figcaption>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+                        <h6 className="font-bold text-slate-800 mb-2 text-base">{leftTitle}</h6>
+                        <ul className="list-disc pl-5 space-y-1 text-base text-slate-700">{(leftItems || '').split('\n').filter(Boolean).map((item, i) => <li key={i}>{item}</li>)}</ul>
+                    </div>
+                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+                        <h6 className="font-bold text-slate-800 mb-2 text-base">{rightTitle}</h6>
+                        <ul className="list-disc pl-5 space-y-1 text-base text-slate-700">{(rightItems || '').split('\n').filter(Boolean).map((item, i) => <li key={i}>{item}</li>)}</ul>
+                    </div>
+                </div>
+            </figure>
         );
         const StakeholderCards = () => (
             <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose max-w-4xl mx-auto">
@@ -140,31 +155,80 @@
                             </div>
                         </header>
                         <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
-                            <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">
-                                AIを利用する企業には、利用の事実や影響を「開示」し、問われたときに「説明」する責任が、顧客・規制・監査のそれぞれから求められます。EU AI Actの透明性義務をはじめ、何を誰にどう開示し、証跡をどう残すかを整理します。
-                            </p>
-                            <h2>1. 透明性義務の全体像</h2>
-                            <p>透明性義務とは、AIシステムを利用していること、その目的や限界、場合によっては生成コンテンツであることを、利用者や関係者に分かるようにすることです。EU AI Actでは、限定的リスクAIに対する透明性義務（AIであることの明示、生成コンテンツの表示等）が規定されており、違反には制裁の対象となり得ます。顧客向けには契約や利用規約・画面表示で、規制当局には届出や報告で、監査には証跡と判断根拠で、それぞれに応じた開示設計が必要です。</p>
-                            <MermaidDiagram chart={`
-                                graph TD
-                                    A[透明性義務] --> B[顧客向け開示]
-                                    A --> C[規制向け履行]
-                                    A --> D[監査向け証跡]
-                                    style A fill:#bae6fd,stroke:#003E68
-                                    style B fill:#e0f2fe,stroke:#003E68
-                                    style C fill:#e0f2fe,stroke:#003E68
-                                    style D fill:#e0f2fe,stroke:#003E68
-                            `} />
-                            <h2>2. 顧客・利用者への開示</h2>
-                            <p>AIが意思決定やコンテンツ生成に関与している場合、その事実を明示し、影響の範囲（例：推薦結果への影響、自動応答であること）を伝えます。必要に応じてオプトアウトや苦情窓口を用意し、説明請求に応じられる体制にします。B2Bでは契約に開示・説明の水準を盛り込み、B2CではUI/UXで「AI利用」が分かるようにします。</p>
-                            <StakeholderCards />
-                            <h2>3. 規制・監査への説明責任</h2>
-                            <p>規制については、適用される法域の透明性義務（表示のタイミング・内容・例外）を満たすよう、手順と記録を整えます。監査については、開示の有無や表示の判断を「なぜそのようにしたか」の根拠とあわせて証跡として残し、監査人が確認できる形にします。開示しない場合の理由（例：機密性・法的不開示）も文書化しておくと、説明責任を果たしやすくなります。</p>
-                            <KeyPoint title="顧客・規制・監査の「誰に何を」を分けて設計する">
-                                透明性は「一律に全部開示」ではなく、顧客には分かりやすさと信頼、規制には義務の履行、監査には証跡と再現性を意識した設計にすると、実務で破綻しません。
-                            </KeyPoint>
-                            <h2>まとめ</h2>
-                            <p>AI利用の透明性義務は、顧客向け開示・規制対応・監査証跡の三つをセットで設計します。表示ルールと記録の型を整え、四半期ごとに規制変更を追うことをお勧めします。</p>
+                                <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">
+本稿が解く実務の問いは一つである。透明性義務：AI利用の開示と説明責任（顧客・規制・監査）を運用に落とすうえで、何を証跡として残し誰が責任を負うかを明確にすることである。
+                                </p>
+
+                                <h2>1. 定義を揃える</h2>
+                                <p><strong>透明性義務</strong>を、AIガバナンスの文脈で扱う場合、方針・手続き・記録・継続評価・是正を一体的に設計する必要がある。<strong>監査可能性</strong>は、意思決定・変更・アクセスが記録され説明責任を果たせる状態を指す。</p>
+
+                                <div className="not-prose my-8">
+                                    <MermaidDiagram chart={`graph LR
+    A[RACIが曖昧で 申請・…] --> B[記録がログだけでは不十分…]
+    B --> C[継続モニタリングがなく …]
+    C --> D[手続きで防止]
+    style A fill:#fee2e2,stroke:#b91c1c
+    style B fill:#fef9c3,stroke:#ca8a04
+    style C fill:#fef9c3,stroke:#ca8a04
+    style D fill:#dcfce7,stroke:#15803d`} />
+                                </div>
+
+                                <h2>2. 最低限の運用要件（5点）</h2>
+                                <ul className="list-disc pl-6 space-y-2">
+                                    <li><strong>役割と責任（RACI）</strong>：申請・審査・承認・記録・監視・是正の責任者を決め、RACIで明文化する。</li>
+                                    <li><strong>ポリシー→手続き</strong>：方針を文書化し、申請・審査・承認・例外・更新の手続きを手順化する。自動化と人の判断の切り分けを決める。</li>
+                                    <li><strong>記録と証跡</strong>：意思決定・変更・アクセスを改ざん耐性のある形で残す。監査で「何を・誰が・いつ」を説明できる設計にする。</li>
+                                    <li><strong>継続モニタリング</strong>：評価・監視・レビューを定期的に回し、結果を記録する。規制・リスクの変化に気づく仕組みを組み込む。</li>
+                                    <li><strong>インシデント対応</strong>：報告・是正・再発防止の手続きを決め、記録を残す。当局・顧客への説明責任の担当を決めておく。</li>
+                                </ul>
+
+                                <h2>3. 規制・標準との対応関係（マッピング）</h2>
+                                <p>EU AI Act、NIST AI RMF、各国ガイドライン等を参照し、自社の適用する規制一覧と本テーマの対応関係を一覧表にする。不足があれば手続きを補う。適用可否と最終判断は法務・監査と共同で確認する。</p>
+
+                                <div className="not-prose my-8">
+                                    <MermaidDiagram chart={`graph TD
+    subgraph 確認
+        X[RACIを文書化して…]
+        Y[ポリシーと手続き 申…]
+        Z[記録の保存期間と改ざ…]
+    end
+    style X fill:#e0f2fe,stroke:#003E68
+    style Y fill:#e0f2fe,stroke:#003E68
+    style Z fill:#e0f2fe,stroke:#003E68`} />
+                                </div>
+
+                                <h2>4. 失敗パターン（現場で燃える3例）</h2>
+                                <ul className="list-disc pl-6 space-y-2">
+                                    <li>RACIが曖昧で、申請・承認が滞留するか、監査で「誰が責任か」を指摘される。</li>
+                                    <li>記録がログだけでは不十分で、監査で「説明ができない」と指摘される。</li>
+                                    <li>継続モニタリングがなく、規制更新や逸脱に後手で気づく。</li>
+                                </ul>
+
+                                <CompareCard caption="透明性義務：観点と失敗の対比" leftTitle="観点・要件（確認したいこと）" leftItems={"RACIを文書化しているか\nポリシーと手続き（申請・審査・承認・記録）を分けているか\n記録の保存期間と改ざん耐性を定めているか\n継続モニタリング（四半期レビュー等）を組み込んでいるか"} rightTitle="よくある失敗（現場で起きがち）" rightItems={"RACIが曖昧で、申請・承認が滞留するか、監査で「誰が責任か」を指摘される。\n記録がログだけでは不十分で、監査で「説明ができない」と指摘される。\n継続モニタリングがなく、規制更新や逸脱に後手で気づく。"} />
+
+                                <KeyPoint title="固有の一文">
+                                多くの組織で、透明性義務を「方針だけ」で止めると、監査で証跡不足を指摘されやすい。手続きと記録をそろえておくと説明しやすくなる。 相談・ロードマップ整理はお気軽にご連絡ください。
+                                </KeyPoint>
+
+                                <h2>5. すぐ使えるチェックリスト</h2>
+                                <ul className="list-disc pl-6 space-y-2">
+                                    <li>RACIを文書化しているか</li>
+                                    <li>ポリシーと手続き（申請・審査・承認・記録）を分けているか</li>
+                                    <li>記録の保存期間と改ざん耐性を定めているか</li>
+                                    <li>継続モニタリング（四半期レビュー等）を組み込んでいるか</li>
+                                    <li>インシデント時の報告・是正手続きがあるか</li>
+                                    <li>規制・標準との対応表で本テーマをマッピングしたか</li>
+                                </ul>
+
+                                <h2>6. 参考・参照</h2>
+                                <ul className="list-disc pl-6 space-y-2 text-slate-700">
+                                    <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">NIST AI RMF・生成AIプロファイル</a></li>
+                                    <li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20250328_2.pdf" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">AI事業者ガイドライン（経済産業省）</a></li>
+                                    <li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">ISO/IEC 42001（AIMS）</a></li>
+                                </ul>
+                        
+                        
+                        
                         </div>
                         <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>

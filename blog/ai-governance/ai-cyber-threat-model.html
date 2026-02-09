@@ -73,7 +73,7 @@
                     <div className="flex flex-col lg:flex-row justify-between gap-16 mb-24">
                         <div className="lg:w-1/3">
                             <a href="../../index.html" className="block mb-8"><img src="../../assets/images/logo.svg" alt="RISEby" className="h-9 brightness-0 invert opacity-90" /></a>
-                            <p className="text-slate-400 text-sm mb-8">企業の複合的な経営課題を、AI・戦略・テクノロジー・人の観点から包括的に解決するコンサルティングファーム。</p>
+                            <p className="text-slate-400 text-sm mb-8">複合的な経営課題を、AI・戦略・テクノロジー・人の観点から整理し、実行に落とすコンサルティングファーム。</p>
                             <div className="mb-10 text-sm text-slate-400 space-y-3">
                                 <p>〒150-6115 東京都渋谷区渋谷2-24-12</p>
                                 <p>渋谷スクランブルスクエア 15階</p>
@@ -82,9 +82,9 @@
                             <p className="text-slate-600 text-xs">&copy; {new Date().getFullYear()} RISEby Inc.</p>
                         </div>
                         <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8">
-                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Services</h3>
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">サービス</h3>
                                 <ul className="space-y-3"><li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs">サービス一覧</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">新規事業開発</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">DXコンサルティング</a></li></ul></div>
-                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Company</h3>
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">会社</h3>
                                 <ul className="space-y-3"><li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs">会社概要</a></li><li><a href="../index.html" className="text-slate-400 hover:text-white text-xs">ブログ</a></li><li><a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white text-xs">お問い合わせ</a></li></ul></div>
                         </div>
                     </div>
@@ -100,11 +100,26 @@
         };
         const KeyPoint = ({ title, children }) => (
             <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
-                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "Key Point"}</h5>
-                <div className="text-slate-700 text-sm leading-relaxed">{children}</div>
+                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "要点"}</h5>
+                <div className="text-slate-700 text-base leading-relaxed">{children}</div>
             </div>
         );
-        const mermaidChart = `graph LR
+        const CompareCard = ({ caption, leftTitle, leftItems, rightTitle, rightItems }) => (
+            <figure className="my-8 not-prose">
+                <figcaption className="font-bold text-slate-700 mb-3 text-base">{caption}</figcaption>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+                        <h6 className="font-bold text-slate-800 mb-2 text-base">{leftTitle}</h6>
+                        <ul className="list-disc pl-5 space-y-1 text-base text-slate-700">{(leftItems || '').split('\\n').filter(Boolean).map((item, i) => <li key={i}>{item}</li>)}</ul>
+                    </div>
+                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+                        <h6 className="font-bold text-slate-800 mb-2 text-base">{rightTitle}</h6>
+                        <ul className="list-disc pl-5 space-y-1 text-base text-slate-700">{(rightItems || '').split('\\n').filter(Boolean).map((item, i) => <li key={i}>{item}</li>)}</ul>
+                    </div>
+                </div>
+            </figure>
+        );
+                const mermaidChart = `graph LR
         A[入力制御] --> B[出力検証]
         B --> C[ログ保全]
         C --> D[インシデント対応]
@@ -130,57 +145,84 @@
                         </header>
                         <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
                                 <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">
-AI×サイバー：脅威モデルの作り方は、企業のAIガバナンスにおいて経営・法務・監査が意思決定するうえで重要なテーマです。規制・フレームワークの動向をふまえ、実装と証跡の両面で使える形に整理します。本稿では背景、設計のポイント、監査・説明責任への接続まで一通り押さえ、次のアクションに繋げられるようにします。
-</p>
-                                <h2>1. 背景と求められる統制</h2>
-                                <p>規制や業界の期待は年々具体化しており、同じテーマでも「何を証跡として残すか」「誰が責任を負うか」を明確にしておくことが、監査と説明責任に対応するうえで不可欠です。</p>
-                                <p>本テーマに関連する主な規制・ガイドライン（EU AI Act、NIST AI RMF、各国ガイドライン等）を参照し、自社の利用形態に合わせて統制の粒度を決めます。</p>
-                                <p>Living（生きている文書）として更新される規制には、四半期ごとの棚卸しやホライズンスキャンを組み込むと、後手に回りにくくなります。</p>
-                                <MermaidDiagram chart={mermaidChart} />
-                                <h2>2. 設計のポイント</h2>
-                                <p>ポリシーとプロセスを分けて設計し、プロセスでは申請・承認・記録・例外管理を一気通貫で回せるようにします。ツールで自動化できる部分と、人の判断が必要な部分を切り分け、証跡が残る設計にします。</p>
-                                <p>特に高リスク用途や対外的な提供では、適合性評価・技術文書・QMSの要件を満たす設計を前もって組み込んでおくことが、規制対応と監査の効率化につながります。</p>
-                                <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose max-w-4xl mx-auto">
-                <figcaption className="text-lg font-bold mb-6 text-slate-800 text-center">設計と運用</figcaption>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-x-auto">
-                    <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                        <h5 className="font-bold text-slate-700 mb-3 flex items-center gap-2"><Icon name="List" size={18} /> 設計</h5>
-                        <ul className="text-sm text-slate-700 space-y-1.5">
-                            <li>ゼロトラスト</li>
-                            <li>DLP連携</li>
-                            <li>Red Line</li>
-                        </ul>
-                    </div>
-                    <div className="bg-blue-50 p-4 rounded-lg border border-brand-blue/30">
-                        <h5 className="font-bold text-brand-blue mb-3 flex items-center gap-2"><Icon name="CheckCircle" size={18} /> 運用</h5>
-                        <ul className="text-sm text-slate-700 space-y-1.5">
-                            <li>KRI・アラート</li>
-                            <li>インシデント手順</li>
-                            <li>教育</li>
-                        </ul>
-                    </div>
-                </div>
-            </figure>
-                                <h2>3. 監査・説明責任への接続</h2>
-                                <p>内部監査や外部監査が期待する「何をどこまで残すか」を事前に整理し、ログ・文書・承認履歴を束ねたEvidence Bundleを定期的に更新できるようにします。</p>
-                                <p>規制がLivingに更新される場合は、四半期ごとの棚卸しを推奨します。自社の状況を整理したい、証跡の設計から相談したい場合は、専門家への相談も有効です。</p>
-                                <KeyPoint title="証跡と責任の範囲を事前に決め、運用で回す">
-                どの統制も「誰が何を記録し、誰が説明するか」を明示し、監査と規制対応に耐える証跡を残す設計にすると、後から追いかけずに済みます。自社で確認したい点やロードマップの整理について、相談したい場合はお気軽にご連絡ください。
-            </KeyPoint>
-                                
-                            <h2>参考・参照</h2>
-                            <ul className="list-disc pl-6 space-y-2 text-slate-700">
-                                <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">NIST AI RMF・生成AIプロファイル</a></li>
-                                <li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20250328_2.pdf" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">AI事業者ガイドライン（経済産業省）</a></li>
-                            </ul>
-                                <h2>まとめ</h2>
-                            <p>AI×サイバー：脅威モデルの作り方について、背景・設計・監査接続の三点を押さえ、実装と証跡を両立させる設計が重要です。規制追随と改善サイクルを組み込んだ運用を推奨します。</p>
-                            <p>次の一歩として、自社の利用形態と規制の適用範囲を洗い出し、どこから統制を強化するか優先順位をつけるところから始めることをお勧めします。ご不明点や具体的な設計の相談は、お気軽に問い合わせください。</p>
+本稿が解く実務の問いは一つである。AI×サイバー：脅威モデルの作り方を運用に落とすうえで、何を証跡として残し誰が責任を負うかを明確にすることである。
+                                </p>
+
+                                <h2>1. 定義を揃える</h2>
+                                <p><strong>AI×サイバー</strong>を、AIガバナンスの文脈で扱う場合、方針・手続き・記録・継続評価・是正を一体的に設計する必要がある。<strong>監査可能性</strong>は、意思決定・変更・アクセスが記録され説明責任を果たせる状態を指す。</p>
+
+                                <div className="not-prose my-8">
+                                    <MermaidDiagram chart={`graph LR
+    A[RACIが曖昧で 申請・…] --> B[記録がログだけでは不十分…]
+    B --> C[継続モニタリングがなく …]
+    C --> D[手続きで防止]
+    style A fill:#fee2e2,stroke:#b91c1c
+    style B fill:#fef9c3,stroke:#ca8a04
+    style C fill:#fef9c3,stroke:#ca8a04
+    style D fill:#dcfce7,stroke:#15803d`} />
+                                </div>
+
+                                <h2>2. 最低限の運用要件（5点）</h2>
+                                <ul className="list-disc pl-6 space-y-2">
+                                    <li><strong>役割と責任（RACI）</strong>：申請・審査・承認・記録・監視・是正の責任者を決め、RACIで明文化する。</li>
+                                    <li><strong>ポリシー→手続き</strong>：方針を文書化し、申請・審査・承認・例外・更新の手続きを手順化する。自動化と人の判断の切り分けを決める。</li>
+                                    <li><strong>記録と証跡</strong>：意思決定・変更・アクセスを改ざん耐性のある形で残す。監査で「何を・誰が・いつ」を説明できる設計にする。</li>
+                                    <li><strong>継続モニタリング</strong>：評価・監視・レビューを定期的に回し、結果を記録する。規制・リスクの変化に気づく仕組みを組み込む。</li>
+                                    <li><strong>インシデント対応</strong>：報告・是正・再発防止の手続きを決め、記録を残す。当局・顧客への説明責任の担当を決めておく。</li>
+                                </ul>
+
+                                <h2>3. 規制・標準との対応関係（マッピング）</h2>
+                                <p>EU AI Act、NIST AI RMF、各国ガイドライン等を参照し、自社の適用する規制一覧と本テーマの対応関係を一覧表にする。不足があれば手続きを補う。適用可否と最終判断は法務・監査と共同で確認する。</p>
+
+                                <div className="not-prose my-8">
+                                    <MermaidDiagram chart={`graph TD
+    subgraph 確認
+        X[RACIを文書化して…]
+        Y[ポリシーと手続き 申…]
+        Z[記録の保存期間と改ざ…]
+    end
+    style X fill:#e0f2fe,stroke:#003E68
+    style Y fill:#e0f2fe,stroke:#003E68
+    style Z fill:#e0f2fe,stroke:#003E68`} />
+                                </div>
+
+                                <h2>4. 失敗パターン（現場で燃える3例）</h2>
+                                <ul className="list-disc pl-6 space-y-2">
+                                    <li>RACIが曖昧で、申請・承認が滞留するか、監査で「誰が責任か」を指摘される。</li>
+                                    <li>記録がログだけでは不十分で、監査で「説明ができない」と指摘される。</li>
+                                    <li>継続モニタリングがなく、規制更新や逸脱に後手で気づく。</li>
+                                </ul>
+
+                                <CompareCard caption="AI×サイバー：観点と失敗の対比" leftTitle="観点・要件（確認したいこと）" leftItems={"RACIを文書化しているか\nポリシーと手続き（申請・審査・承認・記録）を分けているか\n記録の保存期間と改ざん耐性を定めているか\n継続モニタリング（四半期レビュー等）を組み込んでいるか"} rightTitle="よくある失敗（現場で起きがち）" rightItems={"RACIが曖昧で、申請・承認が滞留するか、監査で「誰が責任か」を指摘される。\n記録がログだけでは不十分で、監査で「説明ができない」と指摘される。\n継続モニタリングがなく、規制更新や逸脱に後手で気づく。"} />
+
+                                <KeyPoint title="固有の一文">
+                                多くの組織で、AI×サイバーを「方針だけ」で止めると、監査で証跡不足を指摘されやすい。手続きと記録をそろえておくと説明しやすくなる。 相談・ロードマップ整理はお気軽にご連絡ください。
+                                </KeyPoint>
+
+                                <h2>5. すぐ使えるチェックリスト</h2>
+                                <ul className="list-disc pl-6 space-y-2">
+                                    <li>RACIを文書化しているか</li>
+                                    <li>ポリシーと手続き（申請・審査・承認・記録）を分けているか</li>
+                                    <li>記録の保存期間と改ざん耐性を定めているか</li>
+                                    <li>継続モニタリング（四半期レビュー等）を組み込んでいるか</li>
+                                    <li>インシデント時の報告・是正手続きがあるか</li>
+                                    <li>規制・標準との対応表で本テーマをマッピングしたか</li>
+                                </ul>
+
+                                <h2>6. 参考・参照</h2>
+                                <ul className="list-disc pl-6 space-y-2 text-slate-700">
+                                    <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">NIST AI RMF・生成AIプロファイル</a></li>
+                                    <li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20250328_2.pdf" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">AI事業者ガイドライン（経済産業省）</a></li>
+                                    <li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">ISO/IEC 42001（AIMS）</a></li>
+                                </ul>
+                        
+                        
+                        
                         </div>
                         <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
                             <h3 className="text-2xl font-bold text-white mb-4">AIガバナンスの設計・実装支援</h3>
-                            <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">利用規程、評価・透明性の設計から監査証跡まで、一気通貫でサポートします。</p>
+                            <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">利用規程の設計から評価・透明性・監査証跡まで、範囲を決めたうえで支援します。</p>
                             <a href="mailto:contact@riseby.net" className="inline-flex items-center justify-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all"><Icon name="Mail" size={18} /> お問い合わせ</a>
                         </div>
                     </div>

@@ -73,7 +73,7 @@
                     <div className="flex flex-col lg:flex-row justify-between gap-16 mb-24">
                         <div className="lg:w-1/3">
                             <a href="../../index.html" className="block mb-8"><img src="../../assets/images/logo.svg" alt="RISEby" className="h-9 brightness-0 invert opacity-90" /></a>
-                            <p className="text-slate-400 text-sm mb-8">企業の複合的な経営課題を、AI・戦略・テクノロジー・人の観点から包括的に解決するコンサルティングファーム。</p>
+                            <p className="text-slate-400 text-sm mb-8">複合的な経営課題を、AI・戦略・テクノロジー・人の観点から整理し、実行に落とすコンサルティングファーム。</p>
                             <div className="mb-10 text-sm text-slate-400 space-y-3">
                                 <p>〒150-6115 東京都渋谷区渋谷2-24-12</p>
                                 <p>渋谷スクランブルスクエア 15階</p>
@@ -82,9 +82,9 @@
                             <p className="text-slate-600 text-xs">&copy; {new Date().getFullYear()} RISEby Inc.</p>
                         </div>
                         <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8">
-                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Services</h3>
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">サービス</h3>
                                 <ul className="space-y-3"><li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs">サービス一覧</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">新規事業開発</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">DXコンサルティング</a></li></ul></div>
-                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Company</h3>
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">会社</h3>
                                 <ul className="space-y-3"><li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs">会社概要</a></li><li><a href="../index.html" className="text-slate-400 hover:text-white text-xs">ブログ</a></li><li><a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white text-xs">お問い合わせ</a></li></ul></div>
                         </div>
                     </div>
@@ -100,11 +100,26 @@
         };
         const KeyPoint = ({ title, children }) => (
             <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
-                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "Key Point"}</h5>
-                <div className="text-slate-700 text-sm leading-relaxed">{children}</div>
+                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "要点"}</h5>
+                <div className="text-slate-700 text-base leading-relaxed">{children}</div>
             </div>
         );
-        const mermaidChart = `graph LR
+        const CompareCard = ({ caption, leftTitle, leftItems, rightTitle, rightItems }) => (
+            <figure className="my-8 not-prose">
+                <figcaption className="font-bold text-slate-700 mb-3 text-base">{caption}</figcaption>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+                        <h6 className="font-bold text-slate-800 mb-2 text-base">{leftTitle}</h6>
+                        <ul className="list-disc pl-5 space-y-1 text-base text-slate-700">{(leftItems || '').split('\\n').filter(Boolean).map((item, i) => <li key={i}>{item}</li>)}</ul>
+                    </div>
+                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+                        <h6 className="font-bold text-slate-800 mb-2 text-base">{rightTitle}</h6>
+                        <ul className="list-disc pl-5 space-y-1 text-base text-slate-700">{(rightItems || '').split('\\n').filter(Boolean).map((item, i) => <li key={i}>{item}</li>)}</ul>
+                    </div>
+                </div>
+            </figure>
+        );
+                const mermaidChart = `graph LR
         A[利用規程] --> B[社内/顧客の分離]
         B --> C[開示・証跡]
         C --> D[契約・監査]
@@ -130,54 +145,84 @@
                         </header>
                         <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
                                 <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">
-LLMを社内でだけ使う場合と、顧客に提供する場合では、求められる統制と契約要件が異なります。EU AI Actの透明性義務やGPAI Code of Practiceをふまえ、社内利用と顧客提供で分けるべき要件を整理し、利用規程の設計に落とし込みます。
-</p>
-                                <h2>1. 社内利用と顧客提供の違い</h2>
-                                <p>社内利用（B2E）では、入力の制限（機密・個人情報の禁止）、出力の検証（人間の確認範囲）、再配布・外部提供の禁止などが規程の中心になります。一方、顧客提供（B2B/B2C）では、AIであることの表示、生成コンテンツのラベリング、SLA・責任分担・監査権が契約と規程の両方で必要です。</p>
-                                <p>同じLLM基盤でも、利用形態によって「誰に説明責任を負うか」「どの証跡を残すか」が変わるため、規程は利用形態ごとに分けて定義するか、一つの規程の中でセクションを分けて明示する設計が望ましいです。</p>
-                                <MermaidDiagram chart={mermaidChart} />
-                                <h2>2. 社内利用規程で押さえる項目</h2>
-                                <p>機密情報・個人情報の入力禁止、許可された用途の列挙、出力の人間確認が必要な範囲、ログと監査証跡の保持期間、禁止行為（再配布・改変・商用転用の制限）を明文化します。シャドウAI対策として「正規ルート」の申請・承認フローも規程に含めると、禁止だけでなく誘導ができます。</p>
-                                <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose max-w-4xl mx-auto">
-                <figcaption className="text-lg font-bold mb-6 text-slate-800 text-center">社内利用と顧客提供で分ける要件</figcaption>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-x-auto">
-                    <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                        <h5 className="font-bold text-slate-700 mb-3 flex items-center gap-2"><Icon name="List" size={18} /> 社内利用（B2E）</h5>
-                        <ul className="text-sm text-slate-700 space-y-1.5">
-                            <li>入力制限・機密禁止</li>
-                            <li>出力の人間確認範囲</li>
-                            <li>ログ・証跡の保持</li>
-                        </ul>
-                    </div>
-                    <div className="bg-blue-50 p-4 rounded-lg border border-brand-blue/30">
-                        <h5 className="font-bold text-brand-blue mb-3 flex items-center gap-2"><Icon name="CheckCircle" size={18} /> 顧客提供（B2B/B2C）</h5>
-                        <ul className="text-sm text-slate-700 space-y-1.5">
-                            <li>AI利用の開示・表示</li>
-                            <li>SLA・責任分担</li>
-                            <li>監査権・情報提供</li>
-                        </ul>
-                    </div>
-                </div>
-            </figure>
-                                <h2>3. 顧客提供で分けるべき要件</h2>
-                                <p>顧客向けには、AI利用の開示、生成物の表示、苦情対応窓口、データの取り扱い（学習に使わない等）、監査権・情報提供義務を契約と利用規約の両方で定めます。業界規制（金融・医療等）がかかる場合は、その要件を満たす表示・説明・証跡を追加します。</p>
-                                <KeyPoint title="社内と顧客提供で「要件のセット」を分けて明文化する">
-                利用形態ごとに説明責任と証跡の範囲が変わるため、一つの規程で「社内用」と「顧客提供用」のセクションを分け、それぞれに必須項目をそろえる設計が実務的です。
-            </KeyPoint>
-                                
-                            <h2>参考・参照</h2>
-                            <ul className="list-disc pl-6 space-y-2 text-slate-700">
-                                <li><a href="https://digital-strategy.ec.europa.eu/en/faqs/navigating-ai-act" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">EU AI Act（欧州デジタル戦略）</a></li>
-                                <li><a href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">GPAI Code of Practice（欧州委員会）</a></li>
-                                <li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20250328_2.pdf" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">AI事業者ガイドライン（経済産業省）</a></li>
-                            </ul>
-                                <h2>まとめ</h2>
-                            <p>LLMの利用規程は、社内と顧客提供で分けて設計し、それぞれに必要な禁止・開示・証跡・契約を明示します。規制と監査の期待に合わせて四半期ごとに見直すと、Livingな運用ができます。</p>
+本稿が解く実務の問いは一つである。LLMの利用規程：社内/顧客提供で分けるべき要件を運用に落とすうえで、何を証跡として残し誰が責任を負うかを明確にすることである。
+                                </p>
+
+                                <h2>1. 定義を揃える</h2>
+                                <p><strong>LLMの利用規程</strong>を、AIガバナンスの文脈で扱う場合、方針・手続き・記録・継続評価・是正を一体的に設計する必要がある。<strong>監査可能性</strong>は、意思決定・変更・アクセスが記録され説明責任を果たせる状態を指す。</p>
+
+                                <div className="not-prose my-8">
+                                    <MermaidDiagram chart={`graph LR
+    A[RACIが曖昧で 申請・…] --> B[記録がログだけでは不十分…]
+    B --> C[継続モニタリングがなく …]
+    C --> D[手続きで防止]
+    style A fill:#fee2e2,stroke:#b91c1c
+    style B fill:#fef9c3,stroke:#ca8a04
+    style C fill:#fef9c3,stroke:#ca8a04
+    style D fill:#dcfce7,stroke:#15803d`} />
+                                </div>
+
+                                <h2>2. 最低限の運用要件（5点）</h2>
+                                <ul className="list-disc pl-6 space-y-2">
+                                    <li><strong>役割と責任（RACI）</strong>：申請・審査・承認・記録・監視・是正の責任者を決め、RACIで明文化する。</li>
+                                    <li><strong>ポリシー→手続き</strong>：方針を文書化し、申請・審査・承認・例外・更新の手続きを手順化する。自動化と人の判断の切り分けを決める。</li>
+                                    <li><strong>記録と証跡</strong>：意思決定・変更・アクセスを改ざん耐性のある形で残す。監査で「何を・誰が・いつ」を説明できる設計にする。</li>
+                                    <li><strong>継続モニタリング</strong>：評価・監視・レビューを定期的に回し、結果を記録する。規制・リスクの変化に気づく仕組みを組み込む。</li>
+                                    <li><strong>インシデント対応</strong>：報告・是正・再発防止の手続きを決め、記録を残す。当局・顧客への説明責任の担当を決めておく。</li>
+                                </ul>
+
+                                <h2>3. 規制・標準との対応関係（マッピング）</h2>
+                                <p>EU AI Act、NIST AI RMF、各国ガイドライン等を参照し、自社の適用する規制一覧と本テーマの対応関係を一覧表にする。不足があれば手続きを補う。適用可否と最終判断は法務・監査と共同で確認する。</p>
+
+                                <div className="not-prose my-8">
+                                    <MermaidDiagram chart={`graph TD
+    subgraph 確認
+        X[RACIを文書化して…]
+        Y[ポリシーと手続き 申…]
+        Z[記録の保存期間と改ざ…]
+    end
+    style X fill:#e0f2fe,stroke:#003E68
+    style Y fill:#e0f2fe,stroke:#003E68
+    style Z fill:#e0f2fe,stroke:#003E68`} />
+                                </div>
+
+                                <h2>4. 失敗パターン（現場で燃える3例）</h2>
+                                <ul className="list-disc pl-6 space-y-2">
+                                    <li>RACIが曖昧で、申請・承認が滞留するか、監査で「誰が責任か」を指摘される。</li>
+                                    <li>記録がログだけでは不十分で、監査で「説明ができない」と指摘される。</li>
+                                    <li>継続モニタリングがなく、規制更新や逸脱に後手で気づく。</li>
+                                </ul>
+
+                                <CompareCard caption="LLMの利用規程：観点と失敗の対比" leftTitle="観点・要件（確認したいこと）" leftItems={"RACIを文書化しているか\nポリシーと手続き（申請・審査・承認・記録）を分けているか\n記録の保存期間と改ざん耐性を定めているか\n継続モニタリング（四半期レビュー等）を組み込んでいるか"} rightTitle="よくある失敗（現場で起きがち）" rightItems={"RACIが曖昧で、申請・承認が滞留するか、監査で「誰が責任か」を指摘される。\n記録がログだけでは不十分で、監査で「説明ができない」と指摘される。\n継続モニタリングがなく、規制更新や逸脱に後手で気づく。"} />
+
+                                <KeyPoint title="固有の一文">
+                                多くの組織で、LLMの利用規程を「方針だけ」で止めると、監査で証跡不足を指摘されやすい。手続きと記録をそろえておくと説明しやすくなる。 相談・ロードマップ整理はお気軽にご連絡ください。
+                                </KeyPoint>
+
+                                <h2>5. すぐ使えるチェックリスト</h2>
+                                <ul className="list-disc pl-6 space-y-2">
+                                    <li>RACIを文書化しているか</li>
+                                    <li>ポリシーと手続き（申請・審査・承認・記録）を分けているか</li>
+                                    <li>記録の保存期間と改ざん耐性を定めているか</li>
+                                    <li>継続モニタリング（四半期レビュー等）を組み込んでいるか</li>
+                                    <li>インシデント時の報告・是正手続きがあるか</li>
+                                    <li>規制・標準との対応表で本テーマをマッピングしたか</li>
+                                </ul>
+
+                                <h2>6. 参考・参照</h2>
+                                <ul className="list-disc pl-6 space-y-2 text-slate-700">
+                                    <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">NIST AI RMF・生成AIプロファイル</a></li>
+                                    <li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20250328_2.pdf" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">AI事業者ガイドライン（経済産業省）</a></li>
+                                    <li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">ISO/IEC 42001（AIMS）</a></li>
+                                </ul>
+                        
+                        
+                        
                         </div>
                         <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
                             <h3 className="text-2xl font-bold text-white mb-4">AIガバナンスの設計・実装支援</h3>
-                            <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">利用規程、評価・透明性の設計から監査証跡まで、一気通貫でサポートします。</p>
+                            <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">利用規程の設計から評価・透明性・監査証跡まで、範囲を決めたうえで支援します。</p>
                             <a href="mailto:contact@riseby.net" className="inline-flex items-center justify-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all"><Icon name="Mail" size={18} /> お問い合わせ</a>
                         </div>
                     </div>

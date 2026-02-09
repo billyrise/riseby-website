@@ -73,7 +73,7 @@
                     <div className="flex flex-col lg:flex-row justify-between gap-16 mb-24">
                         <div className="lg:w-1/3">
                             <a href="../../index.html" className="block mb-8"><img src="../../assets/images/logo.svg" alt="RISEby" className="h-9 brightness-0 invert opacity-90" /></a>
-                            <p className="text-slate-400 text-sm mb-8">企業の複合的な経営課題を、AI・戦略・テクノロジー・人の観点から包括的に解決するコンサルティングファーム。</p>
+                            <p className="text-slate-400 text-sm mb-8">複合的な経営課題を、AI・戦略・テクノロジー・人の観点から整理し、実行に落とすコンサルティングファーム。</p>
                             <div className="mb-10 text-sm text-slate-400 space-y-3">
                                 <p>〒150-6115 東京都渋谷区渋谷2-24-12</p>
                                 <p>渋谷スクランブルスクエア 15階</p>
@@ -82,9 +82,9 @@
                             <p className="text-slate-600 text-xs">&copy; {new Date().getFullYear()} RISEby Inc.</p>
                         </div>
                         <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8">
-                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Services</h3>
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">サービス</h3>
                                 <ul className="space-y-3"><li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs">サービス一覧</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">新規事業開発</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">DXコンサルティング</a></li></ul></div>
-                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Company</h3>
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">会社</h3>
                                 <ul className="space-y-3"><li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs">会社概要</a></li><li><a href="../index.html" className="text-slate-400 hover:text-white text-xs">ブログ</a></li><li><a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white text-xs">お問い合わせ</a></li></ul></div>
                         </div>
                     </div>
@@ -100,11 +100,26 @@
         };
         const KeyPoint = ({ title, children }) => (
             <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
-                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "Key Point"}</h5>
-                <div className="text-slate-700 text-sm leading-relaxed">{children}</div>
+                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "要点"}</h5>
+                <div className="text-slate-700 text-base leading-relaxed">{children}</div>
             </div>
         );
-        const mermaidChart = `graph LR
+        const CompareCard = ({ caption, leftTitle, leftItems, rightTitle, rightItems }) => (
+            <figure className="my-8 not-prose">
+                <figcaption className="font-bold text-slate-700 mb-3 text-base">{caption}</figcaption>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+                        <h6 className="font-bold text-slate-800 mb-2 text-base">{leftTitle}</h6>
+                        <ul className="list-disc pl-5 space-y-1 text-base text-slate-700">{(leftItems || '').split('\\n').filter(Boolean).map((item, i) => <li key={i}>{item}</li>)}</ul>
+                    </div>
+                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+                        <h6 className="font-bold text-slate-800 mb-2 text-base">{rightTitle}</h6>
+                        <ul className="list-disc pl-5 space-y-1 text-base text-slate-700">{(rightItems || '').split('\\n').filter(Boolean).map((item, i) => <li key={i}>{item}</li>)}</ul>
+                    </div>
+                </div>
+            </figure>
+        );
+                const mermaidChart = `graph LR
         A[エージェント利用] --> B[ログ・承認]
         B --> C[Evidence bundle]
         C --> D[監査・規制対応]
@@ -130,56 +145,84 @@
                         </header>
                         <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
                                 <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">
-Coworkショックの後編では、自律型AIエージェントの普及が進むなか、今後のAIガバナンスにおいてEvidence bundle（証跡の束）の重要性がどう拡大するかを論じます。監査・規制対応・説明責任を一気通貫で支える設計を整理します。
-</p>
-                                <h2>1. なぜEvidence bundleがこれまで以上に重要になるか</h2>
-                                <p>AIエージェントがファイル操作・データ抽出・意思決定に近いタスクを実行する場合、「何を・いつ・どの条件で行ったか」を証跡として残さないと、監査や規制当局・顧客からの説明要求に応えられません。Coworkのようなツールが社内に広がると、従来の「人が操作したログ」に加え、「エージェントが実行したアクションのログ」「入力・出力・承認の記録」を束ねたEvidence bundleが、説明責任の要になります。</p>
-                                <p>EU AI Actをはじめとする規制では、高リスク用途や透明性義務に伴い、技術文書・ログ・評価結果を保持することが求められます。Evidence bundleは、それらを一括で管理・提示する考え方です。</p>
-                                <MermaidDiagram chart={mermaidChart} />
-                                <h2>2. Evidence bundleに含めるべき要素</h2>
-                                <p>最低限、次の要素を束ねる設計が推奨されます。利用規程と承認履歴、エージェントの入力・出力・実行ログ、評価（Evals）の結果と日付、インシデントや例外の記録、そして規制・監査要件ごとのマッピングです。Coworkのような自律型エージェントを利用する場合は、どのタスクを許可したか・どのデータにアクセスさせたか・出力を誰が確認したかを、証跡として残すプロセスが欠かせません。</p>
-                                <p>これらを「監査法人が欲しい束ね方」で整え、四半期やリリース単位で更新できるようにしておくと、突発的な説明要求にも対応しやすくなります。</p>
-                                <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose max-w-4xl mx-auto">
-                <figcaption className="text-lg font-bold mb-6 text-slate-800 text-center">Evidence bundleの構成</figcaption>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-x-auto">
-                    <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                        <h5 className="font-bold text-slate-700 mb-3 flex items-center gap-2"><Icon name="List" size={18} /> 記録・証跡</h5>
-                        <ul className="text-sm text-slate-700 space-y-1.5">
-                            <li>利用規程・承認履歴</li>
-                            <li>入力・出力・実行ログ</li>
-                            <li>Evals結果と日付</li>
-                        </ul>
-                    </div>
-                    <div className="bg-blue-50 p-4 rounded-lg border border-brand-blue/30">
-                        <h5 className="font-bold text-brand-blue mb-3 flex items-center gap-2"><Icon name="CheckCircle" size={18} /> 監査・規制</h5>
-                        <ul className="text-sm text-slate-700 space-y-1.5">
-                            <li>インシデント・例外の記録</li>
-                            <li>規制要件とのマッピング</li>
-                            <li>四半期・リリース単位の更新</li>
-                        </ul>
-                    </div>
-                </div>
-            </figure>
-                                <h2>3. 今後のAIガバナンス：設計と運用の両輪</h2>
-                                <p>Evidence bundleは一度作って終わりではなく、プロダクトの変更・規制のLivingな更新・監査サイクルに合わせて更新し続ける必要があります。Coworkショックを経て、企業は「AIエージェントをどう統制し、どう説明するか」をガバナンスの中心に据える動きを強めています。設計の段階で証跡の取り方を組み込み、運用でログと承認をためていく両輪が、今後のAIガバナンスの標準になっていくでしょう。</p>
-                                <KeyPoint title="証跡を束ね、説明責任を設計の中心に置く">
-                Evidence bundleを事前に設計し、エージェント利用の承認・ログ・評価を運用でためていくことで、規制と監査の波に後手を取らずに済みます。設計から相談したい場合は、お気軽にご連絡ください。
-            </KeyPoint>
-                                
-                            <h2>参考・参照</h2>
-                            <ul className="list-disc pl-6 space-y-2 text-slate-700">
-                                <li><a href="https://www.businessinsider.com/anthropic-claude-cowork-release-ai-vibecoded-2026-1" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">Anthropic、Claude Coworkを発表（Business Insider）</a></li>
-                                <li><a href="https://news.bensbites.com/posts/55738-anthropics-claude-cowork-launch-has-revived-fears-about-disruption-that-weighed-on-saas-stocks-in-2025-morgan-stanley-saas-index-is-down-15-so-far-in-2026" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">SaaS株への波及・モルガン・スタンレー指数（Bloomberg / Ben's Bites）</a></li>
-                                <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">NIST AI RMF・生成AIプロファイル</a></li>
-                                <li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20250328_2.pdf" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">AI事業者ガイドライン（経済産業省）</a></li>
-                            </ul>
-                                <h2>まとめ</h2>
-                            <p>自律型AIエージェントの普及に伴い、Evidence bundleの重要性はさらに高まります。利用規程・ログ・評価・例外記録を束ね、監査と規制対応に耐える証跡を設計しておくことが、Coworkショック以降のAIガバナンスでは不可欠です。本シリーズで扱った背景・市場・Evidenceの三点を、自社のロードマップに落とし込む際は、お気軽にご相談ください。</p>
+本稿が解く実務の問いは一つである。SaaSアポカリプスとCoworkショック（後編）：Evidence bundleの重要性拡大とAIガバナンスを運用に落とすうえで、何を証跡として残し誰が責任を負うかを明確にすることである。
+                                </p>
+
+                                <h2>1. 定義を揃える</h2>
+                                <p><strong>SaaSアポカリプスとCoworkショック（後編）</strong>を、AIガバナンスの文脈で扱う場合、方針・手続き・記録・継続評価・是正を一体的に設計する必要がある。<strong>監査可能性</strong>は、意思決定・変更・アクセスが記録され説明責任を果たせる状態を指す。</p>
+
+                                <div className="not-prose my-8">
+                                    <MermaidDiagram chart={`graph LR
+    A[RACIが曖昧で 申請・…] --> B[記録がログだけでは不十分…]
+    B --> C[継続モニタリングがなく …]
+    C --> D[手続きで防止]
+    style A fill:#fee2e2,stroke:#b91c1c
+    style B fill:#fef9c3,stroke:#ca8a04
+    style C fill:#fef9c3,stroke:#ca8a04
+    style D fill:#dcfce7,stroke:#15803d`} />
+                                </div>
+
+                                <h2>2. 最低限の運用要件（5点）</h2>
+                                <ul className="list-disc pl-6 space-y-2">
+                                    <li><strong>役割と責任（RACI）</strong>：申請・審査・承認・記録・監視・是正の責任者を決め、RACIで明文化する。</li>
+                                    <li><strong>ポリシー→手続き</strong>：方針を文書化し、申請・審査・承認・例外・更新の手続きを手順化する。自動化と人の判断の切り分けを決める。</li>
+                                    <li><strong>記録と証跡</strong>：意思決定・変更・アクセスを改ざん耐性のある形で残す。監査で「何を・誰が・いつ」を説明できる設計にする。</li>
+                                    <li><strong>継続モニタリング</strong>：評価・監視・レビューを定期的に回し、結果を記録する。規制・リスクの変化に気づく仕組みを組み込む。</li>
+                                    <li><strong>インシデント対応</strong>：報告・是正・再発防止の手続きを決め、記録を残す。当局・顧客への説明責任の担当を決めておく。</li>
+                                </ul>
+
+                                <h2>3. 規制・標準との対応関係（マッピング）</h2>
+                                <p>EU AI Act、NIST AI RMF、各国ガイドライン等を参照し、自社の適用する規制一覧と本テーマの対応関係を一覧表にする。不足があれば手続きを補う。適用可否と最終判断は法務・監査と共同で確認する。</p>
+
+                                <div className="not-prose my-8">
+                                    <MermaidDiagram chart={`graph TD
+    subgraph 確認
+        X[RACIを文書化して…]
+        Y[ポリシーと手続き 申…]
+        Z[記録の保存期間と改ざ…]
+    end
+    style X fill:#e0f2fe,stroke:#003E68
+    style Y fill:#e0f2fe,stroke:#003E68
+    style Z fill:#e0f2fe,stroke:#003E68`} />
+                                </div>
+
+                                <h2>4. 失敗パターン（現場で燃える3例）</h2>
+                                <ul className="list-disc pl-6 space-y-2">
+                                    <li>RACIが曖昧で、申請・承認が滞留するか、監査で「誰が責任か」を指摘される。</li>
+                                    <li>記録がログだけでは不十分で、監査で「説明ができない」と指摘される。</li>
+                                    <li>継続モニタリングがなく、規制更新や逸脱に後手で気づく。</li>
+                                </ul>
+
+                                <CompareCard caption="SaaSアポカリプスとCoworkショック（後編）：観点と失敗の対比" leftTitle="観点・要件（確認したいこと）" leftItems={"RACIを文書化しているか\nポリシーと手続き（申請・審査・承認・記録）を分けているか\n記録の保存期間と改ざん耐性を定めているか\n継続モニタリング（四半期レビュー等）を組み込んでいるか"} rightTitle="よくある失敗（現場で起きがち）" rightItems={"RACIが曖昧で、申請・承認が滞留するか、監査で「誰が責任か」を指摘される。\n記録がログだけでは不十分で、監査で「説明ができない」と指摘される。\n継続モニタリングがなく、規制更新や逸脱に後手で気づく。"} />
+
+                                <KeyPoint title="固有の一文">
+                                多くの組織で、SaaSアポカリプスとCoworkショック（後編）を「方針だけ」で止めると、監査で証跡不足を指摘されやすい。手続きと記録をそろえておくと説明しやすくなる。 相談・ロードマップ整理はお気軽にご連絡ください。
+                                </KeyPoint>
+
+                                <h2>5. すぐ使えるチェックリスト</h2>
+                                <ul className="list-disc pl-6 space-y-2">
+                                    <li>RACIを文書化しているか</li>
+                                    <li>ポリシーと手続き（申請・審査・承認・記録）を分けているか</li>
+                                    <li>記録の保存期間と改ざん耐性を定めているか</li>
+                                    <li>継続モニタリング（四半期レビュー等）を組み込んでいるか</li>
+                                    <li>インシデント時の報告・是正手続きがあるか</li>
+                                    <li>規制・標準との対応表で本テーマをマッピングしたか</li>
+                                </ul>
+
+                                <h2>6. 参考・参照</h2>
+                                <ul className="list-disc pl-6 space-y-2 text-slate-700">
+                                    <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">NIST AI RMF・生成AIプロファイル</a></li>
+                                    <li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20250328_2.pdf" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">AI事業者ガイドライン（経済産業省）</a></li>
+                                    <li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">ISO/IEC 42001（AIMS）</a></li>
+                                </ul>
+                        
+                        
+                        
                         </div>
                         <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
                             <h3 className="text-2xl font-bold text-white mb-4">AIガバナンスの設計・実装支援</h3>
-                            <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">利用規程、評価・透明性の設計から監査証跡まで、一気通貫でサポートします。AIMOaaSでガバナンス運用を効率化。</p>
+                            <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">利用規程の設計から評価・透明性・監査証跡まで、範囲を決めたうえで支援します。AIMOaaSでガバナンス運用を効率化。</p>
                             <div className="flex flex-wrap justify-center gap-4">
                                 <a href="https://aimoaas.com/ja/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all">AIMOaaSをみる</a>
                                 <a href="mailto:contact@riseby.net" className="inline-flex items-center gap-2 border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-slate-900 transition-all"><Icon name="Mail" size={18} /> お問い合わせ</a>
