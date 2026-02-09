@@ -4,20 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://riseby.net/blog/ai-governance/saas-apocalypse-cowork-shock-part3.html">
-    <meta name="robots" content="index, follow">
-    <title>是正ロードマップ（3） | RISEby Blog</title>
-    <meta name="description" content="集中型で統制するか、分散型でスピードを取るか、組織に合わせた選択が求められます。 本稿の焦点は「“是正ロードマップ”」です。是正ロードマップ（3）について、責任分界・証跡・監査提出の目次を具体化します。議題テンプレを毎四半期で回し、証跡と次のアクションを残します。 継続評価の記録を四半期ごとに残し、是正の流…">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="RISEby inc.">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://riseby.net/blog/ai-governance/saas-apocalypse-cowork-shock-part3.html">
-    <meta property="og:title" content="是正ロードマップ（3） | RISEby Blog">
-    <meta property="og:description" content="集中型で統制するか、分散型でスピードを取るか、組織に合わせた選択が求められます。 本稿の焦点は「“是正ロードマップ”」です。是正ロードマップ（3）について、責任分界・証跡・監査提出の目次を具体化します。議題テンプレを毎四半期で回し、証跡と次のアクションを残します。 継続評価の記録を四半期ごとに残し、是正の流…">
+    <meta property="og:title" content="SaaSアポカリプスとCoworkショック（後編）：Evidence bundleの重要性拡大とAIガバナンス | RISEby Blog">
+    <meta property="og:description" content="Coworkショック後編。Evidence bundleの重要性拡大と、AIガバナンスにおける証跡の設計・運用を解説します。">
     <meta property="og:image" content="https://riseby.net/assets/images/og-image.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="是正ロードマップ（3） | RISEby Blog">
-    <meta name="twitter:description" content="集中型で統制するか、分散型でスピードを取るか、組織に合わせた選択が求められます。 本稿の焦点は「“是正ロードマップ”」です。是正ロードマップ（3）について、責任分界・証跡・監査提出の目次を具体化します。議題テンプレを毎四半期で回し、証跡と次のアクションを残します。 継続評価の記録を四半期ごとに残し、是正の流…">
-    <meta name="twitter:image" content="https://riseby.net/assets/images/og-image.jpg">
+    <title>SaaSアポカリプスとCoworkショック（後編）：Evidence bundleの重要性拡大とAIガバナンス | RISEby Blog</title>
+    <meta name="description" content="Coworkショック後編。Evidence bundleの重要性拡大と、AIガバナンスにおける証跡の設計・運用を解説します。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -26,28 +22,23 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script>tailwind.config = { theme: { extend: { colors: { brand: { blue: '#003E68', red: '#ED1C24', dark: '#0B0F19' } }, fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], display: ['"Montserrat"', 'sans-serif'] } } } }</script>
     <style>body { font-family: "Noto Sans JP", sans-serif; }
     .mermaid { display: flex; justify-content: center; margin: 2rem 0; background: #f8fafc; padding: 1rem; border-radius: 0.5rem; }
     .mermaid svg { max-width: 100%; }
+    .mermaid svg text { font-size: 1.125rem !important; }
     .mermaid .nodeLabel, .mermaid .edgeLabel { font-size: 1.125rem !important; }</style>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"是正ロードマップ（3）","description":"集中型で統制するか、分散型でスピードを取るか、組織に合わせた選択が求められます。 本稿の焦点は「“是正ロードマップ”」です。是正ロードマップ（3）について、責任分界・証跡・監査提出の目次を具体化します。議題テンプレを毎四半期で回し、証跡と次のアクションを残します。 継続評価の記録を四半期ごとに残し、是正の流…","datePublished":"2026-02-09","dateModified":"2026-02-09","author":{"@type":"Organization","name":"RISEby Inc.","url":"https://riseby.net"},"publisher":{"@type":"Organization","name":"RISEby Inc.","url":"https://riseby.net","logo":{"@type":"ImageObject","url":"https://riseby.net/assets/images/logo.svg"}},"image":"https://riseby.net/assets/images/og-image.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://riseby.net/blog/ai-governance/saas-apocalypse-cowork-shock-part3.html"},"articleSection":"AIガバナンス","url":"https://riseby.net/blog/ai-governance/saas-apocalypse-cowork-shock-part3.html"}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://riseby.net/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://riseby.net/blog/"},{"@type":"ListItem","position":3,"name":"AIガバナンス","item":"https://riseby.net/blog/ai-governance/index.html"},{"@type":"ListItem","position":4,"name":"是正ロードマップ（3）","item":"https://riseby.net/blog/ai-governance/saas-apocalypse-cowork-shock-part3.html"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"SaaSアポカリプスとCoworkショック（後編）：Evidence bundleの重要性拡大とAIガバナンス","datePublished":"2026-02-05","author":{"@type":"Organization","name":"RISEby Inc.","url":"https://riseby.net"}}</script>
 </head>
 <body class="bg-slate-50 text-slate-800">
     <div id="root"></div>
     <script type="text/babel">
-        const articleNav = { prev: { slug: "saas-apocalypse-cowork-shock-part2", title_ja: "契約・ログ・証跡（2）" }, next: { slug: "safety-case-accountability", title_ja: "Safety caseの証拠構造" }, related: [ { slug: "sbom-integration-security", title_ja: "SBOM統合とセキュリティ" }, { slug: "shadow-ai-countermeasures", title_ja: "Shadow AI対策" }, { slug: "safety-case-accountability", title_ja: "Safety caseの証拠構造" } ] };
         const { useState, useEffect } = React;
         const Icon = ({ name, size = 24, className = "" }) => {
-            const s = size;
-            const svg = (children) => React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", width: s, height: s, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", className }, children);
-            if (name === 'Menu') return svg([React.createElement('line', { key: '1', x1: 3, y1: 6, x2: 21, y2: 6 }), React.createElement('line', { key: '2', x1: 3, y1: 12, x2: 21, y2: 12 }), React.createElement('line', { key: '3', x1: 3, y1: 18, x2: 21, y2: 18 })]);
-            if (name === 'X') return svg([React.createElement('line', { key: '1', x1: 18, y1: 6, x2: 6, y2: 18 }), React.createElement('line', { key: '2', x1: 6, y1: 6, x2: 18, y2: 18 })]);
-            if (name === 'Mail') return svg([React.createElement('path', { key: '1', d: "M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" }), React.createElement('polyline', { key: '2', points: "22,6 12,13 2,6" })]);
-            if (name === 'User') return svg([React.createElement('path', { key: '1', d: "M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" }), React.createElement('circle', { key: '2', cx: 12, cy: 7, r: 4 })]);
-            if (name === 'Lightbulb') return svg([React.createElement('path', { key: '1', d: "M9 18h6" }), React.createElement('path', { key: '2', d: "M10 22h4" }), React.createElement('path', { key: '3', d: "M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14" })]);
-            return React.createElement('span', { className: "inline-block w-4 h-4 bg-gray-300 rounded-full" });
+            if (typeof lucide !== 'undefined' && lucide.icons && lucide.icons[name])
+                return React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", className }, lucide.icons[name].map(([tag, attrs], i) => React.createElement(tag, { ...attrs, key: i })));
+            return <span className="inline-block w-4 h-4 bg-gray-300 rounded-full"></span>;
         };
         const Header = () => {
             const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -82,7 +73,7 @@
                     <div className="flex flex-col lg:flex-row justify-between gap-16 mb-24">
                         <div className="lg:w-1/3">
                             <a href="../../index.html" className="block mb-8"><img src="../../assets/images/logo.svg" alt="RISEby" className="h-9 brightness-0 invert opacity-90" /></a>
-                            <p className="text-slate-400 text-sm mb-8">複合的な経営課題を、AI・戦略・テクノロジー・人の観点から整理し、実行に落とすコンサルティングファーム。</p>
+                            <p className="text-slate-400 text-sm mb-8">企業の複合的な経営課題を、AI・戦略・テクノロジー・人の観点から包括的に解決するコンサルティングファーム。</p>
                             <div className="mb-10 text-sm text-slate-400 space-y-3">
                                 <p>〒150-6115 東京都渋谷区渋谷2-24-12</p>
                                 <p>渋谷スクランブルスクエア 15階</p>
@@ -91,10 +82,10 @@
                             <p className="text-slate-600 text-xs">&copy; {new Date().getFullYear()} RISEby Inc.</p>
                         </div>
                         <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8">
-                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">サービス</h3>
-                                <ul className="space-y-3"><li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs">サービス一覧</a></li></ul></div>
-                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">会社</h3>
-                                <ul className="space-y-3"><li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs">会社概要</a></li><li><a href="../index.html" className="text-slate-400 hover:text-white text-xs">ブログ</a></li></ul></div>
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Services</h3>
+                                <ul className="space-y-3"><li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs">サービス一覧</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">新規事業開発</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">DXコンサルティング</a></li></ul></div>
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">Company</h3>
+                                <ul className="space-y-3"><li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs">会社概要</a></li><li><a href="../index.html" className="text-slate-400 hover:text-white text-xs">ブログ</a></li><li><a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white text-xs">お問い合わせ</a></li></ul></div>
                         </div>
                     </div>
                     <div className="border-t border-slate-800 pt-10 flex flex-wrap gap-8 justify-center text-xs text-slate-500">
@@ -104,101 +95,102 @@
             </footer>
         );
         const MermaidDiagram = ({ chart }) => {
-            useEffect(() => { if (typeof mermaid !== 'undefined') { mermaid.initialize({ theme: 'base', themeVariables: { fontSize: '18px', primaryTextColor: '#334155' } }); mermaid.init(); } }, []);
+            useEffect(() => { if (typeof mermaid !== 'undefined') { mermaid.initialize({ theme: 'base', themeVariables: { fontSize: '18px', primaryTextColor: '#334155', primaryFontSize: '18px' } }); mermaid.init(); } }, []);
             return <div className="mermaid overflow-x-auto max-w-4xl mx-auto text-lg">{chart}</div>;
         };
+        const KeyPoint = ({ title, children }) => (
+            <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
+                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "Key Point"}</h5>
+                <div className="text-slate-700 text-sm leading-relaxed">{children}</div>
+            </div>
+        );
+        const mermaidChart = `graph LR
+        A[エージェント利用] --> B[ログ・承認]
+        B --> C[Evidence bundle]
+        C --> D[監査・規制対応]
+        style A fill:#e0f2fe,stroke:#003E68
+        style B fill:#e0f2fe,stroke:#003E68
+        style C fill:#dcfce7,stroke:#15803d
+        style D fill:#e0f2fe,stroke:#003E68`;
         const BlogArticle = () => (
             <main className="pt-24 pb-16">
                 <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-100">
                         <header className="text-center mb-12 border-b border-slate-100 pb-10">
                             <div className="flex justify-center flex-wrap gap-2 mb-4">
-                                <span className="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">AIガバナンス</span>
-                                <span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide">実装・証跡</span>
+                                <span className="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">監査</span>
+                                <span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide">実装向け</span>
+                                <span className="bg-amber-50 text-amber-700 text-xs px-3 py-1 rounded-full font-bold tracking-wide">Living</span>
                             </div>
-                            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">是正ロードマップ（3）</h1>
+                            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">SaaSアポカリプスとCoworkショック（後編）：Evidence bundleの重要性拡大とAIガバナンス</h1>
                             <div className="flex items-center justify-center space-x-4 text-sm text-slate-500">
-                                <time dateTime="2026-02-09">2026.02.09</time><span>&middot;</span>
+                                <time dateTime="2026-02-05">2026.02.05</time><span>&middot;</span>
                                 <span className="flex items-center gap-1"><Icon name="User" size={14} /> RISEby Editorial Team</span>
                             </div>
                         </header>
                         <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
-                                <p className="lead text-xl text-slate-600 mb-4 leading-relaxed font-medium" dangerouslySetInnerHTML={{ __html: `集中型で統制するか、分散型でスピードを取るか、組織に合わせた選択が求められます。<br />\n\n本稿の焦点は「“是正ロードマップ”」です。<br />是正ロードマップ（3）について、責任分界・証跡・監査提出の目次を具体化します。<br />議題テンプレを毎四半期で回し、証跡と次のアクションを残します。<br /> 継続評価の記録を四半期ごとに残し、是正の流れをテンプレ化しておきます。<br />` }} />
-                                <p className="not-prose text-sm text-slate-500 mb-10"><a href="#article-nav" className="text-brand-blue hover:underline">← 前後の記事・関連記事・カテゴリに戻るはページ末尾へ</a></p>
-                                <h2>1. 選定基準</h2>
-<p>本稿の焦点は「“是正ロードマップ”」です。選定基準では、理念で終わらせず運用・証跡・監査可能性に落とすための要件を整理します。RACI、申請―審査―例外―更新、証跡、継続評価、インシデントの5要素のうち、このテーマに応じた項目を押さえます。議題テンプレを毎四半期で回し、証跡と次のアクションを残します。 継続評価の記録を四半期ごとに残し、是正の流れをテンプレ化しておきます。</p>
-<p>さらに、データの境界（入力・出力・学習）を定義し、漏えい経路に統制を置きます。 ベンダー・委託先との責任分界を契約と証跡で明示し、四半期で棚卸します。</p>
-<p>加えて、Evidence Bundleの形（ログ→検証→保全→提出）を揃え、ハッシュで改ざんを検知します。 データ種類と義務の対応をマトリクス化し、DPIA・承認の記録を保全します。</p>
-                                <div className="not-prose my-8 overflow-x-auto w-full max-w-[90%] mx-auto" dangerouslySetInnerHTML={{ __html: `<div style="max-width: 520px; margin: 1rem auto; border-left: 3px solid #003E68; padding-left: 1rem;">\n  <p style="margin: 0 0 0.5rem; font-weight: bold;">選定基準と運用</p>\n  <ul style="margin: 0; padding-left: 1.25rem; font-size: 0.9rem;">\n    <li style="margin: 0.25rem 0;">RACIと証跡の目次を監査と事前合意</li>\n    <li style="margin: 0.25rem 0;">継続評価・インシデント窓口を固定</li>\n    <li style="margin: 0.25rem 0;">是正の流れをテンプレ化し記録</li>\n  </ul>\n</div>` }} />
-                                <h2>2. 評価プロセス</h2>
-<p>アクセス制御を申請・承認・付与のフローに落とし、最小権限を適用します。 法域ごとの義務をマトリクス化し、契約条項と証跡でカバーします。</p>
-<p>あわせて、年次で優先5領域を決め、予算・人材・レビューのサイクルを回します。 開発段階の統制と承認ゲートを設け、証跡を切らさない設計にします。</p>
-<p>また、連鎖（生成→保管→提出→検証）を設計し、監査提示の形を事前に合意します。 選定基準と評価プロセス、契約・SLA、継続監視、証跡を一貫して設計します。</p>
-                                <div className="not-prose my-8 overflow-x-auto w-full max-w-[90%] mx-auto" dangerouslySetInnerHTML={{ __html: `<table style="width:100%; max-width: 520px; margin: 1rem auto; border-collapse: collapse;">\n  <thead>\n    <tr style="background: #f1f5f9;">\n      <th style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">証跡</th>\n      <th style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">目的</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr><td style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">評価プロセス・計画</td><td style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">選択の根拠</td></tr>\n    <tr><td style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">承認記録</td><td style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">通過判断の説明</td></tr>\n    <tr><td style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">是正記録</td><td style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">再発防止</td></tr>\n  </tbody>\n</table>` }} />
-                                <h2>3. 契約・SLA</h2>
-<p>主体・権限・データのマトリクスでアクセスを設計し、付与・剥奪の記録を残します。 品質KRIと閾値、是正率を記録し、データとリスクの対応を監視します。</p>
-<p>あわせて、ライフサイクルに評価ゲートを埋め込み、通過記録を証跡にします。 年次で優先5領域を決め、予算・人材・レビューのサイクルを設計します。</p>
-<p>また、ボード指標の最小セットと意思決定ログ、四半期レビューを運用します。 証跡は改ざん耐性（ハッシュやアクセス制御）を確保し、保持期間を明示します。</p>
-                                <div className="not-prose my-8 overflow-x-auto w-full max-w-[90%] mx-auto" dangerouslySetInnerHTML={{ __html: `<svg viewBox="0 0 380 80" xmlns="http://www.w3.org/2000/svg">\n  <rect x="15" y="22" width="95" height="36" rx="4" fill="#e0f2fe"/><text x="62" y="44" text-anchor="middle" font-size="9">入力</text>\n  <path d="M115 40 L145 40" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>\n  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#94a3b8"/></marker></defs>\n  <rect x="150" y="22" width="95" height="36" rx="4" fill="#dcfce7"/><text x="197" y="44" text-anchor="middle" font-size="9">審査</text>\n  <path d="M250 40 L280 40" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow2)"/>\n  <defs><marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#94a3b8"/></marker></defs>\n  <rect x="285" y="22" width="95" height="36" rx="4" fill="#fef9c3"/><text x="332" y="44" text-anchor="middle" font-size="9">出力</text>\n  <text x="190" y="72" text-anchor="middle" font-size="8" fill="#64748b">契約・SLA</text>\n</svg>` }} />
-                                <h2>4. 継続監視</h2>
-<p>集中と分散の意思決定基準を文書化し、選択の根拠を記録します。 例外の基準と有効期限を設け、恒久化すべきものは正式申請に切り替える運用にします。</p>
-<p>あわせて、KRI・閾値・エスカレーション先を決め、ダッシュボードやレビューで追います。 透明性表示やコンテンツ分類の手順を文書化し、公開前チェックの記録を残します。</p>
-<p>また、ボード・監査向けの最小KRIを決め、閾値 breach 時のアクションを明文化します。 品質が壊れるポイントを特定し、測定・是正・証跡のループを回します。</p>
-                                <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
-                                    <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />要点</h5>
-                                    <div className="text-slate-700 text-base leading-relaxed" dangerouslySetInnerHTML={{ __html: `監査で問われやすいのは「“是正ロードマップ”」に関して、責任分界と証跡の目次が揃っていないことです。明日から、RACIと証跡の目次を関係者と共有し、インシデント時の報告先を1つ決めておくだけで、説明可能性が高まります。` }} />
-                                </div>
-                                <h2>すぐ使えるチェックリスト</h2>
-                                <ul className="list-disc pl-6 space-y-2">
-                                <li>脅威分類と統制・監視・演習の記録を揃えているか</li>
-<li>ログ種別・目的・保持期間を一覧化し、完全性を検証しているか</li>
-<li>インシデント時の報告・エスカレーション手順を決めているか</li>
-<li>DPIA・利用目的承認と証跡の連携を取っているか</li>
-<li>争点化に備えた証拠を想定し、日付・責任者の整合を保っているか</li>
-<li>四半期の棚卸を予定し、記録を残しているか</li>
-<li>ベンダー・委託先との責任分界を契約と証跡で明示しているか</li>
-<li>RACI（責任者・承認者）を決め、一枚にまとめているか</li>
-<li>開発・リリースのゲートと通過記録を設計しているか</li>
-<li>学習データ・出力物の権利と責任を方針化しているか</li>
-                                </ul>
-                                <h2>参考・参照</h2>
-                                <ul className="list-disc pl-6 space-y-2 text-slate-700">
-                                    <li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener noreferrer" class="text-brand-blue hover:underline">ISO/IEC 42001 (AIMS)</a></li>
-<li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20250328_2.pdf" target="_blank" rel="noopener noreferrer" class="text-brand-blue hover:underline">経済産業省「AI事業者ガイドライン」2025年3月公表版</a></li>
-<li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" class="text-brand-blue hover:underline">NIST AI RMF (2023)</a></li>
-                                </ul>
-                                <h2>次の一歩</h2>
-                                <p dangerouslySetInnerHTML={{ __html: `放置した場合のワーストシナリオ（監査指摘・証跡欠落）を避けるため、明日から対策を始めてください。 監査提出の目次を監査法人と1回すり合わせ、欠落しやすい項目をチェックリストに加える。 開発・リリースのゲートと通過記録の形を決め、証跡の連鎖が切れないようにする。` }} />
-
-                        <div id="article-nav" className="not-prose mt-12 pt-8 border-t border-slate-200 space-y-8">
-                            <div className="flex flex-wrap items-center justify-between gap-4">
-                                <div className="flex flex-wrap items-center gap-6">
-                                    {articleNav.prev && <a href={articleNav.prev.slug + ".html"} className="text-brand-blue hover:underline font-medium">← 前の記事：{articleNav.prev.title_ja}</a>}
-                                    {articleNav.next && <a href={articleNav.next.slug + ".html"} className="text-brand-blue hover:underline font-medium">次の記事：{articleNav.next.title_ja} →</a>}
-                                </div>
-                                <a href="index.html" className="text-slate-600 hover:text-slate-900 font-medium">カテゴリに戻る</a>
-                            </div>
-                            <div>
-                                <h3 className="text-lg font-bold text-slate-900 mb-4">関連記事</h3>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                    {articleNav.related.map((r, i) => <a key={i} href={r.slug + ".html"} className="block p-5 rounded-xl border border-slate-200 hover:border-brand-blue hover:shadow-md transition"><div className="flex flex-wrap gap-2 mb-2"><span className="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">AIガバナンス</span><span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide">実装・証跡</span></div><p className="font-bold text-slate-900 mt-1">{r.title_ja}</p></a>)}
-                                </div>
-                            </div>
-                        </div>
+                                <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">
+Coworkショックの後編では、自律型AIエージェントの普及が進むなか、今後のAIガバナンスにおいてEvidence bundle（証跡の束）の重要性がどう拡大するかを論じます。監査・規制対応・説明責任を一気通貫で支える設計を整理します。
+</p>
+                                <h2>1. なぜEvidence bundleがこれまで以上に重要になるか</h2>
+                                <p>AIエージェントがファイル操作・データ抽出・意思決定に近いタスクを実行する場合、「何を・いつ・どの条件で行ったか」を証跡として残さないと、監査や規制当局・顧客からの説明要求に応えられません。Coworkのようなツールが社内に広がると、従来の「人が操作したログ」に加え、「エージェントが実行したアクションのログ」「入力・出力・承認の記録」を束ねたEvidence bundleが、説明責任の要になります。</p>
+                                <p>EU AI Actをはじめとする規制では、高リスク用途や透明性義務に伴い、技術文書・ログ・評価結果を保持することが求められます。Evidence bundleは、それらを一括で管理・提示する考え方です。</p>
+                                <MermaidDiagram chart={mermaidChart} />
+                                <h2>2. Evidence bundleに含めるべき要素</h2>
+                                <p>最低限、次の要素を束ねる設計が推奨されます。利用規程と承認履歴、エージェントの入力・出力・実行ログ、評価（Evals）の結果と日付、インシデントや例外の記録、そして規制・監査要件ごとのマッピングです。Coworkのような自律型エージェントを利用する場合は、どのタスクを許可したか・どのデータにアクセスさせたか・出力を誰が確認したかを、証跡として残すプロセスが欠かせません。</p>
+                                <p>これらを「監査法人が欲しい束ね方」で整え、四半期やリリース単位で更新できるようにしておくと、突発的な説明要求にも対応しやすくなります。</p>
+                                <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose max-w-4xl mx-auto">
+                <figcaption className="text-lg font-bold mb-6 text-slate-800 text-center">Evidence bundleの構成</figcaption>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-x-auto">
+                    <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <h5 className="font-bold text-slate-700 mb-3 flex items-center gap-2"><Icon name="List" size={18} /> 記録・証跡</h5>
+                        <ul className="text-sm text-slate-700 space-y-1.5">
+                            <li>利用規程・承認履歴</li>
+                            <li>入力・出力・実行ログ</li>
+                            <li>Evals結果と日付</li>
+                        </ul>
+                    </div>
+                    <div className="bg-blue-50 p-4 rounded-lg border border-brand-blue/30">
+                        <h5 className="font-bold text-brand-blue mb-3 flex items-center gap-2"><Icon name="CheckCircle" size={18} /> 監査・規制</h5>
+                        <ul className="text-sm text-slate-700 space-y-1.5">
+                            <li>インシデント・例外の記録</li>
+                            <li>規制要件とのマッピング</li>
+                            <li>四半期・リリース単位の更新</li>
+                        </ul>
+                    </div>
+                </div>
+            </figure>
+                                <h2>3. 今後のAIガバナンス：設計と運用の両輪</h2>
+                                <p>Evidence bundleは一度作って終わりではなく、プロダクトの変更・規制のLivingな更新・監査サイクルに合わせて更新し続ける必要があります。Coworkショックを経て、企業は「AIエージェントをどう統制し、どう説明するか」をガバナンスの中心に据える動きを強めています。設計の段階で証跡の取り方を組み込み、運用でログと承認をためていく両輪が、今後のAIガバナンスの標準になっていくでしょう。</p>
+                                <KeyPoint title="証跡を束ね、説明責任を設計の中心に置く">
+                Evidence bundleを事前に設計し、エージェント利用の承認・ログ・評価を運用でためていくことで、規制と監査の波に後手を取らずに済みます。設計から相談したい場合は、お気軽にご連絡ください。
+            </KeyPoint>
+                                
+                            <h2>参考・参照</h2>
+                            <ul className="list-disc pl-6 space-y-2 text-slate-700">
+                                <li><a href="https://www.businessinsider.com/anthropic-claude-cowork-release-ai-vibecoded-2026-1" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">Anthropic、Claude Coworkを発表（Business Insider）</a></li>
+                                <li><a href="https://news.bensbites.com/posts/55738-anthropics-claude-cowork-launch-has-revived-fears-about-disruption-that-weighed-on-saas-stocks-in-2025-morgan-stanley-saas-index-is-down-15-so-far-in-2026" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">SaaS株への波及・モルガン・スタンレー指数（Bloomberg / Ben's Bites）</a></li>
+                                <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">NIST AI RMF・生成AIプロファイル</a></li>
+                                <li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20250328_2.pdf" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">AI事業者ガイドライン（経済産業省）</a></li>
+                            </ul>
+                                <h2>まとめ</h2>
+                            <p>自律型AIエージェントの普及に伴い、Evidence bundleの重要性はさらに高まります。利用規程・ログ・評価・例外記録を束ね、監査と規制対応に耐える証跡を設計しておくことが、Coworkショック以降のAIガバナンスでは不可欠です。本シリーズで扱った背景・市場・Evidenceの三点を、自社のロードマップに落とし込む際は、お気軽にご相談ください。</p>
                         </div>
                         <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
                             <h3 className="text-2xl font-bold text-white mb-4">AIガバナンスの設計・実装支援</h3>
-                            <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">利用規程の設計から評価・透明性・監査証跡まで、範囲を決めたうえで支援します。</p>
-                            <a href="https://aimoaas.com/ja/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-white text-brand-blue px-8 py-3 rounded-full font-bold hover:bg-slate-100 transition-all mr-4">AIガバナンス・活用基盤の詳細はこちら</a>
-                            <a href="mailto:contact@riseby.net" className="inline-flex items-center justify-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all"><Icon name="Mail" size={18} /> お問い合わせ</a>
+                            <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">利用規程、評価・透明性の設計から監査証跡まで、一気通貫でサポートします。AIMOaaSでガバナンス運用を効率化。</p>
+                            <div className="flex flex-wrap justify-center gap-4">
+                                <a href="https://aimoaas.com/ja/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all">AIMOaaSをみる</a>
+                                <a href="mailto:contact@riseby.net" className="inline-flex items-center gap-2 border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-slate-900 transition-all"><Icon name="Mail" size={18} /> お問い合わせ</a>
+                            </div>
                         </div>
                     </div>
                 </article>
             </main>
         );
         const App = () => <div className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-800"><Header /><BlogArticle /><Footer /></div>;
-        const root = ReactDOM.createRoot(document.getElementById("root"));
+        const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
 </body>
