@@ -26,6 +26,9 @@ https://www.riseby.net/* https://riseby.net/:splat 301
 /articles /blog/ 301
 /news /blog/ 301
 
+# AI governance: extension-less URL → .html (開かない不具合対策)
+/blog/ai-governance/gpai-llm-governance-overview /blog/ai-governance/gpai-llm-governance-overview.html 301
+
 # Old URL patterns (if migrating from another structure)
 /service/* /services/:splat 301
 

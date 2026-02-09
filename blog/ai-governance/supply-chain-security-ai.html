@@ -4,16 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://riseby.net/blog/ai-governance/supply-chain-security-ai.html">
+    <meta name="robots" content="index, follow">
+    <title>供給網セキュリティ | RISEby Blog</title>
+    <meta name="description" content="集中型で統制するか、分散型でスピードを取るか、組織に合わせた選択が求められます。
+
+本稿の焦点は「“供給網セキュリティ”」です。供給網セキュリティについて、責任分界・証跡・監査提出の目次を具体化します。調達審査のRACIと承認フローを文書化し、証跡の目次を監査と合意します。 所見の型と是正テンプレを用意し、追…">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="RISEby inc.">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://riseby.net/blog/ai-governance/supply-chain-security-ai.html">
-    <meta property="og:title" content="サプライチェーンセキュリティ：AIで増幅する論点 | RISEby Blog">
-    <meta property="og:description" content="サプライチェーンセキュリティ：AIで増幅する論点。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。">
+    <meta property="og:title" content="供給網セキュリティ | RISEby Blog">
+    <meta property="og:description" content="集中型で統制するか、分散型でスピードを取るか、組織に合わせた選択が求められます。
+
+本稿の焦点は「“供給網セキュリティ”」です。供給網セキュリティについて、責任分界・証跡・監査提出の目次を具体化します。調達審査のRACIと承認フローを文書化し、証跡の目次を監査と合意します。 所見の型と是正テンプレを用意し、追…">
     <meta property="og:image" content="https://riseby.net/assets/images/og-image.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <title>サプライチェーンセキュリティ：AIで増幅する論点 | RISEby Blog</title>
-    <meta name="description" content="サプライチェーンセキュリティ：AIで増幅する論点。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。">
+    <meta name="twitter:title" content="供給網セキュリティ | RISEby Blog">
+    <meta name="twitter:description" content="集中型で統制するか、分散型でスピードを取るか、組織に合わせた選択が求められます。
+
+本稿の焦点は「“供給網セキュリティ”」です。供給網セキュリティについて、責任分界・証跡・監査提出の目次を具体化します。調達審査のRACIと承認フローを文書化し、証跡の目次を監査と合意します。 所見の型と是正テンプレを用意し、追…">
+    <meta name="twitter:image" content="https://riseby.net/assets/images/og-image.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -22,23 +32,28 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
     <script>tailwind.config = { theme: { extend: { colors: { brand: { blue: '#003E68', red: '#ED1C24', dark: '#0B0F19' } }, fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], display: ['"Montserrat"', 'sans-serif'] } } } }</script>
     <style>body { font-family: "Noto Sans JP", sans-serif; }
     .mermaid { display: flex; justify-content: center; margin: 2rem 0; background: #f8fafc; padding: 1rem; border-radius: 0.5rem; }
     .mermaid svg { max-width: 100%; }
-    .mermaid svg text { font-size: 1.125rem !important; }
     .mermaid .nodeLabel, .mermaid .edgeLabel { font-size: 1.125rem !important; }</style>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"サプライチェーンセキュリティ：AIで増幅する論点","datePublished":"2026-02-05","author":{"@type":"Organization","name":"RISEby Inc.","url":"https://riseby.net"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"供給網セキュリティ","description":"集中型で統制するか、分散型でスピードを取るか、組織に合わせた選択が求められます。\n\n本稿の焦点は「“供給網セキュリティ”」です。供給網セキュリティについて、責任分界・証跡・監査提出の目次を具体化します。調達審査のRACIと承認フローを文書化し、証跡の目次を監査と合意します。 所見の型と是正テンプレを用意し、追…","datePublished":"2026-02-09","dateModified":"2026-02-09","author":{"@type":"Organization","name":"RISEby Inc.","url":"https://riseby.net"},"publisher":{"@type":"Organization","name":"RISEby Inc.","url":"https://riseby.net","logo":{"@type":"ImageObject","url":"https://riseby.net/assets/images/logo.svg"}},"image":"https://riseby.net/assets/images/og-image.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://riseby.net/blog/ai-governance/supply-chain-security-ai.html"},"articleSection":"AIガバナンス","url":"https://riseby.net/blog/ai-governance/supply-chain-security-ai.html"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://riseby.net/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://riseby.net/blog/"},{"@type":"ListItem","position":3,"name":"AIガバナンス","item":"https://riseby.net/blog/ai-governance/index.html"},{"@type":"ListItem","position":4,"name":"供給網セキュリティ","item":"https://riseby.net/blog/ai-governance/supply-chain-security-ai.html"}]}</script>
 </head>
 <body class="bg-slate-50 text-slate-800">
     <div id="root"></div>
     <script type="text/babel">
+        const articleNav = { prev: { slug: "supervisor-authority-alignment", title_ja: "監督権限の整合" }, next: { slug: "sustainability-environmental-ai", title_ja: "環境影響の評価枠" }, related: [ { slug: "third-party-ai-vendor-risk", title_ja: "第三者・ベンダーリスク" }, { slug: "sustainability-environmental-ai", title_ja: "環境影響の評価枠" }, { slug: "synthetic-data-privacy", title_ja: "合成データの限界" } ] };
         const { useState, useEffect } = React;
         const Icon = ({ name, size = 24, className = "" }) => {
-            if (typeof lucide !== 'undefined' && lucide.icons && lucide.icons[name])
-                return React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", className }, lucide.icons[name].map(([tag, attrs], i) => React.createElement(tag, { ...attrs, key: i })));
-            return <span className="inline-block w-4 h-4 bg-gray-300 rounded-full"></span>;
+            const s = size;
+            const svg = (children) => React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", width: s, height: s, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", className }, children);
+            if (name === 'Menu') return svg([React.createElement('line', { key: '1', x1: 3, y1: 6, x2: 21, y2: 6 }), React.createElement('line', { key: '2', x1: 3, y1: 12, x2: 21, y2: 12 }), React.createElement('line', { key: '3', x1: 3, y1: 18, x2: 21, y2: 18 })]);
+            if (name === 'X') return svg([React.createElement('line', { key: '1', x1: 18, y1: 6, x2: 6, y2: 18 }), React.createElement('line', { key: '2', x1: 6, y1: 6, x2: 18, y2: 18 })]);
+            if (name === 'Mail') return svg([React.createElement('path', { key: '1', d: "M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" }), React.createElement('polyline', { key: '2', points: "22,6 12,13 2,6" })]);
+            if (name === 'User') return svg([React.createElement('path', { key: '1', d: "M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" }), React.createElement('circle', { key: '2', cx: 12, cy: 7, r: 4 })]);
+            if (name === 'Lightbulb') return svg([React.createElement('path', { key: '1', d: "M9 18h6" }), React.createElement('path', { key: '2', d: "M10 22h4" }), React.createElement('path', { key: '3', d: "M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14" })]);
+            return React.createElement('span', { className: "inline-block w-4 h-4 bg-gray-300 rounded-full" });
         };
         const Header = () => {
             const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -83,9 +98,9 @@
                         </div>
                         <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8">
                             <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">サービス</h3>
-                                <ul className="space-y-3"><li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs">サービス一覧</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">新規事業開発</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">DXコンサルティング</a></li></ul></div>
+                                <ul className="space-y-3"><li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs">サービス一覧</a></li></ul></div>
                             <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">会社</h3>
-                                <ul className="space-y-3"><li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs">会社概要</a></li><li><a href="../index.html" className="text-slate-400 hover:text-white text-xs">ブログ</a></li><li><a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white text-xs">お問い合わせ</a></li></ul></div>
+                                <ul className="space-y-3"><li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs">会社概要</a></li><li><a href="../index.html" className="text-slate-400 hover:text-white text-xs">ブログ</a></li></ul></div>
                         </div>
                     </div>
                     <div className="border-t border-slate-800 pt-10 flex flex-wrap gap-8 justify-center text-xs text-slate-500">
@@ -95,128 +110,87 @@
             </footer>
         );
         const MermaidDiagram = ({ chart }) => {
-            useEffect(() => { if (typeof mermaid !== 'undefined') { mermaid.initialize({ theme: 'base', themeVariables: { fontSize: '18px', primaryTextColor: '#334155', primaryFontSize: '18px' } }); mermaid.init(); } }, []);
+            useEffect(() => { if (typeof mermaid !== 'undefined') { mermaid.initialize({ theme: 'base', themeVariables: { fontSize: '18px', primaryTextColor: '#334155' } }); mermaid.init(); } }, []);
             return <div className="mermaid overflow-x-auto max-w-4xl mx-auto text-lg">{chart}</div>;
         };
-        const KeyPoint = ({ title, children }) => (
-            <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
-                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "要点"}</h5>
-                <div className="text-slate-700 text-base leading-relaxed">{children}</div>
-            </div>
-        );
-        const CompareCard = ({ caption, leftTitle, leftItems, rightTitle, rightItems }) => (
-            <figure className="my-8 not-prose">
-                <figcaption className="font-bold text-slate-700 mb-3 text-base">{caption}</figcaption>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-                        <h6 className="font-bold text-slate-800 mb-2 text-base">{leftTitle}</h6>
-                        <ul className="list-disc pl-5 space-y-1 text-base text-slate-700">{(leftItems || '').split('\\n').filter(Boolean).map((item, i) => <li key={i}>{item}</li>)}</ul>
-                    </div>
-                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-                        <h6 className="font-bold text-slate-800 mb-2 text-base">{rightTitle}</h6>
-                        <ul className="list-disc pl-5 space-y-1 text-base text-slate-700">{(rightItems || '').split('\\n').filter(Boolean).map((item, i) => <li key={i}>{item}</li>)}</ul>
-                    </div>
-                </div>
-            </figure>
-        );
-                const mermaidChart = `graph TD
-        Threat[脅威モデル] --> Control[統制設計]
-        Control --> Test[テスト]
-        Test --> Monitor[監視・アラート]
-        style Threat fill:#fee2e2,stroke:#b91c1c
-        style Control fill:#e0f2fe,stroke:#003E68
-        style Monitor fill:#fef9c3,stroke:#ca8a04`;
         const BlogArticle = () => (
             <main className="pt-24 pb-16">
                 <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-100">
                         <header className="text-center mb-12 border-b border-slate-100 pb-10">
                             <div className="flex justify-center flex-wrap gap-2 mb-4">
-                                <span className="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">セキュリティ</span>
-                                <span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide">実装向け</span>
-                                
+                                <span className="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">AIガバナンス</span>
+                                <span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide">実装・証跡</span>
                             </div>
-                            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">サプライチェーンセキュリティ：AIで増幅する論点</h1>
+                            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">供給網セキュリティ</h1>
                             <div className="flex items-center justify-center space-x-4 text-sm text-slate-500">
-                                <time dateTime="2026-02-05">2026.02.05</time><span>&middot;</span>
+                                <time dateTime="2026-02-09">2026.02.09</time><span>&middot;</span>
                                 <span className="flex items-center gap-1"><Icon name="User" size={14} /> RISEby Editorial Team</span>
                             </div>
                         </header>
                         <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
-                                <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">
-本稿が解く実務の問いは一つである。サプライチェーンセキュリティ：AIで増幅する論点を運用に落とすうえで、何を証跡として残し誰が責任を負うかを明確にすることである。
-                                </p>
-
-                                <h2>1. 定義を揃える</h2>
-                                <p><strong>サプライチェーンセキュリティ</strong>を、AIガバナンスの文脈で扱う場合、方針・手続き・記録・継続評価・是正を一体的に設計する必要がある。<strong>監査可能性</strong>は、意思決定・変更・アクセスが記録され説明責任を果たせる状態を指す。</p>
-
-                                <div className="not-prose my-8">
-                                    <MermaidDiagram chart={`graph LR
-    A[RACIが曖昧で 申請・…] --> B[記録がログだけでは不十分…]
-    B --> C[継続モニタリングがなく …]
-    C --> D[手続きで防止]
-    style A fill:#fee2e2,stroke:#b91c1c
-    style B fill:#fef9c3,stroke:#ca8a04
-    style C fill:#fef9c3,stroke:#ca8a04
-    style D fill:#dcfce7,stroke:#15803d`} />
+                                <p className="lead text-xl text-slate-600 mb-4 leading-relaxed font-medium" dangerouslySetInnerHTML={{ __html: `集中型で統制するか、分散型でスピードを取るか、組織に合わせた選択が求められます。<br />\n\n本稿の焦点は「“供給網セキュリティ”」です。<br />供給網セキュリティについて、責任分界・証跡・監査提出の目次を具体化します。<br />調達審査のRACIと承認フローを文書化し、証跡の目次を監査と合意します。<br /> 所見の型と是正テンプレを用意し、追跡KPIで完了を管理します。<br />` }} />
+                                <p className="not-prose text-sm text-slate-500 mb-10"><a href="#article-nav" className="text-brand-blue hover:underline">← 前後の記事・関連記事・カテゴリに戻るはページ末尾へ</a></p>
+                                <h2>1. 選定基準</h2>
+<p>本稿の焦点は「“供給網セキュリティ”」です。選定基準では、理念で終わらせず運用・証跡・監査可能性に落とすための要件を整理します。RACI、申請―審査―例外―更新、証跡、継続評価、インシデントの5要素のうち、このテーマに応じた項目を押さえます。調達審査のRACIと承認フローを文書化し、証跡の目次を監査と合意します。 所見の型と是正テンプレを用意し、追跡KPIで完了を管理します。</p>
+<p>さらに、集中と分散の意思決定基準を文書化し、選択の根拠を記録します。 例外の基準と有効期限を設け、恒久化すべきものは正式申請に切り替える運用にします。</p>
+<p>加えて、KRI・閾値・エスカレーション先を決め、ダッシュボードやレビューで追います。 透明性表示やコンテンツ分類の手順を文書化し、公開前チェックの記録を残します。</p>
+                                <div className="not-prose my-8 overflow-x-auto w-full max-w-[90%] mx-auto" dangerouslySetInnerHTML={{ __html: `<svg viewBox="0 0 380 80" xmlns="http://www.w3.org/2000/svg">\n  <rect x="15" y="22" width="95" height="36" rx="4" fill="#e0f2fe"/><text x="62" y="44" text-anchor="middle" font-size="9">入力</text>\n  <path d="M115 40 L145 40" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>\n  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#94a3b8"/></marker></defs>\n  <rect x="150" y="22" width="95" height="36" rx="4" fill="#dcfce7"/><text x="197" y="44" text-anchor="middle" font-size="9">審査</text>\n  <path d="M250 40 L280 40" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow2)"/>\n  <defs><marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#94a3b8"/></marker></defs>\n  <rect x="285" y="22" width="95" height="36" rx="4" fill="#fef9c3"/><text x="332" y="44" text-anchor="middle" font-size="9">出力</text>\n  <text x="190" y="72" text-anchor="middle" font-size="8" fill="#64748b">選定基準</text>\n</svg>` }} />
+                                <h2>2. 評価プロセス</h2>
+<p>版管理と変更記録を残し、文書の形骸化を防ぐための教育・周知も行います。 監査で必要なログの種別・目的・保持期間を一覧化し、完全性を検証します。</p>
+<p>あわせて、攻撃パターンと対策の対応表を作り、検知・是正の記録を残します。 著作権・表示・証跡の争点を一覧化し、方針と手続きを対応させます。</p>
+<p>また、リスク許容度を利用ケース承認に落とし、レッドラインを定義します。 例外が増えないよう、抑制策と教育、KRIで棚卸しを回します。</p>
+                                <div className="not-prose my-8 w-full max-w-[90%] mx-auto"><MermaidDiagram chart={`graph TD\n  要件 --> ベンダー選定\n  ベンダー選定 --> 契約\n  契約 --> 監視\n  style 契約 fill:#e0f2fe`} /></div>
+                                <h2>3. 契約・SLA</h2>
+<p>所見の型と原因をテンプレ化し、是正の優先度と追跡KPIを決めます。 ログ種別と目的・保持期間の対応表を作り、完全性・改ざん検知を確保します。</p>
+<p>あわせて、脅威と統制の対応、監視、演習の記録をセットにします。 手法の使い所と限界を注記し、匿名化率・再識別リスクを記録します。</p>
+<p>また、Buy/Buildの評価軸を決め、選定・契約・監視・証跡を一貫させます。 ログ完全性・保持・改ざん検知を設計し、監査で説明できる形にします。</p>
+                                <div className="not-prose my-8 overflow-x-auto w-full max-w-[90%] mx-auto" dangerouslySetInnerHTML={{ __html: `<div style="max-width: 520px; margin: 1rem auto; border-left: 3px solid #003E68; padding-left: 1rem;">\n  <p style="margin: 0 0 0.5rem; font-weight: bold;">契約・SLAと運用</p>\n  <ul style="margin: 0; padding-left: 1.25rem; font-size: 0.9rem;">\n    <li style="margin: 0.25rem 0;">RACIと証跡の目次を監査と事前合意</li>\n    <li style="margin: 0.25rem 0;">継続評価・インシデント窓口を固定</li>\n    <li style="margin: 0.25rem 0;">是正の流れをテンプレ化し記録</li>\n  </ul>\n</div>` }} />
+                                <h2>4. 継続監視</h2>
+<p>定性・定量の使い分けとリスク評価の手順を文書化し、継続評価を回します。 バイアス評価の手法選択と実施・記録・継続評価をセットにします。</p>
+<p>あわせて、申請から審査、承認、例外、棚卸までのフローを文書化し、証跡を残す設計にします。 誰が承認者（A）で誰が実行責任者（R）かをRACIで明示し、曖昧にしないようにします。</p>
+<p>また、DPIAや利用目的の承認フローをデータ担当と連携させ、証跡を紐づけます。 廃止・退役時の手順と記録を決め、データ保持と再現性を確保します。</p>
+                                <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
+                                    <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />要点</h5>
+                                    <div className="text-slate-700 text-base leading-relaxed" dangerouslySetInnerHTML={{ __html: `監査で問われやすいのは「“供給網セキュリティ”」に関して、責任分界と証跡の目次が揃っていないことです。明日から、RACIと証跡の目次を関係者と共有し、インシデント時の報告先を1つ決めておくだけで、説明可能性が高まります。` }} />
                                 </div>
-
-                                <h2>2. 最低限の運用要件（5点）</h2>
+                                <h2>すぐ使えるチェックリスト</h2>
                                 <ul className="list-disc pl-6 space-y-2">
-                                    <li><strong>役割と責任（RACI）</strong>：申請・審査・承認・記録・監視・是正の責任者を決め、RACIで明文化する。</li>
-                                    <li><strong>ポリシー→手続き</strong>：方針を文書化し、申請・審査・承認・例外・更新の手続きを手順化する。自動化と人の判断の切り分けを決める。</li>
-                                    <li><strong>記録と証跡</strong>：意思決定・変更・アクセスを改ざん耐性のある形で残す。監査で「何を・誰が・いつ」を説明できる設計にする。</li>
-                                    <li><strong>継続モニタリング</strong>：評価・監視・レビューを定期的に回し、結果を記録する。規制・リスクの変化に気づく仕組みを組み込む。</li>
-                                    <li><strong>インシデント対応</strong>：報告・是正・再発防止の手続きを決め、記録を残す。当局・顧客への説明責任の担当を決めておく。</li>
+                                <li>廃止・退役の手順と記録を決めているか</li>
+<li>継続評価の記録を残し、是正の流れをテンプレ化しているか</li>
+<li>契約にBOM・ログ提供義務を盛り込み、責任分界を明示しているか</li>
+<li>Evidence Bundleの形を設計し、ハッシュで改ざん検知しているか</li>
+<li>監査提出の目次を監査法人と事前にすり合わせているか</li>
+<li>レッドチーム・演習の計画・結果・是正を記録しているか</li>
+<li>アクセス制御を申請・承認・付与のフローに落としているか</li>
+<li>成果物ごとに作成者・承認者・保管場所を決めているか</li>
+<li>透明性表示・公開前チェックの記録を残しているか</li>
+<li>例外の基準と有効期限を決め、四半期で棚卸しているか</li>
                                 </ul>
-
-                                <h2>3. 規制・標準との対応関係（マッピング）</h2>
-                                <p>EU AI Act、NIST AI RMF、各国ガイドライン等を参照し、自社の適用する規制一覧と本テーマの対応関係を一覧表にする。不足があれば手続きを補う。適用可否と最終判断は法務・監査と共同で確認する。</p>
-
-                                <div className="not-prose my-8">
-                                    <MermaidDiagram chart={`graph TD
-    subgraph 確認
-        X[RACIを文書化して…]
-        Y[ポリシーと手続き 申…]
-        Z[記録の保存期間と改ざ…]
-    end
-    style X fill:#e0f2fe,stroke:#003E68
-    style Y fill:#e0f2fe,stroke:#003E68
-    style Z fill:#e0f2fe,stroke:#003E68`} />
-                                </div>
-
-                                <h2>4. 失敗パターン（現場で燃える3例）</h2>
-                                <ul className="list-disc pl-6 space-y-2">
-                                    <li>RACIが曖昧で、申請・承認が滞留するか、監査で「誰が責任か」を指摘される。</li>
-                                    <li>記録がログだけでは不十分で、監査で「説明ができない」と指摘される。</li>
-                                    <li>継続モニタリングがなく、規制更新や逸脱に後手で気づく。</li>
-                                </ul>
-
-                                <CompareCard caption="サプライチェーンセキュリティ：観点と失敗の対比" leftTitle="観点・要件（確認したいこと）" leftItems={"RACIを文書化しているか\nポリシーと手続き（申請・審査・承認・記録）を分けているか\n記録の保存期間と改ざん耐性を定めているか\n継続モニタリング（四半期レビュー等）を組み込んでいるか"} rightTitle="よくある失敗（現場で起きがち）" rightItems={"RACIが曖昧で、申請・承認が滞留するか、監査で「誰が責任か」を指摘される。\n記録がログだけでは不十分で、監査で「説明ができない」と指摘される。\n継続モニタリングがなく、規制更新や逸脱に後手で気づく。"} />
-
-                                <KeyPoint title="固有の一文">
-                                多くの組織で、サプライチェーンセキュリティを「方針だけ」で止めると、監査で証跡不足を指摘されやすい。手続きと記録をそろえておくと説明しやすくなる。 相談・ロードマップ整理はお気軽にご連絡ください。
-                                </KeyPoint>
-
-                                <h2>5. すぐ使えるチェックリスト</h2>
-                                <ul className="list-disc pl-6 space-y-2">
-                                    <li>RACIを文書化しているか</li>
-                                    <li>ポリシーと手続き（申請・審査・承認・記録）を分けているか</li>
-                                    <li>記録の保存期間と改ざん耐性を定めているか</li>
-                                    <li>継続モニタリング（四半期レビュー等）を組み込んでいるか</li>
-                                    <li>インシデント時の報告・是正手続きがあるか</li>
-                                    <li>規制・標準との対応表で本テーマをマッピングしたか</li>
-                                </ul>
-
-                                <h2>6. 参考・参照</h2>
+                                <h2>参考・参照</h2>
                                 <ul className="list-disc pl-6 space-y-2 text-slate-700">
-                                    <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">NIST AI RMF・生成AIプロファイル</a></li>
-                                    <li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20250328_2.pdf" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">AI事業者ガイドライン（経済産業省）</a></li>
-                                    <li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">ISO/IEC 42001（AIMS）</a></li>
+                                    <li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener noreferrer" class="text-brand-blue hover:underline">ISO/IEC 42001 (AIMS)</a></li>
+<li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20250328_2.pdf" target="_blank" rel="noopener noreferrer" class="text-brand-blue hover:underline">経済産業省「AI事業者ガイドライン」2025年3月公表版</a></li>
+<li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" class="text-brand-blue hover:underline">NIST AI RMF (2023)</a></li>
                                 </ul>
-                        
-                        
-                        
+                                <h2>次の一歩</h2>
+                                <p dangerouslySetInnerHTML={{ __html: `放置した場合のワーストシナリオ（監査指摘・証跡欠落）を避けるため、明日から対策を始めてください。 廃止・退役の手順と記録の形を決め、保持と再現性を確保する。 自部門で「誰が承認者か」「証跡をどこに残すか」を1つ決め、監査法人に証憑の形を事前に1回確認する。` }} />
+
+                        <div id="article-nav" className="not-prose mt-12 pt-8 border-t border-slate-200 space-y-8">
+                            <div className="flex flex-wrap items-center justify-between gap-4">
+                                <div className="flex flex-wrap items-center gap-6">
+                                    {articleNav.prev && <a href={articleNav.prev.slug + ".html"} className="text-brand-blue hover:underline font-medium">← 前の記事：{articleNav.prev.title_ja}</a>}
+                                    {articleNav.next && <a href={articleNav.next.slug + ".html"} className="text-brand-blue hover:underline font-medium">次の記事：{articleNav.next.title_ja} →</a>}
+                                </div>
+                                <a href="index.html" className="text-slate-600 hover:text-slate-900 font-medium">カテゴリに戻る</a>
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-bold text-slate-900 mb-4">関連記事</h3>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    {articleNav.related.map((r, i) => <a key={i} href={r.slug + ".html"} className="block p-5 rounded-xl border border-slate-200 hover:border-brand-blue hover:shadow-md transition"><div className="flex flex-wrap gap-2 mb-2"><span className="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">AIガバナンス</span><span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide">実装・証跡</span></div><p className="font-bold text-slate-900 mt-1">{r.title_ja}</p></a>)}
+                                </div>
+                            </div>
+                        </div>
                         </div>
                         <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
@@ -229,7 +203,7 @@
             </main>
         );
         const App = () => <div className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-800"><Header /><BlogArticle /><Footer /></div>;
-        const root = ReactDOM.createRoot(document.getElementById('root'));
+        const root = ReactDOM.createRoot(document.getElementById("root"));
         root.render(<App />);
     </script>
 </body>

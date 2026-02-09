@@ -4,18 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://riseby.net/blog/ai-governance/gpai-llm-governance-overview.html">
+    <meta name="robots" content="index, follow">
+    <title>GPAI/LLMの境界と責任 | RISEby Blog</title>
+    <meta name="description" content="理想は統制の効いたAI利用、現実は申請フローが形骸化し証跡が残らない、というギャップがよく聞かれます。
 
-    <!-- OGP -->
+本稿の焦点は「“GPAI/LLMの境界と責任”」です。GPAI/LLMの境界と責任について、責任分界・証跡・監査提出の目次を具体化します。選定基準と評価プロセス、契約・SLA、継続監視、証跡を一貫して設計…">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="RISEby inc.">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://riseby.net/blog/ai-governance/gpai-llm-governance-overview.html">
-    <meta property="og:title" content="GPAI/LLMガバナンス総論：従来AI統制との違い | RISEby Blog">
-    <meta property="og:description" content="汎用目的AI（GPAI）や大規模言語モデル（LLM）のガバナンスは、従来のAI統制の延長では足りません。EU AI ActのGPAI義務や技術文書・透明性の実務をふまえ、企業が「何を足すか」を整理します。">
+    <meta property="og:title" content="GPAI/LLMの境界と責任 | RISEby Blog">
+    <meta property="og:description" content="理想は統制の効いたAI利用、現実は申請フローが形骸化し証跡が残らない、というギャップがよく聞かれます。
+
+本稿の焦点は「“GPAI/LLMの境界と責任”」です。GPAI/LLMの境界と責任について、責任分界・証跡・監査提出の目次を具体化します。選定基準と評価プロセス、契約・SLA、継続監視、証跡を一貫して設計…">
     <meta property="og:image" content="https://riseby.net/assets/images/og-image.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <title>GPAI/LLMガバナンス総論：従来AI統制との違い | RISEby Blog</title>
-    <meta name="description" content="汎用目的AI（GPAI）や大規模言語モデル（LLM）のガバナンスは、従来のAI統制の延長では足りません。EU AI ActのGPAI義務や技術文書・透明性の実務をふまえ、企業が「何を足すか」を整理します。">
+    <meta name="twitter:title" content="GPAI/LLMの境界と責任 | RISEby Blog">
+    <meta name="twitter:description" content="理想は統制の効いたAI利用、現実は申請フローが形骸化し証跡が残らない、というギャップがよく聞かれます。
+
+本稿の焦点は「“GPAI/LLMの境界と責任”」です。GPAI/LLMの境界と責任について、責任分界・証跡・監査提出の目次を具体化します。選定基準と評価プロセス、契約・SLA、継続監視、証跡を一貫して設計…">
+    <meta name="twitter:image" content="https://riseby.net/assets/images/og-image.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -24,304 +32,178 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { brand: { blue: '#003E68', red: '#ED1C24', dark: '#0B0F19' } },
-                    fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], display: ['"Montserrat"', 'sans-serif'] }
-                }
-            }
-        }
-    </script>
+    <script>tailwind.config = { theme: { extend: { colors: { brand: { blue: '#003E68', red: '#ED1C24', dark: '#0B0F19' } }, fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], display: ['"Montserrat"', 'sans-serif'] } } } }</script>
     <style>body { font-family: "Noto Sans JP", sans-serif; }
     .mermaid { display: flex; justify-content: center; margin: 2rem 0; background: #f8fafc; padding: 1rem; border-radius: 0.5rem; }
     .mermaid svg { max-width: 100%; }
-    /* 本文(prose-lg=18px)と同サイズに。図表は本文より小さくする場合も1pt差までとする共通ルール */
-    .mermaid svg text { font-size: 1.125rem !important; }
     .mermaid .nodeLabel, .mermaid .edgeLabel { font-size: 1.125rem !important; }</style>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org", "@type": "BlogPosting",
-      "headline": "GPAI/LLMガバナンス総論：従来AI統制との違い",
-      "datePublished": "2026-02-05",
-      "author": { "@type": "Organization", "name": "RISEby Inc.", "url": "https://riseby.net" }
-    }
-    </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"GPAI/LLMの境界と責任","description":"理想は統制の効いたAI利用、現実は申請フローが形骸化し証跡が残らない、というギャップがよく聞かれます。\n\n本稿の焦点は「“GPAI/LLMの境界と責任”」です。GPAI/LLMの境界と責任について、責任分界・証跡・監査提出の目次を具体化します。選定基準と評価プロセス、契約・SLA、継続監視、証跡を一貫して設計…","datePublished":"2026-02-09","dateModified":"2026-02-09","author":{"@type":"Organization","name":"RISEby Inc.","url":"https://riseby.net"},"publisher":{"@type":"Organization","name":"RISEby Inc.","url":"https://riseby.net","logo":{"@type":"ImageObject","url":"https://riseby.net/assets/images/logo.svg"}},"image":"https://riseby.net/assets/images/og-image.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://riseby.net/blog/ai-governance/gpai-llm-governance-overview.html"},"articleSection":"AIガバナンス","url":"https://riseby.net/blog/ai-governance/gpai-llm-governance-overview.html"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://riseby.net/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://riseby.net/blog/"},{"@type":"ListItem","position":3,"name":"AIガバナンス","item":"https://riseby.net/blog/ai-governance/index.html"},{"@type":"ListItem","position":4,"name":"GPAI/LLMの境界と責任","item":"https://riseby.net/blog/ai-governance/gpai-llm-governance-overview.html"}]}</script>
 </head>
 <body class="bg-slate-50 text-slate-800">
     <div id="root"></div>
     <script type="text/babel">
+        const articleNav = { prev: { slug: "governance-talent-roles", title_ja: "人材・役割設計" }, next: { slug: "harmful-unlawful-output-control", title_ja: "有害出力の統制" }, related: [ { slug: "industry-healthcare-regulation", title_ja: "医療規制と運用" }, { slug: "harmful-unlawful-output-control", title_ja: "有害出力の統制" }, { slug: "industry-kri-minimum-set", title_ja: "業界別KRI最小セット" } ] };
         const { useState, useEffect } = React;
         const Icon = ({ name, size = 24, className = "" }) => {
-            if (typeof lucide !== 'undefined' && lucide.icons && lucide.icons[name]) {
-                const iconData = lucide.icons[name];
-                return React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", className: className }, iconData.map(([tag, attrs], index) => React.createElement(tag, { ...attrs, key: index })));
-            }
-            return <span className="inline-block w-4 h-4 bg-gray-300 rounded-full"></span>;
+            const s = size;
+            const svg = (children) => React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", width: s, height: s, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", className }, children);
+            if (name === 'Menu') return svg([React.createElement('line', { key: '1', x1: 3, y1: 6, x2: 21, y2: 6 }), React.createElement('line', { key: '2', x1: 3, y1: 12, x2: 21, y2: 12 }), React.createElement('line', { key: '3', x1: 3, y1: 18, x2: 21, y2: 18 })]);
+            if (name === 'X') return svg([React.createElement('line', { key: '1', x1: 18, y1: 6, x2: 6, y2: 18 }), React.createElement('line', { key: '2', x1: 6, y1: 6, x2: 18, y2: 18 })]);
+            if (name === 'Mail') return svg([React.createElement('path', { key: '1', d: "M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" }), React.createElement('polyline', { key: '2', points: "22,6 12,13 2,6" })]);
+            if (name === 'User') return svg([React.createElement('path', { key: '1', d: "M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" }), React.createElement('circle', { key: '2', cx: 12, cy: 7, r: 4 })]);
+            if (name === 'Lightbulb') return svg([React.createElement('path', { key: '1', d: "M9 18h6" }), React.createElement('path', { key: '2', d: "M10 22h4" }), React.createElement('path', { key: '3', d: "M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14" })]);
+            return React.createElement('span', { className: "inline-block w-4 h-4 bg-gray-300 rounded-full" });
         };
-
         const Header = () => {
             const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
             const [scrolled, setScrolled] = useState(false);
-            useEffect(() => {
-                const handleScroll = () => setScrolled(window.scrollY > 20);
-                window.addEventListener('scroll', handleScroll);
-                return () => window.removeEventListener('scroll', handleScroll);
-            }, []);
+            useEffect(() => { const h = () => setScrolled(window.scrollY > 20); window.addEventListener('scroll', h); return () => window.removeEventListener('scroll', h); }, []);
             return (
-                <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-white/80 backdrop-blur-sm py-4 shadow-sm'}`}>
+                <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-white/80 backdrop-blur-sm py-4 shadow-sm'}`}>
                     <div className="container mx-auto px-4 flex items-center justify-between max-w-7xl">
-                        <a href="../../index.html" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-                            <img src="../../assets/images/logo.svg" alt="RISEby" className="h-8 md:h-9" />
-                        </a>
+                        <a href="../../index.html" className="flex items-center gap-3 hover:opacity-80"><img src="../../assets/images/logo.svg" alt="RISEby" className="h-8 md:h-9" /></a>
                         <nav className="hidden md:flex items-center gap-8">
-                            <a href="../../index.html#services" className="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">サービス</a>
-                            <a href="../index.html" className="font-bold tracking-wide transition-colors text-slate-800">ブログ</a>
-                            <a href="../../about.html" className="font-bold tracking-wide transition-colors hover:opacity-70 text-slate-800">会社概要</a>
-                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white hover:bg-slate-800 px-6 py-2.5 rounded-full font-bold transition-all duration-300 hover:scale-105 hover:shadow-lg">お問い合わせ</a>
+                            <a href="../../index.html#services" className="font-bold tracking-wide hover:opacity-70 text-slate-800">サービス</a>
+                            <a href="../index.html" className="font-bold tracking-wide text-slate-800">ブログ</a>
+                            <a href="../../about.html" className="font-bold tracking-wide hover:opacity-70 text-slate-800">会社概要</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white hover:bg-slate-800 px-6 py-2.5 rounded-full font-bold">お問い合わせ</a>
                         </nav>
-                        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2 text-slate-800">
-                            <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
-                        </button>
+                        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2 text-slate-800"><Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} /></button>
                     </div>
                     {mobileMenuOpen && (
-                        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-slate-100 shadow-xl p-4 flex flex-col gap-4 animate-fade-in-up">
+                        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t shadow-xl p-4 flex flex-col gap-4">
                             <a href="../../index.html#services" className="text-slate-800 font-bold py-3 border-b border-slate-50">サービス</a>
                             <a href="../index.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">ブログ</a>
                             <a href="../../about.html" className="text-slate-800 font-bold py-3 border-b border-slate-50">会社概要</a>
-                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white text-center py-3.5 rounded-lg font-bold shadow-md mt-2">お問い合わせ</a>
+                            <a href="mailto:contact@riseby.net" className="bg-brand-blue text-white text-center py-3.5 rounded-lg font-bold mt-2">お問い合わせ</a>
                         </div>
                     )}
                 </header>
             );
         };
-
         const Footer = () => (
-            <footer className="bg-[#0B0F19] text-white pt-24 pb-12 border-t border-slate-800 font-sans">
+            <footer className="bg-[#0B0F19] text-white pt-24 pb-12 border-t border-slate-800">
                 <div className="container mx-auto px-4 max-w-7xl">
                     <div className="flex flex-col lg:flex-row justify-between gap-16 mb-24">
                         <div className="lg:w-1/3">
-                            <a href="../../index.html" className="block mb-8">
-                                <img src="../../assets/images/logo.svg" alt="RISEby" className="h-9 brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" />
-                            </a>
-                            <p className="text-slate-400 text-sm leading-relaxed mb-8">複合的な経営課題を、AI・戦略・テクノロジー・人の観点から整理し、実行に落とすコンサルティングファーム。</p>
+                            <a href="../../index.html" className="block mb-8"><img src="../../assets/images/logo.svg" alt="RISEby" className="h-9 brightness-0 invert opacity-90" /></a>
+                            <p className="text-slate-400 text-sm mb-8">複合的な経営課題を、AI・戦略・テクノロジー・人の観点から整理し、実行に落とすコンサルティングファーム。</p>
                             <div className="mb-10 text-sm text-slate-400 space-y-3">
                                 <p>〒150-6115 東京都渋谷区渋谷2-24-12</p>
                                 <p>渋谷スクランブルスクエア 15階</p>
-                                <a href="mailto:contact@riseby.net" className="hover:text-white transition-colors flex items-center gap-2 mt-6 group">
-                                    <span className="bg-slate-800 p-2 rounded-full group-hover:bg-slate-700 transition-colors"><Icon name="Mail" size={16} /></span>
-                                    contact@riseby.net
-                                </a>
+                                <a href="mailto:contact@riseby.net" className="hover:text-white flex items-center gap-2 mt-6 group"><span className="bg-slate-800 p-2 rounded-full group-hover:bg-slate-700"><Icon name="Mail" size={16} /></span>contact@riseby.net</a>
                             </div>
-                            <p className="text-slate-600 text-xs">&copy; {new Date().getFullYear()} RISEby Inc. All rights reserved.</p>
+                            <p className="text-slate-600 text-xs">&copy; {new Date().getFullYear()} RISEby Inc.</p>
                         </div>
-                        <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8 gap-y-14">
-                            <div>
-                                <h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">サービス</h3>
-                                <ul className="space-y-3">
-                                    <li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs transition-colors">サービス一覧</a></li>
-                                    <li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs transition-colors">新規事業開発</a></li>
-                                    <li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs transition-colors">DXコンサルティング</a></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">会社</h3>
-                                <ul className="space-y-3">
-                                    <li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs transition-colors">会社概要</a></li>
-                                    <li><a href="../index.html" className="text-slate-400 hover:text-white text-xs transition-colors">ブログ</a></li>
-                                    <li><a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white text-xs transition-colors">お問い合わせ</a></li>
-                                </ul>
-                            </div>
+                        <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8">
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">サービス</h3>
+                                <ul className="space-y-3"><li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs">サービス一覧</a></li></ul></div>
+                            <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">会社</h3>
+                                <ul className="space-y-3"><li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs">会社概要</a></li><li><a href="../index.html" className="text-slate-400 hover:text-white text-xs">ブログ</a></li></ul></div>
                         </div>
                     </div>
                     <div className="border-t border-slate-800 pt-10 flex flex-wrap gap-8 justify-center text-xs text-slate-500">
-                        <a href="../../about.html" className="hover:text-white transition-colors">会社概要</a>
-                        <a href="../../privacy.html" className="hover:text-white transition-colors">プライバシーポリシー</a>
+                        <a href="../../about.html" className="hover:text-white">会社概要</a><a href="../../privacy.html" className="hover:text-white">プライバシーポリシー</a>
                     </div>
                 </div>
             </footer>
         );
-
         const MermaidDiagram = ({ chart }) => {
-            useEffect(() => {
-                if (typeof mermaid !== 'undefined') {
-                    mermaid.initialize({ theme: 'base', themeVariables: { fontSize: '18px', primaryTextColor: '#334155', primaryFontSize: '18px' } });
-                    mermaid.init();
-                }
-            }, []);
+            useEffect(() => { if (typeof mermaid !== 'undefined') { mermaid.initialize({ theme: 'base', themeVariables: { fontSize: '18px', primaryTextColor: '#334155' } }); mermaid.init(); } }, []);
             return <div className="mermaid overflow-x-auto max-w-4xl mx-auto text-lg">{chart}</div>;
         };
-
-        const KeyPoint = ({ title, children }) => (
-            <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
-                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "要点"}</h5>
-                <div className="text-slate-700 text-base leading-relaxed">{children}</div>
-            </div>
-        );
-
-        const CompareCards = () => (
-            <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose max-w-4xl mx-auto">
-                <figcaption className="text-lg font-bold mb-6 text-slate-800 text-center">従来AIとGPAI/LLMの統制の違い</figcaption>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-x-auto">
-                    <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                        <h5 className="font-bold text-slate-700 mb-3 flex items-center gap-2"><Icon name="Box" size={18} /> 従来AI（用途限定）</h5>
-                        <ul className="text-xs text-slate-700 space-y-1.5">
-                            <li>・入力・出力が用途で限定され予測可能</li>
-                            <li>・リスク分類がしやすく、QMS・技術文書で対応</li>
-                            <li>・透明性は「高リスク」領域で重点化</li>
-                            <li>・評価はテストケース・精度指標が中心</li>
-                        </ul>
-                    </div>
-                    <div className="bg-blue-50 p-4 rounded-lg border border-brand-blue/30">
-                        <h5 className="font-bold text-brand-blue mb-3 flex items-center gap-2"><Icon name="Cpu" size={18} /> GPAI/LLM（汎用）</h5>
-                        <ul className="text-xs text-slate-700 space-y-1.5">
-                            <li>・多様な用途・出力で不確実性が高い</li>
-                            <li>・技術文書・透明性・著作権・システミックリスクが必須</li>
-                            <li>・生成コンテンツの表示・ラベリングが独立論点</li>
-                            <li>・Evals・レッドチーム・継続モニタリングが中心</li>
-                        </ul>
-                    </div>
-                </div>
-            </figure>
-        );
-
-        const ControlLayersSvg = () => (
-            <figure className="my-10 p-6 bg-white rounded-xl shadow-sm border border-slate-100 not-prose text-center max-w-4xl mx-auto">
-                <figcaption className="text-lg font-bold mb-6 text-slate-800">統制の積み上げ：従来AIの上にGPAI/LLM層を追加</figcaption>
-                <div className="overflow-x-auto flex justify-center">
-                    <svg viewBox="0 0 480 200" className="w-full max-w-2xl aspect-[480/200]" style={{ minWidth: 320 }}>
-                        <rect x="30" y="138" width="420" height="52" rx="4" fill="#e2e8f0" stroke="#94a3b8" strokeWidth="1.5" />
-                        <text x="240" y="168" fontSize="13" fontWeight="bold" fill="#475569" textAnchor="middle">共通基盤（リスク評価・体制・監査証跡）</text>
-                        <rect x="40" y="72" width="400" height="58" rx="4" fill="#cbd5e1" stroke="#64748b" strokeWidth="1.5" />
-                        <text x="240" y="98" fontSize="13" fontWeight="bold" fill="#334155" textAnchor="middle">従来AI統制</text>
-                        <text x="240" y="118" fontSize="13" fontWeight="bold" fill="#334155" textAnchor="middle">（QMS・技術文書・適合性評価）</text>
-                        <rect x="50" y="8" width="380" height="58" rx="4" fill="#003E68" stroke="#0f172a" strokeWidth="1.5" />
-                        <text x="240" y="35" fontSize="13" fontWeight="bold" fill="white" textAnchor="middle">GPAI/LLM層</text>
-                        <text x="240" y="55" fontSize="13" fontWeight="bold" fill="white" textAnchor="middle">（透明性・Evals・データ境界）</text>
-                    </svg>
-                </div>
-            </figure>
-        );
-
-        const BlogArticle = () => {
-            return (
-                <main className="pt-24 pb-16">
-                    <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-100">
-                            <header className="text-center mb-12 border-b border-slate-100 pb-10">
-                                <div className="flex justify-center flex-wrap gap-2 mb-4">
-                                    <span className="bg-violet-100 text-violet-700 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">生成AI・GPAI</span>
-                                    <span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide">経営向け</span>
-                                    <span className="bg-amber-50 text-amber-700 text-xs px-3 py-1 rounded-full font-bold tracking-wide">Living</span>
-                                </div>
-                                <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">GPAI/LLMガバナンス総論：<br/>従来AI統制との違い</h1>
-                                <div className="flex items-center justify-center space-x-4 text-sm text-slate-500">
-                                    <time dateTime="2026-02-05">2026.02.05</time>
-                                    <span>&middot;</span>
-                                    <span className="flex items-center gap-1"><Icon name="User" size={14} /> RISEby Editorial Team</span>
-                                </div>
-                            </header>
-                            <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
-                                <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">
-本稿が解く実務の問いは一つである。GPAI/LLMガバナンス総論：従来AI統制との違いを運用に落とすうえで、何を証跡として残し誰が責任を負うかを明確にすることである。
-                                </p>
-
-                                <h2>1. 定義を揃える</h2>
-                                <p><strong>GPAI/LLMガバナンス総論</strong>を、AIガバナンスの文脈で扱う場合、方針・手続き・記録・継続評価・是正を一体的に設計する必要がある。<strong>監査可能性</strong>は、意思決定・変更・アクセスが記録され説明責任を果たせる状態を指す。</p>
-
-                                <div className="not-prose my-8">
-                                    <MermaidDiagram chart={`graph LR
-    A[RACIが曖昧で 申請・…] --> B[記録がログだけでは不十分…]
-    B --> C[継続モニタリングがなく …]
-    C --> D[手続きで防止]
-    style A fill:#fee2e2,stroke:#b91c1c
-    style B fill:#fef9c3,stroke:#ca8a04
-    style C fill:#fef9c3,stroke:#ca8a04
-    style D fill:#dcfce7,stroke:#15803d`} />
-                                </div>
-
-                                <h2>2. 最低限の運用要件（5点）</h2>
-                                <ul className="list-disc pl-6 space-y-2">
-                                    <li><strong>役割と責任（RACI）</strong>：申請・審査・承認・記録・監視・是正の責任者を決め、RACIで明文化する。</li>
-                                    <li><strong>ポリシー→手続き</strong>：方針を文書化し、申請・審査・承認・例外・更新の手続きを手順化する。自動化と人の判断の切り分けを決める。</li>
-                                    <li><strong>記録と証跡</strong>：意思決定・変更・アクセスを改ざん耐性のある形で残す。監査で「何を・誰が・いつ」を説明できる設計にする。</li>
-                                    <li><strong>継続モニタリング</strong>：評価・監視・レビューを定期的に回し、結果を記録する。規制・リスクの変化に気づく仕組みを組み込む。</li>
-                                    <li><strong>インシデント対応</strong>：報告・是正・再発防止の手続きを決め、記録を残す。当局・顧客への説明責任の担当を決めておく。</li>
-                                </ul>
-
-                                <h2>3. 規制・標準との対応関係（マッピング）</h2>
-                                <p>EU AI Act、NIST AI RMF、各国ガイドライン等を参照し、自社の適用する規制一覧と本テーマの対応関係を一覧表にする。不足があれば手続きを補う。適用可否と最終判断は法務・監査と共同で確認する。</p>
-
-                                <div className="not-prose my-8">
-                                    <MermaidDiagram chart={`graph TD
-    subgraph 確認
-        X[RACIを文書化して…]
-        Y[ポリシーと手続き 申…]
-        Z[記録の保存期間と改ざ…]
-    end
-    style X fill:#e0f2fe,stroke:#003E68
-    style Y fill:#e0f2fe,stroke:#003E68
-    style Z fill:#e0f2fe,stroke:#003E68`} />
-                                </div>
-
-                                <h2>4. 失敗パターン（現場で燃える3例）</h2>
-                                <ul className="list-disc pl-6 space-y-2">
-                                    <li>RACIが曖昧で、申請・承認が滞留するか、監査で「誰が責任か」を指摘される。</li>
-                                    <li>記録がログだけでは不十分で、監査で「説明ができない」と指摘される。</li>
-                                    <li>継続モニタリングがなく、規制更新や逸脱に後手で気づく。</li>
-                                </ul>
-
-                                <CompareCard caption="GPAI/LLMガバナンス総論：観点と失敗の対比" leftTitle="観点・要件（確認したいこと）" leftItems={"RACIを文書化しているか\nポリシーと手続き（申請・審査・承認・記録）を分けているか\n記録の保存期間と改ざん耐性を定めているか\n継続モニタリング（四半期レビュー等）を組み込んでいるか"} rightTitle="よくある失敗（現場で起きがち）" rightItems={"RACIが曖昧で、申請・承認が滞留するか、監査で「誰が責任か」を指摘される。\n記録がログだけでは不十分で、監査で「説明ができない」と指摘される。\n継続モニタリングがなく、規制更新や逸脱に後手で気づく。"} />
-
-                                <KeyPoint title="固有の一文">
-                                多くの組織で、GPAI/LLMガバナンス総論を「方針だけ」で止めると、監査で証跡不足を指摘されやすい。手続きと記録をそろえておくと説明しやすくなる。 相談・ロードマップ整理はお気軽にご連絡ください。
-                                </KeyPoint>
-
-                                <h2>5. すぐ使えるチェックリスト</h2>
-                                <ul className="list-disc pl-6 space-y-2">
-                                    <li>RACIを文書化しているか</li>
-                                    <li>ポリシーと手続き（申請・審査・承認・記録）を分けているか</li>
-                                    <li>記録の保存期間と改ざん耐性を定めているか</li>
-                                    <li>継続モニタリング（四半期レビュー等）を組み込んでいるか</li>
-                                    <li>インシデント時の報告・是正手続きがあるか</li>
-                                    <li>規制・標準との対応表で本テーマをマッピングしたか</li>
-                                </ul>
-
-                                <h2>6. 参考・参照</h2>
-                                <ul className="list-disc pl-6 space-y-2 text-slate-700">
-                                    <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">NIST AI RMF・生成AIプロファイル</a></li>
-                                    <li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20250328_2.pdf" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">AI事業者ガイドライン（経済産業省）</a></li>
-                                    <li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">ISO/IEC 42001（AIMS）</a></li>
-                                </ul>
-                        
-                        
-                        
+        const BlogArticle = () => (
+            <main className="pt-24 pb-16">
+                <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-100">
+                        <header className="text-center mb-12 border-b border-slate-100 pb-10">
+                            <div className="flex justify-center flex-wrap gap-2 mb-4">
+                                <span className="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">AIガバナンス</span>
+                                <span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide">実装・証跡</span>
                             </div>
-                            <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
-                                <h3 className="text-2xl font-bold text-white mb-4">GPAI/LLMガバナンスの設計・実装支援</h3>
-                                <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">利用規程の策定、データ境界の整理、Evals・透明性の設計から監査証跡まで、一気通貫でサポートします。</p>
-                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                    <a href="mailto:contact@riseby.net" className="inline-flex items-center justify-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all duration-300 shadow-lg"><Icon name="Mail" size={18} /> お問い合わせ</a>
+                            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">GPAI/LLMの境界と責任</h1>
+                            <div className="flex items-center justify-center space-x-4 text-sm text-slate-500">
+                                <time dateTime="2026-02-09">2026.02.09</time><span>&middot;</span>
+                                <span className="flex items-center gap-1"><Icon name="User" size={14} /> RISEby Editorial Team</span>
+                            </div>
+                        </header>
+                        <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
+                                <p className="lead text-xl text-slate-600 mb-4 leading-relaxed font-medium" dangerouslySetInnerHTML={{ __html: `理想は統制の効いたAI利用、現実は申請フローが形骸化し証跡が残らない、というギャップがよく聞かれます。<br />\n\n本稿の焦点は「“GPAI/LLMの境界と責任”」です。<br />GPAI/LLMの境界と責任について、責任分界・証跡・監査提出の目次を具体化します。<br />選定基準と評価プロセス、契約・SLA、継続監視、証跡を一貫して設計します。<br /> コンテンツ種別と義務、表示、チェック、公開、記録のフローを決めます。<br />` }} />
+                                <p className="not-prose text-sm text-slate-500 mb-10"><a href="#article-nav" className="text-brand-blue hover:underline">← 前後の記事・関連記事・カテゴリに戻るはページ末尾へ</a></p>
+                                <h2>1. 境界定義</h2>
+<p>本稿の焦点は「“GPAI/LLMの境界と責任”」です。境界定義では、理念で終わらせず運用・証跡・監査可能性に落とすための要件を整理します。RACI、申請―審査―例外―更新、証跡、継続評価、インシデントの5要素のうち、このテーマに応じた項目を押さえます。選定基準と評価プロセス、契約・SLA、継続監視、証跡を一貫して設計します。 コンテンツ種別と義務、表示、チェック、公開、記録のフローを決めます。</p>
+<p>さらに、レッドラインを定義し、許容度設計と承認運用、例外・KRIを決めます。 BCPとAI依存の停止・代替・復旧手順を決め、証跡を残します。</p>
+<p>加えて、責任の所在（RACI）を一枚にまとめ、関係者と共有しておくことが第一歩です。 規制・標準との対応関係は一覧化しつつ、断定は避け条件を明示します。</p>
+                                <div className="not-prose my-8 overflow-x-auto w-full max-w-[90%] mx-auto" dangerouslySetInnerHTML={{ __html: `<table style="width:100%; max-width: 520px; margin: 1rem auto; border-collapse: collapse;">\n  <thead>\n    <tr style="background: #f1f5f9;">\n      <th style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">証跡</th>\n      <th style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">目的</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr><td style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">境界定義・計画</td><td style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">選択の根拠</td></tr>\n    <tr><td style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">承認記録</td><td style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">通過判断の説明</td></tr>\n    <tr><td style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">是正記録</td><td style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">再発防止</td></tr>\n  </tbody>\n</table>` }} />
+                                <h2>2. 統制</h2>
+<p>証跡は改ざん耐性（ハッシュやアクセス制御）を確保し、保持期間を明示します。 開発フェーズとリリース承認のゲートを設け、通過記録を証跡として残します。</p>
+<p>あわせて、レッドチームや演習の計画・結果・是正を記録し、脅威モデルを更新します。 証跡の最小セットを「目次」として固定し、欠落しやすい項目をチェックします。</p>
+<p>また、選定基準と評価プロセスを文書化し、契約・継続監視・証跡を一貫させます。 表示義務と公開前チェックを運用に落とし、証跡の目次に含めます。</p>
+                                <div className="not-prose my-8 overflow-x-auto w-full max-w-[90%] mx-auto" dangerouslySetInnerHTML={{ __html: `<svg viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">\n  <rect x="40" y="12" width="180" height="32" rx="4" fill="#e0f2fe"/>\n  <text x="130" y="32" text-anchor="middle" font-size="10">方針</text>\n  <rect x="40" y="52" width="180" height="32" rx="4" fill="#dcfce7"/>\n  <text x="130" y="72" text-anchor="middle" font-size="10">プロセス</text>\n  <rect x="40" y="92" width="180" height="32" rx="4" fill="#fef9c3"/>\n  <text x="130" y="112" text-anchor="middle" font-size="10">統制・証跡</text>\n</svg>` }} />
+                                <h2>3. 契約</h2>
+<p>品質が壊れるポイントを特定し、測定・是正・証跡のループを回します。 集中と分散のトレードオフを整理し、抜け穴がないようガードレールを置きます。</p>
+<p>あわせて、年1の監査では不足するため、継続適合性評価と自動化を運用に組み込みます。 最小目次と落とし穴（目次欠落・日付不整合等）をテンプレで共有します。</p>
+<p>また、攻撃パターンと対策を評価し、検知率・ブロック率をKRIで追います。 争点（権利・表示・証跡・方針）をチェックし、監査指摘を想定した対策を取ります。</p>
+                                <div className="not-prose my-8 w-full max-w-[90%] mx-auto"><MermaidDiagram chart={`graph LR\n  L[ログ] --> V[検証]\n  V --> S[保全]\n  S --> P[提出]\n  style P fill:#dcfce7`} /></div>
+                                <h2>4. 運用</h2>
+<p>境界定義と統制、契約、運用を一貫させ、証跡の目次に含めます。 エスカレーション閾値と重大基準を明文化し、記録と棚卸をセットにします。</p>
+<p>あわせて、契約条項のチェックリストを用意し、living clausesで見直し可能にします。 領域別の公平性論点を整理し、評価と証跡を業界の期待に合わせます。</p>
+<p>また、監査提出の目次を監査法人と事前に1回すり合わせておくと、本番の差し戻しを減らせます。 成果物ごとに作成者・承認者・保管場所・保持期間を決め、Evidence Chainを切らしません。</p>
+                                <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
+                                    <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />要点</h5>
+                                    <div className="text-slate-700 text-base leading-relaxed" dangerouslySetInnerHTML={{ __html: `監査で問われやすいのは「“GPAI/LLMの境界と責任”」に関して、責任分界と証跡の目次が揃っていないことです。明日から、RACIと証跡の目次を関係者と共有し、インシデント時の報告先を1つ決めておくだけで、説明可能性が高まります。` }} />
+                                </div>
+                                <h2>すぐ使えるチェックリスト</h2>
+                                <ul className="list-disc pl-6 space-y-2">
+                                <li>レッドチーム・演習の計画・結果・是正を記録しているか</li>
+<li>アクセス制御を申請・承認・付与のフローに落としているか</li>
+<li>成果物ごとに作成者・承認者・保管場所を決めているか</li>
+<li>透明性表示・公開前チェックの記録を残しているか</li>
+<li>例外の基準と有効期限を決め、四半期で棚卸しているか</li>
+<li>脅威分類と統制・監視・演習の記録を揃えているか</li>
+<li>ログ種別・目的・保持期間を一覧化し、完全性を検証しているか</li>
+<li>インシデント時の報告・エスカレーション手順を決めているか</li>
+<li>DPIA・利用目的承認と証跡の連携を取っているか</li>
+<li>争点化に備えた証拠を想定し、日付・責任者の整合を保っているか</li>
+                                </ul>
+                                <h2>参考・参照</h2>
+                                <ul className="list-disc pl-6 space-y-2 text-slate-700">
+                                    <li><a href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai" target="_blank" rel="noopener noreferrer" class="text-brand-blue hover:underline">GPAI Code of Practice（欧州委員会）</a></li>
+<li><a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank" rel="noopener noreferrer" class="text-brand-blue hover:underline">EU AI Act（欧州委員会）</a></li>
+<li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" class="text-brand-blue hover:underline">NIST AI RMF (2023)</a></li>
+                                </ul>
+                                <h2>次の一歩</h2>
+                                <p dangerouslySetInnerHTML={{ __html: `放置した場合のワーストシナリオ（監査指摘・証跡欠落）を避けるため、明日から対策を始めてください。 契約にBOM・ログ提供の義務が入っているか確認し、入っていなければ次回更新で条項追加を検討する。 DPIA・利用目的承認とAI利用申請の連携を1回確認し、証跡の紐づけを設計する。` }} />
+
+                        <div id="article-nav" className="not-prose mt-12 pt-8 border-t border-slate-200 space-y-8">
+                            <div className="flex flex-wrap items-center justify-between gap-4">
+                                <div className="flex flex-wrap items-center gap-6">
+                                    {articleNav.prev && <a href={articleNav.prev.slug + ".html"} className="text-brand-blue hover:underline font-medium">← 前の記事：{articleNav.prev.title_ja}</a>}
+                                    {articleNav.next && <a href={articleNav.next.slug + ".html"} className="text-brand-blue hover:underline font-medium">次の記事：{articleNav.next.title_ja} →</a>}
+                                </div>
+                                <a href="index.html" className="text-slate-600 hover:text-slate-900 font-medium">カテゴリに戻る</a>
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-bold text-slate-900 mb-4">関連記事</h3>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    {articleNav.related.map((r, i) => <a key={i} href={r.slug + ".html"} className="block p-5 rounded-xl border border-slate-200 hover:border-brand-blue hover:shadow-md transition"><div className="flex flex-wrap gap-2 mb-2"><span className="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">AIガバナンス</span><span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide">実装・証跡</span></div><p className="font-bold text-slate-900 mt-1">{r.title_ja}</p></a>)}
                                 </div>
                             </div>
                         </div>
-                    </article>
-                </main>
-            );
-        };
-
-        const App = () => (
-            <div className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-800">
-                <Header />
-                <BlogArticle />
-                <Footer />
-            </div>
+                        </div>
+                        <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
+                            <h3 className="text-2xl font-bold text-white mb-4">AIガバナンスの設計・実装支援</h3>
+                            <p className="text-slate-300 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">利用規程の設計から評価・透明性・監査証跡まで、範囲を決めたうえで支援します。</p>
+                            <a href="mailto:contact@riseby.net" className="inline-flex items-center justify-center gap-2 bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-brand-blue transition-all"><Icon name="Mail" size={18} /> お問い合わせ</a>
+                        </div>
+                    </div>
+                </article>
+            </main>
         );
-
-        const root = ReactDOM.createRoot(document.getElementById('root'));
+        const App = () => <div className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-800"><Header /><BlogArticle /><Footer /></div>;
+        const root = ReactDOM.createRoot(document.getElementById("root"));
         root.render(<App />);
     </script>
 </body>

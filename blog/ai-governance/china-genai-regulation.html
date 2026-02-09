@@ -4,16 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://riseby.net/blog/ai-governance/china-genai-regulation.html">
+    <meta name="robots" content="index, follow">
+    <title>中国規制の運用影響（断定回避） | RISEby Blog</title>
+    <meta name="description" content="多くの組織で、AIガバナンスの証跡が「何を残すか」で揃っておらず、事後の説明に苦慮しています。
+
+本稿の焦点は「“中国規制の運用影響（断定回避）”」です。中国規制の運用影響（断定回避）について、責任分界・証跡・監査提出の目次を具体化します。グローバル運用の抜け穴をガードレールで塞ぎ、移行計画と証跡を決めます。…">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="RISEby inc.">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://riseby.net/blog/ai-governance/china-genai-regulation.html">
-    <meta property="og:title" content="中国の生成AI規制：域内提供・モデル管理・留意点 | RISEby Blog">
-    <meta property="og:description" content="中国の生成AI規制：域内提供・モデル管理・留意点。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。">
+    <meta property="og:title" content="中国規制の運用影響（断定回避） | RISEby Blog">
+    <meta property="og:description" content="多くの組織で、AIガバナンスの証跡が「何を残すか」で揃っておらず、事後の説明に苦慮しています。
+
+本稿の焦点は「“中国規制の運用影響（断定回避）”」です。中国規制の運用影響（断定回避）について、責任分界・証跡・監査提出の目次を具体化します。グローバル運用の抜け穴をガードレールで塞ぎ、移行計画と証跡を決めます。…">
     <meta property="og:image" content="https://riseby.net/assets/images/og-image.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <title>中国の生成AI規制：域内提供・モデル管理・留意点 | RISEby Blog</title>
-    <meta name="description" content="中国の生成AI規制：域内提供・モデル管理・留意点。規制・実装・監査の観点で整理し、企業が取り組むべきポイントを解説します。">
+    <meta name="twitter:title" content="中国規制の運用影響（断定回避） | RISEby Blog">
+    <meta name="twitter:description" content="多くの組織で、AIガバナンスの証跡が「何を残すか」で揃っておらず、事後の説明に苦慮しています。
+
+本稿の焦点は「“中国規制の運用影響（断定回避）”」です。中国規制の運用影響（断定回避）について、責任分界・証跡・監査提出の目次を具体化します。グローバル運用の抜け穴をガードレールで塞ぎ、移行計画と証跡を決めます。…">
+    <meta name="twitter:image" content="https://riseby.net/assets/images/og-image.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -22,23 +32,28 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
     <script>tailwind.config = { theme: { extend: { colors: { brand: { blue: '#003E68', red: '#ED1C24', dark: '#0B0F19' } }, fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], display: ['"Montserrat"', 'sans-serif'] } } } }</script>
     <style>body { font-family: "Noto Sans JP", sans-serif; }
     .mermaid { display: flex; justify-content: center; margin: 2rem 0; background: #f8fafc; padding: 1rem; border-radius: 0.5rem; }
     .mermaid svg { max-width: 100%; }
-    .mermaid svg text { font-size: 1.125rem !important; }
     .mermaid .nodeLabel, .mermaid .edgeLabel { font-size: 1.125rem !important; }</style>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"中国の生成AI規制：域内提供・モデル管理・留意点","datePublished":"2026-02-05","author":{"@type":"Organization","name":"RISEby Inc.","url":"https://riseby.net"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"中国規制の運用影響（断定回避）","description":"多くの組織で、AIガバナンスの証跡が「何を残すか」で揃っておらず、事後の説明に苦慮しています。\n\n本稿の焦点は「“中国規制の運用影響（断定回避）”」です。中国規制の運用影響（断定回避）について、責任分界・証跡・監査提出の目次を具体化します。グローバル運用の抜け穴をガードレールで塞ぎ、移行計画と証跡を決めます。…","datePublished":"2026-02-09","dateModified":"2026-02-09","author":{"@type":"Organization","name":"RISEby Inc.","url":"https://riseby.net"},"publisher":{"@type":"Organization","name":"RISEby Inc.","url":"https://riseby.net","logo":{"@type":"ImageObject","url":"https://riseby.net/assets/images/logo.svg"}},"image":"https://riseby.net/assets/images/og-image.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://riseby.net/blog/ai-governance/china-genai-regulation.html"},"articleSection":"AIガバナンス","url":"https://riseby.net/blog/ai-governance/china-genai-regulation.html"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://riseby.net/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://riseby.net/blog/"},{"@type":"ListItem","position":3,"name":"AIガバナンス","item":"https://riseby.net/blog/ai-governance/index.html"},{"@type":"ListItem","position":4,"name":"中国規制の運用影響（断定回避）","item":"https://riseby.net/blog/ai-governance/china-genai-regulation.html"}]}</script>
 </head>
 <body class="bg-slate-50 text-slate-800">
     <div id="root"></div>
     <script type="text/babel">
+        const articleNav = { prev: { slug: "change-management-resistance", title_ja: "抵抗の類型と対処" }, next: { slug: "cloud-ai-contract-data-sovereignty", title_ja: "クラウド契約とデータ主権" }, related: [ { slug: "cloud-ai-contract-data-sovereignty", title_ja: "クラウド契約とデータ主権" }, { slug: "content-transparency-why-now", title_ja: "なぜ今、コンテンツ透明性か" }, { slug: "data-artifacts-audit-trail", title_ja: "データ成果物と監査証跡" } ] };
         const { useState, useEffect } = React;
         const Icon = ({ name, size = 24, className = "" }) => {
-            if (typeof lucide !== 'undefined' && lucide.icons && lucide.icons[name])
-                return React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", className }, lucide.icons[name].map(([tag, attrs], i) => React.createElement(tag, { ...attrs, key: i })));
-            return <span className="inline-block w-4 h-4 bg-gray-300 rounded-full"></span>;
+            const s = size;
+            const svg = (children) => React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", width: s, height: s, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", className }, children);
+            if (name === 'Menu') return svg([React.createElement('line', { key: '1', x1: 3, y1: 6, x2: 21, y2: 6 }), React.createElement('line', { key: '2', x1: 3, y1: 12, x2: 21, y2: 12 }), React.createElement('line', { key: '3', x1: 3, y1: 18, x2: 21, y2: 18 })]);
+            if (name === 'X') return svg([React.createElement('line', { key: '1', x1: 18, y1: 6, x2: 6, y2: 18 }), React.createElement('line', { key: '2', x1: 6, y1: 6, x2: 18, y2: 18 })]);
+            if (name === 'Mail') return svg([React.createElement('path', { key: '1', d: "M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" }), React.createElement('polyline', { key: '2', points: "22,6 12,13 2,6" })]);
+            if (name === 'User') return svg([React.createElement('path', { key: '1', d: "M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" }), React.createElement('circle', { key: '2', cx: 12, cy: 7, r: 4 })]);
+            if (name === 'Lightbulb') return svg([React.createElement('path', { key: '1', d: "M9 18h6" }), React.createElement('path', { key: '2', d: "M10 22h4" }), React.createElement('path', { key: '3', d: "M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14" })]);
+            return React.createElement('span', { className: "inline-block w-4 h-4 bg-gray-300 rounded-full" });
         };
         const Header = () => {
             const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -83,9 +98,9 @@
                         </div>
                         <div className="lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8">
                             <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">サービス</h3>
-                                <ul className="space-y-3"><li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs">サービス一覧</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">新規事業開発</a></li><li><a href="../../index.html" className="text-slate-400 hover:text-white text-xs">DXコンサルティング</a></li></ul></div>
+                                <ul className="space-y-3"><li><a href="../../index.html#services" className="text-slate-400 hover:text-white text-xs">サービス一覧</a></li></ul></div>
                             <div><h3 className="font-bold text-sm mb-5 text-white tracking-wider font-display">会社</h3>
-                                <ul className="space-y-3"><li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs">会社概要</a></li><li><a href="../index.html" className="text-slate-400 hover:text-white text-xs">ブログ</a></li><li><a href="mailto:contact@riseby.net" className="text-slate-400 hover:text-white text-xs">お問い合わせ</a></li></ul></div>
+                                <ul className="space-y-3"><li><a href="../../about.html" className="text-slate-400 hover:text-white text-xs">会社概要</a></li><li><a href="../index.html" className="text-slate-400 hover:text-white text-xs">ブログ</a></li></ul></div>
                         </div>
                     </div>
                     <div className="border-t border-slate-800 pt-10 flex flex-wrap gap-8 justify-center text-xs text-slate-500">
@@ -95,129 +110,87 @@
             </footer>
         );
         const MermaidDiagram = ({ chart }) => {
-            useEffect(() => { if (typeof mermaid !== 'undefined') { mermaid.initialize({ theme: 'base', themeVariables: { fontSize: '18px', primaryTextColor: '#334155', primaryFontSize: '18px' } }); mermaid.init(); } }, []);
+            useEffect(() => { if (typeof mermaid !== 'undefined') { mermaid.initialize({ theme: 'base', themeVariables: { fontSize: '18px', primaryTextColor: '#334155' } }); mermaid.init(); } }, []);
             return <div className="mermaid overflow-x-auto max-w-4xl mx-auto text-lg">{chart}</div>;
         };
-        const KeyPoint = ({ title, children }) => (
-            <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
-                <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />{title || "要点"}</h5>
-                <div className="text-slate-700 text-base leading-relaxed">{children}</div>
-            </div>
-        );
-        const CompareCard = ({ caption, leftTitle, leftItems, rightTitle, rightItems }) => (
-            <figure className="my-8 not-prose">
-                <figcaption className="font-bold text-slate-700 mb-3 text-base">{caption}</figcaption>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-                        <h6 className="font-bold text-slate-800 mb-2 text-base">{leftTitle}</h6>
-                        <ul className="list-disc pl-5 space-y-1 text-base text-slate-700">{(leftItems || '').split('\\n').filter(Boolean).map((item, i) => <li key={i}>{item}</li>)}</ul>
-                    </div>
-                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-                        <h6 className="font-bold text-slate-800 mb-2 text-base">{rightTitle}</h6>
-                        <ul className="list-disc pl-5 space-y-1 text-base text-slate-700">{(rightItems || '').split('\\n').filter(Boolean).map((item, i) => <li key={i}>{item}</li>)}</ul>
-                    </div>
-                </div>
-            </figure>
-        );
-                const mermaidChart = `graph LR
-        A[要件把握] --> B[域外適用の確認]
-        B --> C[本社責任の明確化]
-        C --> D[ローカル適応]
-        style A fill:#e0f2fe,stroke:#003E68
-        style B fill:#e0f2fe,stroke:#003E68
-        style C fill:#e0f2fe,stroke:#003E68
-        style D fill:#e0f2fe,stroke:#003E68`;
         const BlogArticle = () => (
             <main className="pt-24 pb-16">
                 <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-100">
                         <header className="text-center mb-12 border-b border-slate-100 pb-10">
                             <div className="flex justify-center flex-wrap gap-2 mb-4">
-                                <span className="bg-rose-100 text-rose-800 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">規制</span>
-                                <span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide">実装向け</span>
-                                
+                                <span className="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">AIガバナンス</span>
+                                <span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide">実装・証跡</span>
                             </div>
-                            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">中国の生成AI規制：域内提供・モデル管理・留意点</h1>
+                            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">中国規制の運用影響（断定回避）</h1>
                             <div className="flex items-center justify-center space-x-4 text-sm text-slate-500">
-                                <time dateTime="2026-02-05">2026.02.05</time><span>&middot;</span>
+                                <time dateTime="2026-02-09">2026.02.09</time><span>&middot;</span>
                                 <span className="flex items-center gap-1"><Icon name="User" size={14} /> RISEby Editorial Team</span>
                             </div>
                         </header>
                         <div className="prose prose-lg prose-slate prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-500 mx-auto">
-                                <p className="lead text-xl text-slate-600 mb-10 leading-relaxed font-medium">
-本稿が解く実務の問いは一つである。中国の生成AI規制：域内提供・モデル管理・留意点を運用に落とすうえで、何を証跡として残し誰が責任を負うかを明確にすることである。
-                                </p>
-
-                                <h2>1. 定義を揃える</h2>
-                                <p><strong>中国の生成AI規制</strong>を、AIガバナンスの文脈で扱う場合、方針・手続き・記録・継続評価・是正を一体的に設計する必要がある。<strong>監査可能性</strong>は、意思決定・変更・アクセスが記録され説明責任を果たせる状態を指す。</p>
-
-                                <div className="not-prose my-8">
-                                    <MermaidDiagram chart={`graph LR
-    A[RACIが曖昧で 申請・…] --> B[記録がログだけでは不十分…]
-    B --> C[継続モニタリングがなく …]
-    C --> D[手続きで防止]
-    style A fill:#fee2e2,stroke:#b91c1c
-    style B fill:#fef9c3,stroke:#ca8a04
-    style C fill:#fef9c3,stroke:#ca8a04
-    style D fill:#dcfce7,stroke:#15803d`} />
+                                <p className="lead text-xl text-slate-600 mb-4 leading-relaxed font-medium" dangerouslySetInnerHTML={{ __html: `多くの組織で、AIガバナンスの証跡が「何を残すか」で揃っておらず、事後の説明に苦慮しています。<br />\n\n本稿の焦点は「“中国規制の運用影響（断定回避）”」です。<br />中国規制の運用影響（断定回避）について、責任分界・証跡・監査提出の目次を具体化します。<br />グローバル運用の抜け穴をガードレールで塞ぎ、移行計画と証跡を決めます。<br /> インシデント時の報告先とエスカレーション閾値を決め、記録を欠かさないようにします。<br />` }} />
+                                <p className="not-prose text-sm text-slate-500 mb-10"><a href="#article-nav" className="text-brand-blue hover:underline">← 前後の記事・関連記事・カテゴリに戻るはページ末尾へ</a></p>
+                                <h2>1. 何が論点か</h2>
+<p>本稿の焦点は「“中国規制の運用影響（断定回避）”」です。何が論点かでは、理念で終わらせず運用・証跡・監査可能性に落とすための要件を整理します。RACI、申請―審査―例外―更新、証跡、継続評価、インシデントの5要素のうち、このテーマに応じた項目を押さえます。グローバル運用の抜け穴をガードレールで塞ぎ、移行計画と証跡を決めます。 インシデント時の報告先とエスカレーション閾値を決め、記録を欠かさないようにします。</p>
+<p>さらに、脅威を分類し、優先順位をつけたうえで統制と監視を設計します。 品質指標と閾値を決め、ドリフトや是正件数を継続的に追います。</p>
+<p>加えて、争点化された際に必要な証拠を想定し、日付・責任者・版の整合を保ちます。 境界定義を入力・出力・学習に分け、契約境界と運用で守る設計にします。</p>
+                                <div className="not-prose my-8 overflow-x-auto w-full max-w-[90%] mx-auto" dangerouslySetInnerHTML={{ __html: `<table style="width:100%; max-width: 520px; margin: 1rem auto; border-collapse: collapse;">\n  <thead>\n    <tr style="background: #f1f5f9;">\n      <th style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">証跡</th>\n      <th style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">目的</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr><td style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">何が論点か・計画</td><td style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">選択の根拠</td></tr>\n    <tr><td style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">承認記録</td><td style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">通過判断の説明</td></tr>\n    <tr><td style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">是正記録</td><td style="border: 1px solid #cbd5e1; padding: 0.5rem 0.75rem;">再発防止</td></tr>\n  </tbody>\n</table>` }} />
+                                <h2>2. 運用</h2>
+<p>漏えい経路ごとにDLP・IDP・CASB等の統制を設計し、境界を守ります。 PETsや合成データの使い所と限界を文書化し、監査で説明できるようにします。</p>
+<p>あわせて、文書のコード化と版管理で形骸化を防ぎ、抵抗への対処も手順化します。 リリース承認のチェックリストと失敗例を文書化し、テンプレとして使います。</p>
+<p>また、争点シナリオに必要な証拠を洗い出し、保全と提出の責任者を決めます。 論点を「何が論点か」で整理し、運用・証跡・チェックリストに落とします。</p>
+                                <div className="not-prose my-8 overflow-x-auto w-full max-w-[90%] mx-auto" dangerouslySetInnerHTML={{ __html: `<svg viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg">\n  <rect x="10" y="10" width="95" height="45" rx="4" fill="#e0f2fe"/><text x="57" y="34" text-anchor="middle" font-size="8">軸A</text>\n  <rect x="115" y="10" width="95" height="45" rx="4" fill="#dcfce7"/><text x="162" y="34" text-anchor="middle" font-size="8">軸B</text>\n  <rect x="10" y="65" width="95" height="45" rx="4" fill="#fef9c3"/><text x="57" y="89" text-anchor="middle" font-size="8">統制</text>\n  <rect x="115" y="65" width="95" height="45" rx="4" fill="#f1f5f9"/><text x="162" y="89" text-anchor="middle" font-size="8">証跡</text>\n  <text x="110" y="115" text-anchor="middle" font-size="8" fill="#64748b">運用</text>\n</svg>` }} />
+                                <h2>3. 証跡</h2>
+<p>入力・境界・出力・学習データの経路を図化し、統制の抜け穴をなくします。 典型契約論点を条項と証跡でカバーし、雛形で効率化します。</p>
+<p>あわせて、出力物の権利・責任を方針に落とし、手続きと証跡を揃えます。 取締役会向けの最小KRIとダッシュボードを用意し、閾値とアクションを決めます。</p>
+<p>また、議題テンプレを毎四半期で回し、証跡と次のアクションを残します。 継続評価の記録を四半期ごとに残し、是正の流れをテンプレ化しておきます。</p>
+                                <div className="not-prose my-8 w-full max-w-[90%] mx-auto"><MermaidDiagram chart={`graph TD\n  申請 --> DPIA\n  DPIA --> 承認\n  承認 --> 利用\n  利用 --> 記録\n  style 記録 fill:#dcfce7`} /></div>
+                                <h2>4. チェックリスト</h2>
+<p>責任の所在（RACI）を一枚にまとめ、関係者と共有しておくことが第一歩です。 規制・標準との対応関係は一覧化しつつ、断定は避け条件を明示します。</p>
+<p>あわせて、契約・SLAにBOMやログ提供の義務を盛り込み、責任分界を明確にします。 学習データの権利処理と出力物の責任範囲を方針に落とし、手続き化します。</p>
+<p>また、アクセス制御を申請・承認・付与のフローに落とし、最小権限を適用します。 法域ごとの義務をマトリクス化し、契約条項と証跡でカバーします。</p>
+                                <div className="my-8 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg not-prose">
+                                    <h5 className="font-bold text-brand-blue mb-2 flex items-center gap-2"><Icon name="Lightbulb" size={20} />要点</h5>
+                                    <div className="text-slate-700 text-base leading-relaxed" dangerouslySetInnerHTML={{ __html: `監査で問われやすいのは「“中国規制の運用影響（断定回避）”」に関して、責任分界と証跡の目次が揃っていないことです。明日から、監査提出に必要な証跡の目次をリスト化し、監査法人に事前に1回提示して問題ないか確認してください。` }} />
                                 </div>
-
-                                <h2>2. 最低限の運用要件（5点）</h2>
+                                <h2>すぐ使えるチェックリスト</h2>
                                 <ul className="list-disc pl-6 space-y-2">
-                                    <li><strong>役割と責任（RACI）</strong>：申請・審査・承認・記録・監視・是正の責任者を決め、RACIで明文化する。</li>
-                                    <li><strong>ポリシー→手続き</strong>：方針を文書化し、申請・審査・承認・例外・更新の手続きを手順化する。自動化と人の判断の切り分けを決める。</li>
-                                    <li><strong>記録と証跡</strong>：意思決定・変更・アクセスを改ざん耐性のある形で残す。監査で「何を・誰が・いつ」を説明できる設計にする。</li>
-                                    <li><strong>継続モニタリング</strong>：評価・監視・レビューを定期的に回し、結果を記録する。規制・リスクの変化に気づく仕組みを組み込む。</li>
-                                    <li><strong>インシデント対応</strong>：報告・是正・再発防止の手続きを決め、記録を残す。当局・顧客への説明責任の担当を決めておく。</li>
+                                <li>KRI・閾値・エスカレーション先を決めているか</li>
+<li>証跡の最小目次を固定し、欠落をチェックしているか</li>
+<li>規制・標準との対応関係を一覧化しているか（断定は避ける）</li>
+<li>版管理と変更記録を残し、文書の形骸化を防いでいるか</li>
+<li>ボード・監査向けの最小KRIと閾値 breach 時のアクションを決めているか</li>
+<li>教育・周知の記録を残しているか</li>
+<li>品質指標・閾値・是正を継続的に追っているか</li>
+<li>申請―審査―承認のフローを文書化し、証跡を残しているか</li>
+<li>データ境界と漏えい経路に統制を置いているか</li>
+<li>廃止・退役の手順と記録を決めているか</li>
                                 </ul>
-
-                                <h2>3. 規制・標準との対応関係（マッピング）</h2>
-                                <p>EU AI Act、NIST AI RMF、各国ガイドライン等を参照し、自社の適用する規制一覧と本テーマの対応関係を一覧表にする。不足があれば手続きを補う。適用可否と最終判断は法務・監査と共同で確認する。</p>
-
-                                <div className="not-prose my-8">
-                                    <MermaidDiagram chart={`graph TD
-    subgraph 確認
-        X[RACIを文書化して…]
-        Y[ポリシーと手続き 申…]
-        Z[記録の保存期間と改ざ…]
-    end
-    style X fill:#e0f2fe,stroke:#003E68
-    style Y fill:#e0f2fe,stroke:#003E68
-    style Z fill:#e0f2fe,stroke:#003E68`} />
-                                </div>
-
-                                <h2>4. 失敗パターン（現場で燃える3例）</h2>
-                                <ul className="list-disc pl-6 space-y-2">
-                                    <li>RACIが曖昧で、申請・承認が滞留するか、監査で「誰が責任か」を指摘される。</li>
-                                    <li>記録がログだけでは不十分で、監査で「説明ができない」と指摘される。</li>
-                                    <li>継続モニタリングがなく、規制更新や逸脱に後手で気づく。</li>
-                                </ul>
-
-                                <CompareCard caption="中国の生成AI規制：観点と失敗の対比" leftTitle="観点・要件（確認したいこと）" leftItems={"RACIを文書化しているか\nポリシーと手続き（申請・審査・承認・記録）を分けているか\n記録の保存期間と改ざん耐性を定めているか\n継続モニタリング（四半期レビュー等）を組み込んでいるか"} rightTitle="よくある失敗（現場で起きがち）" rightItems={"RACIが曖昧で、申請・承認が滞留するか、監査で「誰が責任か」を指摘される。\n記録がログだけでは不十分で、監査で「説明ができない」と指摘される。\n継続モニタリングがなく、規制更新や逸脱に後手で気づく。"} />
-
-                                <KeyPoint title="固有の一文">
-                                多くの組織で、中国の生成AI規制を「方針だけ」で止めると、監査で証跡不足を指摘されやすい。手続きと記録をそろえておくと説明しやすくなる。 相談・ロードマップ整理はお気軽にご連絡ください。
-                                </KeyPoint>
-
-                                <h2>5. すぐ使えるチェックリスト</h2>
-                                <ul className="list-disc pl-6 space-y-2">
-                                    <li>RACIを文書化しているか</li>
-                                    <li>ポリシーと手続き（申請・審査・承認・記録）を分けているか</li>
-                                    <li>記録の保存期間と改ざん耐性を定めているか</li>
-                                    <li>継続モニタリング（四半期レビュー等）を組み込んでいるか</li>
-                                    <li>インシデント時の報告・是正手続きがあるか</li>
-                                    <li>規制・標準との対応表で本テーマをマッピングしたか</li>
-                                </ul>
-
-                                <h2>6. 参考・参照</h2>
+                                <h2>参考・参照</h2>
                                 <ul className="list-disc pl-6 space-y-2 text-slate-700">
-                                    <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">NIST AI RMF・生成AIプロファイル</a></li>
-                                    <li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20250328_2.pdf" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">AI事業者ガイドライン（経済産業省）</a></li>
-                                    <li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline">ISO/IEC 42001（AIMS）</a></li>
+                                    <li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20250328_2.pdf" target="_blank" rel="noopener noreferrer" class="text-brand-blue hover:underline">経済産業省「AI事業者ガイドライン」2025年3月公表版</a></li>
+<li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" class="text-brand-blue hover:underline">NIST AI RMF (2023)</a></li>
+<li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener noreferrer" class="text-brand-blue hover:underline">ISO/IEC 42001 (AIMS)</a></li>
                                 </ul>
-                        
-                        
-                        
+                                <h2>次の一歩</h2>
+                                <p dangerouslySetInnerHTML={{ __html: `あなたの組織がどの道を選ぶべきか、判断軸を1つ決めてください。 申請―審査―承認のフローを文書化し、例外の基準と有効期限を明文化する。 RACIを一枚にまとめ関係者と共有し、継続評価とインシデント窓口を固定する。` }} />
+
+                        <div id="article-nav" className="not-prose mt-12 pt-8 border-t border-slate-200 space-y-8">
+                            <div className="flex flex-wrap items-center justify-between gap-4">
+                                <div className="flex flex-wrap items-center gap-6">
+                                    {articleNav.prev && <a href={articleNav.prev.slug + ".html"} className="text-brand-blue hover:underline font-medium">← 前の記事：{articleNav.prev.title_ja}</a>}
+                                    {articleNav.next && <a href={articleNav.next.slug + ".html"} className="text-brand-blue hover:underline font-medium">次の記事：{articleNav.next.title_ja} →</a>}
+                                </div>
+                                <a href="index.html" className="text-slate-600 hover:text-slate-900 font-medium">カテゴリに戻る</a>
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-bold text-slate-900 mb-4">関連記事</h3>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    {articleNav.related.map((r, i) => <a key={i} href={r.slug + ".html"} className="block p-5 rounded-xl border border-slate-200 hover:border-brand-blue hover:shadow-md transition"><div className="flex flex-wrap gap-2 mb-2"><span className="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full font-bold tracking-wide uppercase font-display">AIガバナンス</span><span className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full font-bold tracking-wide">実装・証跡</span></div><p className="font-bold text-slate-900 mt-1">{r.title_ja}</p></a>)}
+                                </div>
+                            </div>
+                        </div>
                         </div>
                         <div className="not-prose mt-20 p-10 bg-slate-900 rounded-2xl text-center relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-cyan-500"></div>
@@ -230,7 +203,7 @@
             </main>
         );
         const App = () => <div className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-800"><Header /><BlogArticle /><Footer /></div>;
-        const root = ReactDOM.createRoot(document.getElementById('root'));
+        const root = ReactDOM.createRoot(document.getElementById("root"));
         root.render(<App />);
     </script>
 </body>
